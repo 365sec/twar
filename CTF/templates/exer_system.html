@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="keywords" content="杭电CTF,新版大学生网络与信息安全高峰论坛,全国大学生网络信息安全与保密技能大赛">
+<meta name="description" content="'杭电CTF'全国大学生网络信息安全与保密技能大赛是一项公益性大学生科技活动，目的在于宣传网络信息安全与保密知识，培养和提高大学生的网络信息安全与保密的意识和实践能力，增强创新和团队合作意识">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no"/>
+<title>杭电CTF | 题库</title>
+<link rel="shortcut icon" href="/static/index/images/index/logo-title.png">
+<link rel="stylesheet" href="/static/index/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static/index/font_awesome/css/font-awesome.css">
+<link rel="stylesheet" href="/static/index/css/front.css">
+<link rel="stylesheet" href="/static/index/css/index.css">
+<link rel="stylesheet" href="/static/index/css/common.css">
+<link rel="stylesheet" href="/static/css/main/sidebar.css">
+<link rel="stylesheet" href="/static/css/plugins/sweetalert/sweetalert.css">
+<link rel="stylesheet" href="/static/css/plugins/toast/jquery.toast.min.css">
+<link rel="stylesheet" type="text/css" href="/static/css/main/question/question.css">
+
+</head>
+<body>
+  <div id="head_content"></div>
+<section class="clear-nav"></section>
+<input type="hidden" id="currentCategory" value="theory">
+<input type="hidden" id="currentOrderType" value="default">
+<section class="main" id="body">
+<div class="container">
+<div class="row" id="hide-main">
+<!--侧边栏-->
+<div class="col-sm-3" id="sidebar">
+<div class="panel panel-default">
+<!--试题广场按钮-->
+<div class="panel-heading">
+<button type="button" class="btn btn-primary btn-block" id="question-square" role="button"
+data-toggle="collapse" href="#question-categories" aria-expanded="true"
+aria-controls="question-categories">试题广场
+</button>
+</div>
+<!--题目分类列表-->
+<div class="panel-body collapse in" id="question-categories">
+<div class="list-group">
+<a href="/exercise/system?page=1" class="list-group-item active">理论知识</a>
+<a href="/exercise/websafe?page=1" class="list-group-item ">Web安全</a>
+<a href="/exercise/passwd?page=1" class="list-group-item ">密码</a>
+<a href="/exercise/reverse?page=1" class="list-group-item ">逆向</a>
+<a href="/exercise/sundry?page=1" class="list-group-item ">杂类</a>
+<a href="/exercise/forensic?page=1" class="list-group-item ">取证</a>
+</div>
+</div>
+</div>
+</div>
+<div id="telephone-sidebar-btn">
+<i class="fa fa-list-ul" aria-hidden="true"></i>试题类别
+</div>
+<!--正文-->
+<div class="col-sm-9" id="main">
+<div class="panel panel-default">
+<!--排序方式：默认 | 最热 | 最新-->
+<div class="panel-heading">
+<div class="btn-group" role="group" aria-label="orderType">
+<a class="btn order-default on" href="/question/theory?sort=default&page=0&size=20">默认</a>
+<a class="btn order-hot" href="/question/theory?sort=hottest&page=0&size=20">最热</a>
+<a class="btn order-new" href="/question/theory?sort=newest&page=0&size=20">最新</a>
+</div>
+</div>
+<!--问题填充部分-->
+<div class="panel-body">
+<ul class="list-group" id="question-list">
+    {% for question in question_list %}
+        {% if  question.qu_class == 'quzheng' %}
+            <li class="clearfix list-group-item">
+        <div class="question">
+        <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+
+        </div>
+                <a class="question-title" href="/exercise/system/detail?qu_id={{ question.qu_id }}&qu_class={{ question.qu_class }}"><p>{{ question.qu_description }}
+        </p></a>
+        <div class="info">
+        <div class="from pull-left">{{ question.qu_source }}</div>
+        <div class="pull-right">
+        <a class="reply"><i class="fa fa-comment-o" aria-hidden="true"></i> 回答(2)</a>
+        <span>&nbsp;|&nbsp;</span>
+        <a class="collected"><i class="fa fa-heart-o" aria-hidden="true"></i> 收藏(0)</a>
+        <span>&nbsp;|&nbsp;</span>
+        <a class="visited"><i class="fa fa-eye" aria-hidden="true"></i> 浏览量(4978)</a>
+        </div>
+        </div>
+        </li>
+        {% endif %}
+    {% endfor %}
+</ul>
+</div>
+<!--翻页-->
+<div class="panel-footer">
+<nav class="text-center">
+<ul class="pagination">
+{% if page > 1 %}
+    <li><a href="/exercise/system?page=1" class="page-disabled">&laquo;</a></li>
+{% else %}
+    <li><a>&laquo;</a></li>
+{% endif %}
+{% if question_list.has_previous %}
+    {% if question_list.previous_page_number > 1 %}
+         <li><a class="page-disabled" href="#" >...</a></li>
+    {% endif %}
+         <li><a href="/exercise/system?page={{ question_list.previous_page_number }}" >{{ question_list.previous_page_number }}</a></li>
+{% endif %}
+<li><a href="/exercise/system?page={{ page }}" class="active">{{ page }}</a></li>
+<li><a href="/exercise/system?page=2">2</a></li>
+<li><a href="/exercise/system?page=3">3</a></li>
+<li><a class="page-disabled">...</a></li>
+<li><a href="/question/theory?sort=default&page=36&size=20">&raquo;</a></li>
+</ul>
+</nav>
+</div>
+
+</div>
+</div>
+</div>
+<div id="telephone-sidebar">
+<div class="panel panel-default">
+<!--试题广场按钮-->
+<div class="panel-heading text-center">
+<span class="">试题广场</span>
+</div>
+<!--题目分类列表-->
+<div class="panel-body" id="question-categories">
+<div class="list-group">
+<a href="/exercise/system?page=1" class="list-group-item active">理论知识</a>
+<a href="/exercise/websafe?page=1" class="list-group-item ">Web安全</a>
+<a href="/exercise/passwd?page=1" class="list-group-item ">密码</a>
+<a href="/exercise/reverse?page=1" class="list-group-item ">逆向</a>
+<a href="/exercise/sundry?page=1" class="list-group-item ">杂类</a>
+<a href="/exercise/forensic?page=1" class="list-group-item ">取证</a>
+</div>
+</div>
+</div>
+</div>
+<div id="mask" class="hide"></div>
+</div>
+</section>
+<footer id="footer">
+<div class="container">
+<div class="row">
+<!--左部分-->
+<div class="left-part col-sm-6 col-md-6 col-lg-6">
+<div class="row">
+<!--关注我们-->
+<dl class="attention col-md-8 col-lg-8">
+<dt>关注我们</dt>
+<dd class="qq">问鼎杯：438337104 &nbsp;&nbsp;省赛：831107689&nbsp;&nbsp;</dd>
+<dd class="wechat">微&nbsp;&nbsp;信：浙江省计算机应用与教育学会</dd>
+</dl>
+<!--二维码-->
+<div class="wechat-code col-md-3 col-lg-3 hidden-xs hidden-sm">
+<img class="center-block" src="/static/index/images/index/wechat-code.png">
+</div>
+</div>
+</div>
+<!--右部分-->
+<div class="right-part col-sm-6 col-md-6 col-lg-6">
+<div class="center-block links row">
+<a class="link text-center col-xs-3" href="/app/about">关于我们</a>
+<a class="link text-center col-xs-3" href="/app/suggestion">意见反馈</a>
+<a class="link text-center col-xs-3" href="/app/disclaim">免责申明</a>
+<a class="link text-center col-xs-3" href="/app/donate">我要赞助</a>
+</div>
+<p class="copyright text-center">Copyright©2014-2015&nbsp;版权归属&nbsp;杭州电子科技大学</p>
+</div>
+</div>
+</div>
+</footer>
+
+<script type="text/javascript" src="/static/index/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.appear.js"></script>
+<script type="text/javascript" src="/static/index/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/static/index/js/main/slidebar.js"></script>
+<script type="text/javascript" src="/static/js/main/question/question.js"></script>
+<script> $('#head_content').load('/static/htmls/head_content.html')</script>
+</body>
+</html>

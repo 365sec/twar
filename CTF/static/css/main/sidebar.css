@@ -1,0 +1,98 @@
+#sidebar .panel-heading  button#list-square {
+    border-radius: 0;
+    background-color: #fff;
+    color: #19a689;
+    border: none;
+    font-weight: 600;
+}
+
+#main>.panel-default{
+    min-height: 700px;
+}
+#body #sidebar > .panel > .panel-heading {
+    padding: 0;
+    border-bottom: 1px solid #ddd;
+}
+#body #sidebar > .panel > .panel-body {
+    padding: 0;
+}
+#body #sidebar > .panel > .panel-body .list-group {
+    margin-bottom: 0;
+}
+#body #sidebar > .panel > .panel-body .list-group .list-group-item {
+    border-radius: 0;
+    border: none;
+    border-top: 1px solid #ddd;
+}
+#body #sidebar > .panel > .panel-body .list-group .list-group-item:first-child {
+    border-top: none;
+}
+@media (min-width: 768px) {
+    div#telephone-sidebar-btn {
+        display: none;
+    }
+    div#telephone-sidebar{
+        display: none;
+    }
+}
+
+@media(max-width:767px) {
+    #body #sidebar {
+        display: none;
+    }
+    #body>.container>.row{
+        transform: translate3d(0px, 0px, 0px);
+        transition: all 0.5s;
+        cursor: pointer;
+    }
+    #comp_detail #telephone-sidebar-btn {
+        font-size: 12px;
+    }
+    #comp_detail i.fa.fa-list-ul{
+        margin-right: 5px;
+    }
+    #comp_detail .comp-content {
+        margin-top: 10px;
+    }
+    #telephone-sidebar{
+        width: 300px;
+        transform: translate3d(-330px ,0,0);
+        transition: all 0.5s;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        z-index: 10000;
+        background-color: #fff;
+    }
+    #telephone-sidebar .panel-heading {
+        padding: 15px 15px;
+    }
+    #telephone-sidebar .list-group-item {
+        padding: 15px 15px;
+    }
+    #telephone-sidebar .list-group{
+        margin-bottom: 0;
+    }
+    #telephone-sidebar .panel .panel-body{
+        padding: 0;
+    }
+    #telephone-sidebar .list-group-item:first-child{
+        border-radius: 0;
+    }
+
+    div#telephone-sidebar-btn {
+        margin-left: 20px;
+        margin-bottom: 10px;
+    }
+
+    /*mask*/
+    #mask{
+        background-color: rgba(0,0,0,0.7);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}

@@ -1,0 +1,98 @@
+.competitions-list {
+    padding: 0;
+    margin: 0;
+    margin-top: 50px;
+    box-shadow: 0px 5px 20px RGB(130, 153, 174);
+    display: inline-block;
+    width: 100%;
+}
+.competitions-list:hover {
+    box-shadow: 0px 20px 60px RGB(130, 153, 174);
+}
+.competitions-list:last-child{
+    margin-bottom: 80px;
+}
+.competitions-list .panel-heading {
+    width: 100%;
+    border-bottom: 2px solid RGB(54,165,148);
+    position: relative;
+
+}
+
+.competitions-list .panel-heading h3 {
+    display: inline;
+    margin-left: 10px;
+}
+
+.competitions-list .panel-heading .competition-state {
+    width: 90px;
+    overflow: hidden;
+    position: absolute;
+    right: 10px;
+    top: 11px;
+}
+
+.competitions-list .panel-heading img {
+    width: 100%;
+}
+
+.competitions-list .competitions-intro span {
+    font-weight: 600;
+}
+
+.competitions-list .competitions-intro p {
+    display: inline;
+}
+
+.competitions-list .competitions-detail {
+    padding-top: 10px;
+}
+
+.competitions-list .competitions-detail .col-xs-3:not(:last-child) {
+    border-right: 1px solid #666;
+}
+
+.competitions-list .competitions-detail .col-xs-3 > div {
+    padding: 5px 0;
+    font-size: 15px;
+}
+
+.competitions-list .competitions-detail .col-xs-3 i {
+    font-size: 20px;
+}
+
+@media(max-width: 767px){
+    .competitions-list .panel-heading .competition-state{
+        display:none;
+    }
+    .competitions-list .panel-heading h3 {
+       font-size:14px;
+    }
+    .competitions-list .competitions-intro span {
+        font-size: 12px;
+    }
+    .competitions-list .competitions-intro p {
+        font-size:12px;
+    }
+    .competitions-list .competitions-detail .col-xs-3 i {
+        font-size: 15px;
+    }
+    .competitions-list .competitions-detail .col-xs-3 > div {
+        font-size: 10px;
+    }
+
+}
+
+/*比赛不存在的样式*/
+#not-exist{
+    margin-top: 200px;
+}
+#not-exist img{
+    width: 300px;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 20px;
+}
+#not-exist p{
+    font-size: 30px;
+}

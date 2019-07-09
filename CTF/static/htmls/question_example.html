@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="keywords" content="杭电CTF,新版大学生网络与信息安全高峰论坛,全国大学生网络信息安全与保密技能大赛">
+<meta name="description" content="'杭电CTF'全国大学生网络信息安全与保密技能大赛是一项公益性大学生科技活动，目的在于宣传网络信息安全与保密知识，培养和提高大学生的网络信息安全与保密的意识和实践能力，增强创新和团队合作意识">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>杭电CTF</title>
+
+
+<link rel="shortcut icon" href="/static/index/images/index/logo-title.png">
+<link rel="stylesheet" href="/static/index/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static/index/font_awesome/css/font-awesome.css">
+<link rel="stylesheet" href="/static/index/css/front.css">
+<link rel="stylesheet" href="/static/index/css/index.css">
+<link rel="stylesheet" href="/static/index/css/common.css">
+<link rel="stylesheet" href="/static/css/main/sidebar.css">
+<link rel="stylesheet" href="/static/css/plugins/sweetalert/sweetalert.css">
+<link rel="stylesheet" href="/static/css/plugins/toast/jquery.toast.min.css">
+<link rel="stylesheet" type="text/css" href="/static/css/main/question/question_detail.css">
+</head>
+<body>
+
+<section class="main">
+<div id="question-page">
+<div class="container">
+<div class="row">
+<ul class="breadcrumb">
+<li>
+<span class="glyphicon glyphicon-home"></span>
+<a href="/index" title="">首页</a>
+</li>
+<li>
+<a href="/question/theory" title="">题库</a>
+</li>
+<li>
+<a href="/question/theory">theory</a>
+</li>
+<li class="active">
+<a href="#" title="">当前</a>
+</li>
+</ul>
+</div>
+<div class="row">
+<!------------------- 主区域 -------------------------->
+<div class="detail_main col-sm-8 col-xs-12">
+<!-------------------题目区域 ----------------------->
+<div class="panel panel-default question-panel">
+<div class="panel-heading">
+<strong>
+<span class="question-type">
+<i class="glyphicon glyphicon-question-sign"></i>
+单选题
+</span>
+</strong>
+</div>
+<div class="panel-body">
+<div class="question-content" id="from-single-sign">
+<div class="question-content-info">
+<input type="text" class="hidden" id="qid" name="qid" value={{ data.qu_id }}>
+<input type="text" class="hidden" id="question_type" value={{ data.qu_class }}>
+<p>{{ data.qu_description }}</p>
+</div>
+<div class="question-content-option" id="single-question-option">
+<a class="" style="background-color: rgb(255, 255, 255); color: rgb(51, 51, 51);">
+<label class="radio">
+<span class="radio-icon"></span>
+<input id="" type="radio" name="answer" value="A">
+<span>
+{{ data.qu_option0 }}
+</span>
+</label>
+</a>
+<a class="">
+<label class="radio">
+<span class="radio-icon">
+</span>
+<input id="" type="radio" name="answer" value="B" checked="">
+<span>
+{{ data.qu_option1 }}
+</span>
+</label>
+</a>
+<a class="">
+<label class="radio">
+<span class="radio-icon">
+</span>
+<input id="" type="radio" name="answer" value="C" checked="">
+<span>
+{{ data.qu_option2 }}
+</span>
+</label>
+</a>
+<a class="">
+<label class="radio">
+<span class="radio-icon">
+</span>
+<input id="" type="radio" name="answer" value="D" checked="">
+<span>
+{{ data.qu_option3 }}
+</span>
+</label>
+</a>
+</div>
+<div class="correct" style="overflow: hidden">
+<p class="pull-left" id="correct_answer"></p>
+</div>
+<div class="question-action" style="overflow: hidden">
+<a href="/question/theory/416?sort=default" class="btn btn-success" id="btn-next-question">
+下一题
+</a>
+<button class="btn btn-success" id="submit-btn" data-toggle="modal">
+提交答案
+</button>
+</div>
+</div>
+</div>
+<div class="panel-footer clearfix">
+<ul class="pull-right">
+<li>
+<a href="" title="" data-toggle="modal" data-target="#correct">
+<span><i class="glyphicon glyphicon-edit"></i>纠错</span>
+</a>
+</li>
+</ul>
+<!-- 模态框 -->
+</div>
+</div>
+<!------------------- 下方评论区 ---------------------->
+<div class="panel panel-default review-panel">
+<div class="panel-heading">
+<strong class="pull-left">
+<span class="review-type">
+<i class="glyphicon glyphicon-info-sign"></i>
+2条评论
+</span>
+</strong>
+<a type="" id="answer_question" class="btn btn-success pull-right">
+我来回答
+</a>
+</div>
+<div class="panel-body">
+<div class="review-info">
+<ul class="list-group">
+<li class="list-group-item clearfix">
+<div class="clear-float">
+<div class="col-lg-1 col-sm-1 col-xs-1 user-img">
+<a href="" title=""><img src="/upload/avatar/2018/9/765f41ff-203f-4cdb-ac07-c598dc3d7c81_small.png" alt=""></a>
+</div>
+<div class="col-lg-11 col-sm-10 col-xs-9 review-user-info">
+<div class="review-user">
+<div class="pull-left">
+<span class="user-name">Harlan1994</span>
+</div>
+<div class="pull-right">
+<span class="review-time">发表时间 2018-9-12 22:08:06</span>
+</div>
+</div>
+<div class="review-text clearfix">
+easy
+</div>
+<div class="pull-right">
+<a class="answer-reply-link"><i></i>回复</a>
+<input type="text" class="hidden" value="1" name="layerInput">
+</div>
+</div>
+</div>
+<input type="text" id="reply-layer-input" class="hidden" value="1">
+<!-- 回复输入框 (必要时隐藏)-->
+<div class="col-sm-1 user-img">
+</div>
+<div class="col-sm-11 reply-content" id="reply-content-1" style="display: block;">
+<ul class="list-group">
+<form class="from-group-1" style="display: block">
+<input type="text" id="reply-layer-input" class="hidden" value="1" name="layerInput">
+<input class="form-control" id="answer-reply-input" type="" name="replyInput">
+<input type="text" id="reply-toUserId" class="hidden" value="1" name="toUserId">
+<button class="btn btn-success pull-right answer-reply-btn" type="button " id="">
+回复
+</button>
+</form>
+<li class="list-group-item clearfix">
+<div class="clear-float">
+<div class="col-sm-12 col-xs-12 review-user-info pull-right" style="padding: 0">
+<div class="review-user">
+<div class="pull-left">
+<span class="user-name">fuck.me</span>
+回复 <span class="user-name">Harlan1994</span>
+</div>
+<div class="pull-right">
+<span class="review-time">发表时间 2018-9-13 15:51:00</span>
+</div>
+</div>
+<div class="review-text clearfix">
+牛bi~
+</div>
+<div class="pull-right">
+<a class="review-reply-link"><i></i>回复</a>
+<input type="text" class="hidden" name="reply-link-input" value="1">
+</div>
+</div>
+</div>
+</li>
+<form class="from-group" id="form-1">
+<input type="text" id="reply-layer-input" class="hidden" value="1" name="layerInput">
+<input class="form-control" id="answer-reply-input" type="" name="replyInput">
+<input type="text" id="reply-toUserId" class="hidden" value="22" name="toUserId">
+<button class="btn btn-success pull-right answer-reply-btn" type="button" id="">
+回复
+</button>
+</form>
+</ul>
+</div>
+</li>
+<li class="list-group-item clearfix">
+<div class="clear-float">
+<div class="col-lg-1 col-sm-1 col-xs-1 user-img">
+<a href="" title=""><img src="/static/img/avatar/default.png" alt=""></a>
+</div>
+<div class="col-lg-11 col-sm-10 col-xs-9 review-user-info">
+<div class="review-user">
+<div class="pull-left">
+<span class="user-name">&lt;没有昵称&gt;</span>
+</div>
+<div class="pull-right">
+<span class="review-time">发表时间 2018-10-23 20:48:38</span>
+</div>
+</div>
+<div class="review-text clearfix">
+easy
+</div>
+<div class="pull-right">
+<a class="answer-reply-link"><i></i>回复</a>
+<input type="text" class="hidden" value="2" name="layerInput">
+</div>
+</div>
+</div>
+<!-- 回复输入框 (必要时隐藏)-->
+<input type="text" id="reply-layer-input-0" class="hidden" value="2">
+<input type="text" id="reply-toUserId-0" class="hidden" value="69775">
+<div class="col-sm-1 user-img">
+</div>
+<div class="col-sm-11 reply-content" id="reply-content-2" style="display: block;">
+<ul class="list-group">
+<form class="from-group-1" id="form-0">
+<input type="text" id="reply-layer-input" class="hidden" value="2" name="layerInput">
+<input class="form-control" id="answer-reply-input" type="" name="replyInput">
+<input type="text" id="reply-toUserId" class="hidden" value="69775" name="toUserId">
+<button class="btn btn-success pull-right answer-reply-btn" type="button">
+回复
+</button>
+</form>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="panel-footer" id="review_form">
+<textarea id="view-input" rows="10" style="width: 100%; min-height: 200px; margin-bottom: 20px; "></textarea>
+<button class="btn btn-primary btn-block" id="submit-view-btn">提交观点</button>
+</div>
+</div>
+</div>
+<!-------------------- 右边侧栏 ----------------------->
+<div class="col-sm-4 side-bar">
+<!-- 问题信息 -->
+<div class="side-bar-1 panel panel-default">
+<div class="panel-heading">
+<strong>
+<span class="">
+<i class="glyphicon glyphicon-exclamation-sign"></i>
+问题信息
+</span>
+</strong>
+</div>
+<div class="panel-body">
+<p>所属类别：<em>theory</em></p>
+<p>题目来源：<em>中软吉大</em></p>
+<span>回答（2） 浏览（4979） 收藏（0）</span>
+</div>
+</div>
+<!-- 热门试题 -->
+<div class="side-bar-2 panel panel-default">
+<div class="panel-heading">
+<strong>
+<span class="">
+<i class="glyphicon glyphicon-fire"></i>
+热门试题
+</span>
+</strong>
+</div>
+<div class="panel-body">
+<ul class="list-group">
+<li class="list-group-item">
+<div class="list-title">
+<a href="/question/theory/415">SSL协议工作在哪一层</a>
+</div>
+<div class="list-footer">
+<span>
+周提交（9）
+</span>
+<span class="pull-right">
+评论（2）
+</span>
+</div>
+</li>
+<li class="list-group-item">
+<div class="list-title">
+<a href="/question/theory/416">下面不属于SSL握手层功能的是</a>
+</div>
+<div class="list-footer">
+<span>
+周提交（8）
+</span>
+<span class="pull-right">
+评论（1）
+</span>
+</div>
+</li>
+<li class="list-group-item">
+<div class="list-title">
+<a href="/question/theory/418">SSL协议工作在哪一层</a>
+</div>
+<div class="list-footer">
+<span>
+周提交（3）
+</span>
+<span class="pull-right">
+评论（0）
+</span>
+</div>
+</li>
+<li class="list-group-item">
+<div class="list-title">
+<a href="/question/theory/436">windows 2003中系统日志默认存放目录users组用户的权限为</a>
+</div>
+<div class="list-footer">
+<span>
+周提交（1）
+</span>
+<span class="pull-right">
+评论（0）
+</span>
+</div>
+</li>
+<li class="list-group-item">
+<div class="list-title">
+<a href="/question/theory/437">下面的选项中关于路由器攻击及防范的描述错误的是</a>
+</div>
+<div class="list-footer">
+<span>
+周提交（1）
+</span>
+<span class="pull-right">
+评论（0）
+</span>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<!-- First Blood -->
+<div class="side-bar-3 panel panel-default">
+<div class="panel-heading">
+<strong>
+<span class="">
+<i class="glyphicon glyphicon-tint"></i>
+First Blood
+</span>
+</strong>
+</div>
+<div class="panel-body first-blood">
+<div class="col-sm-3 user-img">
+<a href="../">
+<img src="/upload/avatar/2018/9/765f41ff-203f-4cdb-ac07-c598dc3d7c81_small.png">
+</a>
+</div>
+<div class="col-sm-9 blood-user">
+<div class="blood-user-info">
+<p class="user-name">Harlan1994</p>
+<p class="user-signature">Hi，the beautiful world</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!------------------ 一些模态框 ------------------------>
+<div class="modal fade submit-answer-modal" id="submit-answer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+×
+</button>
+<h4 class="modal-title" id="myModalLabel" style="font-size: 16px">
+答案结果
+</h4>
+</div>
+<div id="modal_answer_result" class="modal-body" style="text-align: center;">
+<i class="glyphicon glyphicon-exclamation-sign"></i>
+<p></p>
+</div>
+<div class="modal-footer">
+<button type="button" id="close_btn" class="btn btn-default" style="display: inline-block !important;">关闭
+</button>
+<button type="button" id="submit_confirm" class="btn btn-primary">
+确定
+</button>
+</div>
+</div><!-- /.modal-content -->
+</div><!-- /.modal -->
+</div>
+<div class="modal fade add-note-modal" id="add-note" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+×
+</button>
+<h4 class="modal-title" id="myModalLabel">
+笔记
+</h4>
+</div>
+<div class="modal-body">
+<form id="add-note-form" class="form-group">
+<div class="note-heading">
+<label>笔记标题</label>
+<input id="note_heading_input" class="form-control" type="text" name="" value="" placeholder="笔记标题可不填">
+</div>
+<div class="form-group">
+<label for="note-content">笔记内容</label>
+<textarea id="note-content-input" class="form-control" style="width: 100%; min-height:200px"></textarea>
+</div>
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+</button>
+<button type="button" class="btn btn-primary" id="add_note_btn">
+添加
+</button>
+</div>
+</div><!-- /.modal-content -->
+</div><!-- /.modal -->
+</div>
+<div class="modal fade correct-modal" id="correct" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+×
+</button>
+<h4 class="modal-title" id="myModalLabel">
+纠错
+</h4>
+</div>
+<div class="modal-body">
+<div>
+<p>感谢细心的您发现这处错误，为方便我们更快的排查并修正错误，请您详细描述本题错误：</p>
+</div>
+<textarea class="form-control" id="feedback_text"></textarea>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+</button>
+<button id="confirm_feedback_btn" type="button" class="btn btn-primary">
+提交更改
+</button>
+</div>
+</div><!-- /.modal-content -->
+</div><!-- /.modal -->
+</div>
+</div>
+</div>
+</div>
+</section>
+<footer id="footer">
+<div class="container">
+<div class="row">
+<!--左部分-->
+<div class="left-part col-sm-6 col-md-6 col-lg-6">
+<div class="row">
+<!--关注我们-->
+<dl class="attention col-md-8 col-lg-8">
+<dt>关注我们</dt>
+<dd class="qq">问鼎杯：438337104 &nbsp;&nbsp;省赛：831107689&nbsp;&nbsp;</dd>
+<dd class="wechat">微&nbsp;&nbsp;信：浙江省计算机应用与教育学会</dd>
+</dl>
+<!--二维码-->
+<div class="wechat-code col-md-3 col-lg-3 hidden-xs hidden-sm">
+<img class="center-block" src="/static/img/index/wechat-code.png">
+</div>
+</div>
+</div>
+<!--右部分-->
+<div class="right-part col-sm-6 col-md-6 col-lg-6">
+<div class="center-block links row">
+<a class="link text-center col-xs-3" href="/app/about">关于我们</a>
+<a class="link text-center col-xs-3" href="/app/suggestion">意见反馈</a>
+<a class="link text-center col-xs-3" href="/app/disclaim">免责申明</a>
+<a class="link text-center col-xs-3" href="/app/donate">我要赞助</a>
+</div>
+<p class="copyright text-center">Copyright©2014-2015&nbsp;版权归属&nbsp;杭州电子科技大学</p>
+</div>
+</div>
+</div>
+</footer>
+
+<script src="/static/js/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="/static/js/plugins/toast/jquery.toast.min.js"></script>
+<script type="text/javascript" src="/static/js/main/basic.js"></script>
+<script type="text/javascript" src="/static/js/main/question/question_detail.js">
+</script>
+<script type="text/javascript" src="/static/index/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/static/index/js/bootstrap.min.js"></script>
+
+</body>
+</html>

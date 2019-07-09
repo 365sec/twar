@@ -1,0 +1,468 @@
+/*****************整体样式*********************/
+#question-page{
+    color: #333;
+    font-size: 16px;
+    margin-top: 30px;
+}
+#question-page .container{
+    margin-right:auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 100px;
+}
+#question-page .row{
+    margin-left:-15px;
+    margin-right: -15px;
+}
+#question-page .panel-heading{
+    font-size: 16px;
+    background-color: #fff;
+}
+#question-page .panel-body{
+    font-size: 14px;
+    color: #333;
+}
+#question-page .detail_main{
+    padding-left: 15px;
+}
+#question-page ul{
+    margin-bottom: 0;
+}
+#question-page a{
+     text-decoration: none;
+     color: RGB(54,165,148);
+     cursor: pointer;
+ }
+#question-page a:hover{
+    text-decoration:underline;
+}
+#question-page .btn{
+    background-color: #36a594;
+    color: #ffffff;
+}
+#question-page i{
+    display: inline-block;
+    margin-right: 3px;
+    color: #d9534f;
+}
+#question-page .panel-heading{
+    padding: 15px 15px 15px 20px;
+}
+/*模态框的整体样式*/
+#question-page .modal-header h4{
+    font-size: 16px;
+    font-weight: bold;
+}
+#question-page .modal-body{
+    padding:30px;
+    font-size: 16px;
+}
+#question-page .modal-footer{
+    margin-top: 0;
+    padding: 15px;
+}
+#question-page .modal-body i{
+    font-size: 20px;
+    margin-right: 5px;
+    top:4px;
+}
+/*******************面包屑导航栏****************/
+#question-page .breadcrumb{
+    margin-top: 0;
+    background-color: inherit;
+    margin-bottom: 10px;
+}
+#question-page .breadcrumb > li + li:before{
+    content: ">\00a0";
+    padding: 0 5px;
+    color: #cccccc;
+}
+#question-page .glyphicon-home{
+    margin-right: 15px;
+    color: #36a594;
+}
+#question-page .glyphicon-home:before{
+    content: "\e021";
+}
+#question-page .breadcrumb >li a{
+    text-decoration: none;
+    color: #36a594;
+}
+#question-page .breadcrumb > .active a{
+    color: #777777;
+}
+/***************题目面板******************/
+.question-panel{
+    min-height: 200px;
+}
+.question-panel .panel-heading i,
+.review-panel .panel-heading i{
+    color: #d9534f;
+    font-size: 20px;
+    top: 4px;
+}
+
+.question-panel .correct span{
+    color: #36a594;
+}
+.question-panel .correct .wrong{
+    color: #d9534f;
+}
+.question-panel .question-content-info{
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+.question-panel .question-content-option{
+
+}
+.question-panel .question-content-option a{
+    display: block;
+    color: #333;
+    font-family: Courier,'Courier New',monospace;
+    border: 1px solid #dddddd;
+    padding: 12px 20px 13px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+.question-panel .question-content-option label{
+    cursor: pointer;
+    height: 20px;
+    line-height: 20px;
+    display: inline-block;
+    text-align: left;
+    margin-bottom: 0;
+    margin-top:0;
+    padding-left: 0;
+    font-weight: 400;
+}
+/*添加a被选中的css*/
+.question-panel .question-content-option .selected{
+    background-color: #36a594 !important;
+    color: #fff !important;
+}
+.question-panel .question-content-option .radio-icon
+,.question-panel .question-content-option .icon{
+    border-radius: 50%;
+    border: 1px solid #DDD;
+    vertical-align: -3px;
+    width: 14px;
+    height: 14px;
+    background: #FFF;
+    display: inline-block;
+    margin-right: 3px;
+    line-height: normal;
+    position: relative;
+}
+.question-panel .question-content-option .icon{
+    border-radius: 2px;
+}
+.question-panel .question-content-option .radio input{
+    display: none;
+}
+.question-panel .question-content-option .radio pre{
+
+}
+/*label中的圆角checked*/
+.question-panel .checked .radio-icon{
+    /*background-color: #36a594;*/
+}
+.question-panel .checked .radio-icon:before ,
+.question-panel .checked .icon:before{
+    border-radius: 50%;
+    background: #00bc9b;
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 2px;
+}
+.question-panel .checked .icon:before{
+    border-radius: 2px;
+}
+.question-panel .question-action #btn-last-question{
+    float: left;
+}
+.question-panel .question-action #btn-next-question,
+.question-panel .question-action #submit-btn,
+.question-panel .question-action #submit_multi_btn,
+.question-panel .question-action #operate-submit-btn
+{
+    float: right;
+}
+.question-panel .question-action #submit-btn,
+.question-panel .question-action #submit_multi_btn,
+.question-panel .question-action #operate-submit-btn{
+    background-color: #d9534f;
+    border-color: #d9534f;
+    margin-right: 5px;
+}
+
+/*footer*/
+#question-page .panel-footer{
+    padding: 15px;
+    background-color: #fff;
+    border-top: 1px dashed #DDD;
+}
+#question-page .panel-footer ul li{
+    display: inline-block;
+    /*float: right;*/
+    margin: 5px 0 5px 15px;
+}
+#question-page .panel-footer li a,
+#question-page .panel-footer a i{
+    color: #333333e0;
+}
+#question-page .panel-footer li a:hover{
+    color: #36a594;
+}
+#question-page .panel-footer span{
+    font-size: 16px;
+}
+#question-page .panel-footer .collect,
+#question-page .panel-footer .collect i{
+    color: #d9534f;
+}
+/*操作题的一些样式*/
+#operate-question-option{
+    margin-bottom: 20px;
+}
+#operate-question-option a{
+    display: inline;
+    border: none;
+    padding: 0;
+}
+#form-input-answer{
+    margin:20px 0;
+    background-color: #e5e5e552;
+    padding: 25px 15px;
+}
+#form-input-answer #operate-answer{
+   margin-bottom: 10px;
+}
+
+/*夺旗赛的一些样式*/
+/*****************评论面板*******************/
+.review-panel .panel-heading{
+    overflow: hidden;
+}
+.review-panel .panel-heading i{
+    font-size: 20px;
+}
+.review-panel .panel-heading strong{
+    height:34px;
+    line-height:34px;
+}
+.review-panel .panel-body .list-group-item{
+    border-top: 1px dashed #ccc;
+    border-left: none;
+    border-right: none;
+}
+.review-panel .panel-body .list-group-item:first-child{
+    border-top: none!important;
+    border-bottom: none;
+}
+.review-panel .panel-body .user-img a,
+.review-panel .panel-body .user-img img,
+#question-page .side-bar .first-blood img{
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 2px;
+}
+.review-panel .panel-body .review-user-info{
+    padding-left: 20px;
+    float: right;
+}
+.review-panel .review-user{
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+.review-panel .review-user .user-name{
+    color: #d9534f;
+}
+.review-panel .clear-float::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+.review-panel .reply-content{
+    /*display: none;*/
+    padding: 15px;
+    overflow: hidden;
+    background-color: #e5e5e552;
+}
+#question-page .reply-content .list-group-item{
+    /*border-top: 1px solid #e0e0e0;*/
+    margin: 20px 0;
+    background-color: inherit;
+    border: none;
+    border-top: 1px solid #e0e0e0;
+}
+#question-page .reply-content .list-group-item:first-child{
+    border-top: none;
+}
+#question-page .reply-content .list-group-item:last-child{
+    border-bottom: none;
+}
+.review-panel .reply-content{
+    margin: 20px 0;
+    min-height: 50px;
+    display: none;
+}
+#question-page .reply-content button{
+    display: inline-block;
+    margin-top: 15px;
+}
+#question-page .from-group,
+#question-page .from-group-1{
+    overflow: hidden;
+}
+#question-page .from-group{
+    display: none;
+}
+
+/*****************右边侧栏*******************/
+#question-page .side-bar{
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 40px;
+}
+#question-page .side-bar >div {
+    background-color: #fff;
+}
+#question-page .side-bar .panel-heading{
+    padding: 10px 20px 10px 20px;
+    background-color: #fff;
+    border-bottom: none;
+}
+#question-page .side-bar .panel-body{
+    padding: 10px 20px 20px;
+}
+#question-page .side-bar .panel-body span,
+#question-page .side-bar .panel-body p,
+.review-panel .review-time{
+    color: #999;
+}
+#question-page .side-bar .panel-body em{
+    color: #333;
+}
+#question-page .side-bar .panel-body span,
+.review-panel .review-time,
+.review-panel .reply{
+    font-size: 13px;
+}
+#question-page .side-bar .panel-body i{
+    color: #d9534f;
+}
+#question-page .side-bar .panel-body ul > li{
+    border-top: 1px dashed #ccc;
+    border-left: none;
+    border-right: none;
+    padding: 10px 0;
+}
+#question-page .side-bar .panel-body ul > li:last-child{
+    border-bottom: none;
+}
+#question-page .side-bar .list-title{
+    margin-bottom: 15px;
+    margin-top: 10px;
+    overflow: hidden;
+    height: 20px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#question-page .side-bar .list-footer{
+    margin-bottom: 5px;
+}
+#question-page .side-bar .blood-user-info p{
+    color: #333;
+}
+#question-page .side-bar .blood-user-info .user-name{
+    color: #d9534f;
+}
+/******************模态框*******************/
+/*答案模态框*/
+#question-page .submit-anwser-modal .modal-dialog{
+    width: 500px;
+}
+/*添加笔记模态框*/
+.add-note-modal .modal-dialog{
+    width: 800px;
+}
+.add-note-modal .modal-body label{
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.add-note-modal .modal-body form >div{
+    margin-bottom: 10px;
+}
+/*纠错模态框*/
+.correct-modal textarea{
+    margin: 0 -2px 0 0;
+    height: 190px;
+}
+
+/****************媒体查询*******************/
+@media (min-width: 1023px){
+    .container{
+        width: 1150px;
+    }
+}
+@media (max-width: 1024px)
+{
+    .container{
+        width:970px;
+    }
+}
+
+@media (max-width: 767px)
+{
+    .container{
+        width:auto;
+    }
+    .detail_main{
+        padding-right: 15px;
+    }
+    #question-page .modal-dialog{
+        width: 500px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+    }
+    #question-page .side-bar{
+        display: none;
+    }
+    #question-page .detail_main{
+        width: 100%;
+    }
+    #question-page .btn{
+        font-size: 9px;
+    }
+    #question-page .panel-body{
+        font-size: 10px;
+    }
+    #question-page .panel-footer span{
+        font-size: 10px;
+    }
+    #question-page .review-panel .review-time,
+    #question-page .review-panel .reply{
+        font-size: 10px;
+    }
+    #question-page .review-user-info{
+        float: right;
+    }
+    #question-page .form-control{
+        font-size: 9px;
+    }
+
+}
+

@@ -1,0 +1,468 @@
+/*************************比赛头链接*******************************/
+.contest-info{
+    overflow:scroll;
+}
+#competition-header {
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+#competition-header a {
+    color: RGB(102, 102, 102);
+    font-weight: 500;
+}
+
+#competition-header a:hover {
+    color: #19a689;
+}
+
+#competition-header span {
+    color: #888;
+}
+
+@media(min-width:501px) {
+    #competition-header {
+        font-size: 16px;
+    }
+}
+
+@media(max-width:500px) {
+    #competition-header {
+        font-size: 12px;
+    }
+}
+
+/*************************比赛信息框*******************************/
+
+/*电脑端*/
+
+#computer-screen .competition-list {
+    background: #fff;
+    float: left;
+    position: relative;
+    width: 80%;
+    height: 115px;
+}
+
+
+#computer-screen .competition-list .mark {
+    position: absolute;
+    display: block;
+    width: 35px;
+    height: 44px;
+    left: -1px;
+    top: -8px;
+    background: url('/static/img/competitions/detail-icon.png') no-repeat;
+    background-position: -70px 0;
+
+}
+
+#computer-screen .competition-list span {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#computer-screen .competition-list .main-title {
+    height: 50px;
+    border-bottom: 1px solid #e1e6eb;
+}
+
+#computer-screen .competition-list .main-title span {
+    padding: 0;
+    text-align: center;
+}
+
+#computer-screen .competition-list .main-cont {
+    height: 65px;
+}
+
+#computer-screen .competition-list .list-main .main-title span,
+#computer-screen .competition-list .list-main .main-cont span {}
+
+#computer-screen .competition-list .main-title span {
+    height: 100%;
+    line-height: 50px;
+    color: #666666;
+    font-size: 14px;
+}
+#computer-screen .competition-list .main-cont span:nth-child(2){
+    font-weight: 600;
+}
+#computer-screen .competition-list .main-cont span {
+    height: 100%;
+    line-height: 65px;
+    font-size: 17px;
+    overflow: hidden;
+    text-align: center;
+    padding: 0;
+    font-weight: 500;
+}
+
+#computer-screen .list-btn {
+    width: 19%;
+    height: 115px;
+    float: right;
+    cursor: pointer;
+}
+
+#computer-screen .list-btn button {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    text-align: center;
+    padding: 20px;
+}
+#computer-screen .list-btn #enroll-btn{
+    background-color: #19a689;
+    color: #fff;
+}
+
+#computer-screen .list-btn:hover #enroll-btn i {
+    transition: all 0.4s;
+    transform: scale(1.1, 1.1);
+}
+
+#computer-screen .list-btn i {
+    font-size: 50px;
+}
+
+#computer-screen .list-btn p {
+    font-size: 16px;
+    padding-top: 10px;
+    line-height: 20px;
+}
+
+/**手机端**/
+
+#telphone-screen {
+    background-color: #fff;
+    height: 85px;
+    overflow: hidden;
+}
+
+#telphone-screen .row > div {
+    height: 100%;
+    font-size: 9px;
+    padding: 0;
+}
+
+#telphone-screen .row > div:not(:last-child) {
+    border-right: 1px solid RGB(231, 229, 230);
+    padding: 0;
+    margin: 0;
+}
+
+#telphone-screen .row > div > div {
+    padding-bottom: 8px;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+
+
+}
+
+#telphone-screen .row > div i {
+    font-size: 20px;
+    padding-top: 10px;
+}
+
+#telphone-screen .row > div button {
+    width: 100%;
+    height: 85px;
+}
+
+/**********************响应式布局*******************************/
+
+@media(min-width:1025px) {
+    #telphone-screen {
+        display: none;
+    }
+}
+
+@media(max-width:1024px) {
+    #computer-screen {
+        display: none;
+    }
+}
+/**********************左侧区域在小屏幕的时候显示到底部******************************/
+@media(min-width:768px) {
+    #comp_detail .left-nav {
+        float: left;
+        width: 20%;
+    }
+
+    #comp_detail .detail-right{
+        width: 80%;
+    }
+}
+
+/*********************************比赛详情**************************************/
+
+#comp_detail .row {
+    margin: 0;
+    clear: both;
+}
+#comp_detail .comp-content {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background-color: #fff;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid #ddd;
+}
+
+@media(max-width:767px) {
+    #comp_detail .computer-nav{
+        display: none;
+    }
+
+    #comp_detail .detail-right{
+        width: 100%;
+    }
+    #comp_detail {
+        margin-top: 20px;
+    }
+}
+
+
+/*left style*/
+
+.detail-left ul {
+    padding-left: 0px;
+    border-bottom: 1px solid #ddd;
+}
+
+.detail-left ul li {
+    list-style: none;
+    padding-left: 25px;
+    padding: 10px 0 10px 25px;
+    border-top: 1px solid #ddd;
+}
+
+.detail-left ul li a {
+    color: rgb(85, 85, 85);
+    display: block;
+    font-size: 15px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.detail-left ul li:hover {
+    color: #fff;
+
+}
+
+.detail-left #f-side {
+    /*border-top: 1px dotted #000;*/
+}
+
+
+
+.detail-left ul li:hover {
+    background-color: rgba(230, 230, 230, 0.5);
+
+}
+
+.detail-left .on:hover a,
+.detail-left .on a {
+    color: #fff;
+}
+
+.detail-left .on,
+.detail-left .on:hover {
+    background-color: RGB(25, 166, 137);
+}
+
+/*right style */
+
+.detail-right {
+    border-left: 1px solid #ddd;
+    padding: 20px 30px 20px 30px;
+    float: left;
+    min-height: 500px;
+}
+
+.right-content .content-img {
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.right-content img {
+    width: 80%;
+}
+
+.right-content .header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.right-content .header h2 {
+    display: inline-block;
+    padding-bottom: 10px;
+    border-bottom: 3px solid RGB(25, 166, 137);
+    font-weight: 600;
+    font-size: 25px;
+}
+
+.right-content .panel h3 {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.right-content .panel i {
+    color: #009a61;
+}
+
+.right-content .panel-default > .panel-heading {
+    background-color: #fff;
+    /*border-color: #000;*/
+    overflow: hidden;
+}
+
+.right-content p,
+.right-content h4 {
+    margin-top: 5px;
+    text-indent: 2em;
+    line-height: 20px;
+    font-size: 14px;
+}
+
+.right-content .panel-default > .panel-heading h3 {
+    float: left;
+}
+
+.right-content .panel-default > .panel-heading a {
+    float: right;
+}
+
+.right-content li {
+    list-style: none;
+    line-height: 30px;
+    font-size: 14px;
+}
+
+.right-content .sponsor li {
+    line-height: 20px;
+}
+
+/*组队选项卡*/
+
+#group-tabs .body {
+    text-align: center;
+}
+
+#group-tabs h4 {
+    display: inline-block;
+}
+
+#group-tabs .cre-group {
+    background-color: #1ab394;
+    border-color: #1ab394;
+}
+
+#group-tabs .tabs {
+    width: 90%;
+    display: inline-block;
+    height: auto;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    border-radius:4px;
+}
+
+#group-tabs .tabs .nav-tabs {
+    height: 40px;
+    background-color: #f8fafe;
+}
+
+#group-tabs .tabs .nav-tabs a {
+    color: #4f514f;
+}
+#group-tabs .tabs .nav-tabs a:active,
+#group-tabs .tabs .nav-tabs a:focus{
+    border: none;
+    text-decoration: none;
+}
+#group-tabs .tab-content {
+    height: auto;
+    text-align: center;
+}
+
+#group-tabs .tab-pane {
+    margin-bottom: 100px;
+    margin-top: 100px;
+}
+#group-tabs .tab-pane .btn {
+    margin: 0 10px;
+}
+
+
+
+/*内容响应式*/
+
+@media(max-width:1024px) {
+    .panel-default {
+        border-color: #fff;
+    }
+    .detail-right {
+        padding: 5px;
+    }
+    .detail-left ul li a {
+        font-size: 9px;
+    }
+    .right-content .panel h3,
+    .right-content .panel a {
+        font-size: 12px;
+    }
+    .right-content h3 {
+        font-size: 16px;
+    }
+    .right-content .header h3 {
+        margin: 30px 0 30px 0;
+    }
+    .right-content p,
+    .right-content h4 {
+        font-size: 10px;
+    }
+}
+
+/*teaminfo的认证提示样式*/
+#verify-tips .info-header h3{
+    font-size: 25px;
+}
+#verify-tips .info-header span{
+    font-size: 16px;
+}
+#verify-tips .body{
+    text-align: center;
+    margin-top: 100px;
+}
+#verify-tips .body i{
+    font-size:48px;
+    color:red;
+    height: 50px;
+    margin-right: 10px;
+}
+#verify-tips .body button a{
+    display: block;
+     color: #fff;
+}
+#verify-tips span {
+    display: inline-block;
+    position: relative;
+    top: 35%;
+    transform: translateY(-40%);
+    font-size: 20px;
+}
+#verify-tips .renew{
+    margin-bottom: 20px;
+}
+/*group-tabs*/
+#group-tabs .body{
+    text-align: center;
+}

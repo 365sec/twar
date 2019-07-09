@@ -1,0 +1,137 @@
+#body{
+    padding-top: 0;
+    margin-top: 1px;
+}
+.jumbotron{
+    padding-top: 0;
+    margin-bottom: 0;
+    border: none;
+    padding-bottom:0;
+}
+.panel{
+    background-color: #eeeeee;
+    margin-bottom: 0;
+    border: none;
+}
+.panel-heading{
+    border-bottom: 1px dashed #36a594;
+}
+.panel-body{
+    border: none;
+    padding-top: 30px;
+}
+.panel-title{
+    color: #36a594;
+    font-size: 22px;
+}
+#exercise,#sponsor{
+    padding-top: 20px;
+}
+#exercise .panel-heading{
+    border-bottom-color: cornflowerblue;
+}
+#exercise .item{
+    padding: 0 15px;
+    margin-bottom: 30px;
+}
+#exercise .item-info{
+    box-shadow: 0 5px 14px rgba(91, 98, 95, 0.6);
+    background-color: #f7f7f7;
+    width: 250px;
+    height: 180px;
+}
+#exercise .item-info span{
+    display: block;
+    position: relative;
+    top: 10%;
+    transform: translateY(30%);
+    font-size: 18px;
+
+}
+#exercise .item-info .item-footer{
+    border-top: 2px solid #36a594;
+}
+#exercise .img-box img{
+    cursor: pointer;
+}
+#exercise .img-box
+{
+    opacity: 1;
+    display: block;
+    position: relative;
+}
+#exercise .img-box:after{
+    content: "";
+    opacity: 0;
+    background-color: #347696bd;
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+#exercise .img-box a{
+    z-index: 200;
+}
+#exercise .img-box,#exercise .img-box a{
+    cursor: pointer;
+}
+#exercise .img-box:hover:after
+{
+    opacity: 1;
+    transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s; /* Firefox 4 */
+    -webkit-transition-duration: 0.5s; /* Safari 和 Chrome */
+    -o-transition-duration: 0.5s; /* Opera */
+}
+#sponsor,
+#sponsor .panel,#counit,#counit .panel{
+    background-color: #ffffff;
+}
+#sponsor img,#counit img{
+    width: 155px;
+    height: 55px;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+}
+#sponsor p,#counit p{
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+.item-info{
+    margin-right: auto;
+    margin-left: auto;
+}
+#sponsor i,#counit i{
+    font-size: 18px;
+    padding: 5px;
+}
+#no_sponsor {
+    min-height: 400px;
+    position: relative;
+
+}
+#no_sponsor img{
+    border: none;
+    width: 35%;
+    height: 50%;
+    position: absolute;
+    top:15%;
+    left: 50%;
+}
+#no_sponsor p{
+    font: 25px Tahoma,Helvetica,Arial,'宋体',sans-serif;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+}
+#no_sponsor img,#no_sponsor p{
+    transform:translate(-50%);
+    -ms-transform:translate(-50%); 	/* IE 9 */
+    -moz-transform:translate(-50%); 	/* Firefox */
+    -webkit-transform:translate(-50%); /* Safari 和 Chrome */
+    -o-transform:translate(-50%); 	/* Opera */
+}
+#sponsor{
+    padding-top: 0;
+}

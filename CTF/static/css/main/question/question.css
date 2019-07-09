@@ -1,0 +1,167 @@
+#body #sidebar > .panel > .panel-heading > #question-square {
+  border: none;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+#body #sidebar > .panel > .panel-footer {
+  padding: 0;
+}
+#body #sidebar > .panel > .panel-footer > #practice-test {
+  border: none;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+
+
+/*手机端侧栏的样式*/
+@media (max-width: 767px) {
+  #body #sidebar {
+    display: none;
+  }
+  #body>.container>.row{
+    transform: translate3d(0px, 0px, 0px);
+    transition: all 0.5s;
+    cursor: pointer;
+  }
+  #body #telephone-sidebar-btn{
+    padding: 0 0 10px 20px;
+  }
+  #body #telephone-sidebar-btn i{
+    color: #36a594;
+    margin-right: 8px;
+  }
+  #body #telephone-sidebar{
+    width: 300px;
+    transform: translate3d(-330px ,0,0);
+    transition: all 0.5s;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 10000;
+    background-color: #fff;
+  }
+  #body #telephone-sidebar .panel-heading {
+    padding: 15px 15px;
+  }
+  #body #telephone-sidebar .list-group-item {
+    padding: 15px 15px;
+  }
+  #body #telephone-sidebar .list-group{
+    margin-bottom: 0;
+  }
+  #body #telephone-sidebar .panel .panel-body{
+    padding: 0;
+  }
+  #body #telephone-sidebar .list-group-item:first-child{
+    border-radius: 0;
+  }
+  /*mask*/
+  #body #mask{
+    background-color: rgba(0,0,0,0.7);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+
+
+/******************************问题列表区域***************************/
+#body #main > .panel > .panel-heading {
+  padding: 0;
+  border-bottom: 2px solid #36a594;
+}
+#body #main > .panel > .panel-heading .btn {
+  padding: 10px 15px;
+  border: none;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  background-color: #fff;
+  color: #000;
+}
+#body #main > .panel > .panel-heading a.on {
+  background-color: #19a689;
+  color: #fff;
+}
+#body #main > .panel  #not-exist{
+  margin-top: 200px;
+}
+#body #main > .panel #not-exist img{
+  width: 400px;
+  margin: 0 auto;
+  display: block;
+}
+#body #main > .panel #not-exist p{
+  font-size: 25px;
+}
+
+#body #main > .panel > .panel-body {
+  padding: 0;
+}
+@media (min-width: 768px) {
+  #body #main > .panel > .panel-body {
+    min-height: 700px;
+  }
+}
+@media (max-width: 767px) {
+  #body #main > .panel > .panel-body {
+    min-height: 400px;
+  }
+  #body #main > .panel > .panel-body a.question-title {
+    font-size: 14px;
+  }
+  #body #main > .panel > .panel-body .pull-right {
+    font-size: 10px;
+  }
+}
+#body #main > .panel > .panel-body > #question-list {
+  margin-bottom: 0;
+}
+#body #main > .panel > .panel-body > #question-list > .list-group-item {
+  background-color: #fff;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 0;
+}
+#body #main > .panel > .panel-body > #question-list > .list-group-item > .question {
+  font-size: 0px;
+  line-height: 180%;
+}
+#body #main > .panel > .panel-body > #question-list > .list-group-item > .question a {
+  color: #444;
+  -ms-word-break: break-all;
+  word-break: break-all;
+}
+#body #main > .panel > .panel-body > #question-list > .list-group-item > .question a:hover {
+  color: #36a594;
+}
+#body #main > .panel > .panel-body > #question-list > .list-group-item > .question > i {
+  color: #36a594;
+  margin-right: 10px;
+  font-size:18px;
+}
+#body #main > .panel > .panel-body > #question-list > .list-group-item > .question > .glyphicon-ok {
+  color: #fe6000;
+  margin-right: 10px;
+}
+#body #main > .panel > .panel-body > #question-list > .list-group-item > .info {
+  color: #888;
+  height: 40px;
+  line-height: 40px;
+  font-size: 12px;
+}
+#body #main > .panel > .panel-footer {
+  padding: 0;
+}
+#body #main > .panel > .panel-footer ul li a.page-disabled {
+  cursor: not-allowed;
+}
+#body #main > .panel > .panel-footer ul li  a.page-disabled:hover {
+  color: #000;
+  background-color: #fff;
+}
