@@ -1,0 +1,84 @@
+#body {
+    margin-top: 30px;
+    padding: 0;
+}
+.btn {
+    background-color: #19a689;
+    color: #fff;
+}
+
+.btn:hover {
+    background-color: RGBa(25, 166, 137, 0.8);
+    color: #fff;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+/******文字选择背景色为主题色******/
+
+::selection {
+    background: RGB(25, 166, 137);
+    color: white;
+}
+
+::-moz-selection {
+    background: RGB(25, 166, 137);
+    color: white;
+}
+
+::-webkit-selection {
+    background: RGB(25, 166, 137);
+    color: white;
+}
+
+
+/***********使footer可以一直位于页面底部**************/
+
+html,
+body {
+    height: 100%;
+    background-color: #f5f5f5;
+
+}
+
+.main {
+    min-height: 100%;
+    /*    消除footer的影响*/
+    margin-bottom: 0px;
+    /*    消除导航影响*/
+    margin-top: -60px;
+    padding-top: 60px;
+}
+
+.clear-nav{
+    height: 60px;
+}
+/*color*/
+
+.color-theme {
+    color: RGB(25, 166, 137);
+}
+
+.color-blue {
+    color: RGB(65, 140, 202);
+}
+
+.color-green {
+    color: RGB(91, 184, 92);
+}
+
+.color-yellow {
+    color: RGB(237, 171, 74);
+}
+
+.color-red {
+    color: RGB(217, 85, 80);
+}
+.color-black {
+    color: RGB(0,0,0);
+}
+.color-gray{
+    color: RGB(148, 148, 148);
+}

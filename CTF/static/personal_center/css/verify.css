@@ -1,0 +1,246 @@
+/******************************************内容区域******************************************/
+/************右侧区域 ---步骤提示区域************/
+
+.right-area .step-info {
+    width: 100%;
+    overflow: hidden;
+}
+
+.right-area .step-info img {
+    width: 105%;
+}
+
+.smpl-step {
+    width: 100%;
+    height: auto;
+}
+
+.smpl-step ul {
+    position: relative;
+    height: 30px;
+    list-style: none;
+    font-size: 14px;
+    overflow: hidden;
+    padding: 0px;
+    width: 100%;
+    margin: 0 auto;
+
+}
+
+.smpl-step ul li {
+    padding: 0;
+    width: 28%;
+    float: left;
+    margin-right: -28px;
+    cursor: default;
+    display: block;
+    float: left;
+    height: 30px;
+    background: #d7d7d7;
+    color: #777;
+    line-height: 30px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.flow-steps li:before {
+    content: "";
+    display: block;
+    float: left;
+    width: 0;
+    height: 0px;
+    margin-top: -6px;
+    border: 21px solid transparent;
+    border-left-color: #fff;
+}
+
+.flow-steps li:after {
+    content: "";
+    position: relative;
+    display: block;
+    float: right;
+    width: 0;
+    height: 0px;
+    margin: 0 -1px 0 10px;
+    border: 15px solid transparent;
+    border-left-color: #d7d7d7;
+}
+
+.flow-steps li:first-child:before {
+    border: 12px solid #d7d7d7;
+}
+
+.flow-steps li:last-child:after {
+    border: 8px solid #d7d7d7;
+    margin-right: 0;
+}
+
+.flow-steps .on {
+    background: #19a689;
+    color: #fff;
+}
+
+.flow-steps .on:after {
+    border-left-color: #19a689;
+}
+
+.flow-steps li.on:first-child:before {
+    border-color: #19a689;
+}
+
+@media(min-width:701px) {
+    .step-info {
+        display: none;
+    }
+
+}
+
+@media(max-width:700px) {
+    .smpl-step {
+        display: none;
+    }
+
+}
+/***************step-1 表单********************/
+#verify-step-1 .verify-detail-text{
+    width: 60%;
+    margin: 40px auto;
+}
+
+#verify-step-1 .form-control-feedback {
+    line-height: 0px;
+    right: 0px;
+    margin-top: 20px;
+    color: #19a689;
+    font-size: 1.5em
+}
+
+#verify-step-1 .must-fillin {
+    color: #19a689;
+    font-size: 1.5em;
+    line-height: 15px;
+}
+#verify-step-1 .verify-detail-text .btn{
+    margin-top: 10px;
+}
+/*地址的select*/
+.address-style{
+    display: block;
+    width: 30%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    float: left;
+}
+.address-style:not(:last-child){
+    margin-right: 5%;
+}
+
+@media(max-width:1000px){
+    .address-style{
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+}
+@media(max-width:500px){
+    #verify-step-1 .verify-detail-text{
+        width: 90%;
+    }
+}
+
+/************step 2  身份证上传*************/
+
+#verify-step-2  .file-preview-thumbnails {
+     display: inline-block;
+ }
+/*btn*/
+#btn-next-2{
+    margin-top: 20px;
+}
+#btn-previous-1{
+    margin-top: 20px;
+}
+
+/*alert*/
+#verify-step-2 .row .alert {
+    color: #000;
+    padding: 10px 0 0 40px;
+    letter-spacing: 5px;
+    margin: 0;
+    width: 90%;
+    margin: 40px auto;
+}
+
+.kv-main{
+    margin-top: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.kv-main h4,.kv-main .row .img-up h5{
+    text-align: center
+}
+.kv-main .row{
+    margin-top: 50px;
+}
+
+@media(max-width: 600px) {
+    .kv-main .row .col-xs-12{
+           padding: 0;
+            margin: 0;
+      }
+    .kv-main .row .img-up:last-child{
+        margin-top: 30px;
+    }
+}
+/************step 3  等待验证*************/
+
+.verify-step-3-4 .row{
+    margin-top: 260px;
+}
+.verify-step-3-4 .cert_finish{
+    height: 50px;
+}
+.verify-step-3-4 p{
+    text-align: center;
+    font-size: 25px;
+    color: #66666a;
+    height: 50px;
+}
+.verify-step-3-4 p i{
+    color: #19a689;
+    margin-right: 5px;
+    padding-top: 10px;
+}
+.verify-step-3-4 p>span{
+    display:inline-block;
+    position: relative;
+    top:34%;
+    transform:translateY(-75%);
+}
+
+/*响应式布局*/
+@media(max-width: 1000px){
+    .verify-step-3-4 p>span{
+        top: 25%;
+        transform: translateY(-75%);
+    }
+    .verify-step-3-4 p{
+        font-size: 14px;
+    }
+}
+
+/*地址选择*/
+
+
+/*显示上传过的身份证图片样式*/
+/*#frm1 .show_pic1,*/
+/*#frm2 .show_pic2{*/
+    /*padding: 10px;*/
+/*}*/
+

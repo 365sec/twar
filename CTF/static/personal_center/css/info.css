@@ -1,0 +1,375 @@
+/*user data*/
+#info-area .info-content {}
+
+/********************************头部个人资料显示区域（头像，签到...这部分）***********************************/
+
+#info-area .info-content .content-header {
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0px 0px 1px #888888;
+}
+
+#info-area .info-content .content-header .img-area {
+    height: 100%;
+    width: 13%;
+    padding: 15px;
+    float: left;
+}
+
+#info-area .info-content .content-header .img-area * {
+    height: 100%;
+    width: 100%;
+}
+
+#info-area .info-content .content-header figure {
+    position: relative;
+}
+
+#info-area .info-content .content-header figure img {
+    padding: 3px;
+    border: 2px solid #ccc;
+}
+
+
+
+
+#info-area .info-content .content-header figure figcaption {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgbA(0, 0, 0, 0.5);
+    transition: all 0.3s;
+    cursor: pointer;
+    text-align: center;
+    opacity: 0;
+    border-radius: 50%;
+}
+
+#info-area .info-content .content-header figure figcaption i {
+    font-size: 30px;
+    margin-top: 35%;
+    transform: scale(0.7, 0.7);
+    transition: all, 0.3s;
+    color: #fff;
+}
+
+#info-area .info-content .content-header figure:hover figcaption {
+    transform: scale(1, 1);
+    opacity: 1;
+}
+
+#info-area .info-content .content-header figure:hover figcaption i {
+    transform: scale(1, 1);
+
+}
+
+
+#info-area .info-content .content-header .sign {
+    float: left;
+    width: 35%;
+    text-align: left;
+    height: 100%;
+
+}
+
+#info-area .info-content .content-header .sign h4 {
+    display: inline-block;
+    padding-top: 15px;
+    color: RGB(54, 165, 148);
+    margin-right: 20px;
+}
+
+#info-area .info-content .content-header .sign p {
+    padding-top: 5px;
+    font-size: 13px;
+}
+
+#info-area .info-content .content-header .sign .btn {
+    font-size: 12px;
+    background-color: RGB(25, 166, 137);
+    color: #fff;
+}
+
+
+#info-area .info-content .content-header .score {
+    float: left;
+    width: 50%;
+    padding: 20px 0 0 4%;
+}
+
+#info-area .info-content .content-header .score .space {
+    text-align: center;
+    width: 15%;
+    float: left;
+    margin-right: 1%;
+    box-shadow: 0px 0px 10px #999999;
+}
+
+#info-area .info-content .content-header .score span {
+    display: block;
+    margin: 0 auto;
+    margin-top: 5px;
+
+}
+
+#info-area .info-content .content-header .score span:nth-child(2) {
+    height: 21px;
+    overflow: hidden;
+}
+
+
+#info-area .info-content .content-header .score .space {
+    font-size: 11px;
+}
+
+#info-area .info-content .content-header .score .space span:nth-child(2) {
+    color: RGB(65, 140, 202);
+}
+
+
+#info-area .info-content .content-header .score .space span:nth-child(3) {
+    color: RGB(101, 144, 139);
+    font-weight: bold;
+    font-size: 15px;
+
+}
+
+
+@media(max-width:1000px) {
+    #info-area .info-content .content-header .sign .btn {
+        font-size: 1px;
+        padding: 3px;
+    }
+}
+
+@media(max-width:800px) {
+    #info-area .info-content .content-header .sign h4 {
+        padding-top: 10px;
+        margin-right: 10px;
+        font-size: 14px;
+    }
+    #info-area .info-content .content-header .sign .btn {
+        font-size: 1px;
+        padding: 3px 10px;
+    }
+    #info-area .info-content .content-header .score {
+        padding: 5px 0 5px 4%;
+    }
+
+}
+
+@media(max-width:700px) {
+    #info-area .info-content .content-header .img-area {
+        width: 20%;
+        padding: 15px 25px 0 15px;
+    }
+    #info-area .info-content .content-header .sign {
+        width: 75%;
+        text-align: left;
+        height: 100%;
+    }
+
+    #info-area .info-content .content-header .score {
+        width: 100%;
+        padding: 8px 0 5px 4%;
+        border-top: 1px solid RGB(220, 220, 220);
+
+    }
+
+    #info-area .info-content .content-header .score .space {
+        width: 14%;
+        margin: 0 1%;
+        box-shadow: none;
+        font-size: 10px;
+    }
+}
+
+@media(max-width:600px) {
+    #info-area .info-content .content-header .img-area {
+        width: 25%;
+        padding: 15px 15px 0 15px;
+    }
+    #info-area .info-content .content-header .sign {
+        width: 70%;
+    }
+}
+
+@media(max-width:450px) {
+    #info-area .info-content .content-header .img-area {
+        width: 30%;
+        padding: 15px 15px 0 15px;
+    }
+    #info-area .info-content .content-header .sign {
+        width: 65%;
+    }
+}
+
+/**************************************“我的资料”----标题************************************/
+
+.content-title {
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+
+.content-title div {
+    line-height: 60px;
+}
+
+.content-title div:after,
+.content-title div:before {
+    position: absolute;
+    top: 50%;
+    background: #ddd;
+    content: "";
+    height: 1px;
+    width: 45%;
+}
+
+.content-title div:before {
+    left: 0;
+}
+
+.content-title div:after {
+    right: 0;
+}
+
+@media(max-width:500px) {
+    .content-title div:before,
+    .content-title div:after {
+        width: 35%;
+    }
+}
+
+
+/************************************修改用户头像***********************************************/
+#modify-Userimg .avatar-wrapper .img-show {
+    width: 500px;
+}
+
+#modify-Userimg h5{
+    padding: 20px 0 0 30px;
+}
+#modify-Userimg .file-input .file-preview-frame {
+    left: 50%;
+    transform: translate(-50%);
+}
+#modify-Userimg .modal-dialog{
+    width: 400px;
+}
+/*改变模态框大小*/
+@media(min-width: 600px){
+    #modify-Userimg .modal-content {
+        width: 100%;
+        margin: 0 auto;
+    }
+    #modify-Userimg .file-input .file-drop-zone {
+        width: 95%;
+    }
+}
+@media(max-width: 900px){
+    #modify-Userimg .file-input .file-preview-frame {
+        /* width: 60%; */
+        margin: 0 auto;
+        margin-left: 10%;
+    }
+}
+
+
+
+/**********************************显示用户数据*********************************************/
+#info-area .info-content .info-content-detail {
+    width: 100%;
+    margin-top: 10px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 30px;
+}
+
+
+/*面板*/
+#userinfo_data .panel{
+    margin-bottom: 10px;
+}
+#userinfo_data .panel-heading{
+    overflow: hidden;
+    background-color:#e5e5e552;
+    padding: 5px 15px;
+
+}
+
+#userinfo_data .panel-heading div{
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 13px;
+    color: inherit;
+    line-height: 180%;
+}
+#userinfo_data .panel-heading .panel-title{
+    font-size: 14px;
+    font-weight: 600;
+}
+#userinfo_data .panel-title i{
+    margin-right: 5px;
+}
+#userinfo_data .panel-default>.panel-heading a{
+    float:right;
+    color: #19a689;
+}
+#userinfo_data .panel-title i{
+    margin-right: 5px;
+}
+/*表格*/
+.control{
+    padding-left: 0px;
+}
+.table > tbody button{
+    margin-right: 5px;
+}
+.table > tbody i{
+    color: #19a689;
+}
+.table{
+    margin: 20px 0 20px 0;
+}
+
+.table > tbody > tr > td{
+    border-top: 1px solid #fff;
+}
+/*响应式布局*/
+@media(max-width:500px) {
+    #userinfo_data,#userinfo_data .form-control{
+        font-size: 10px;
+    }
+    #userinfo_data .btn{
+        font-size: 5px;
+    }
+    #abandon_password{
+        display: none;
+    }
+}
+/****************************************修改个人资料******************************************/
+
+.modify_username {
+    background: #f3f3f3;
+    border: 1px solid #DCDCDC;
+    margin: 0 10px 20px;
+    color: #333;
+    font-size: 16px;
+    line-height: 30px;
+    padding: 0 5px;
+}
+
+.modify_username .modify_username_data {
+    color: #666666;
+}
+
+.modify_context {
+    padding: 0 20px 10px;
+    font-size: 16px;
+    color: #333;
+}
+@media   (min-width: 768px){
+    #info-needVerifyCode-modal .modal-dialog{
+        width: 450px;
+    }
+}

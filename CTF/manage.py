@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 import os
 import sys
+os.environ['DJANGO_SETTINGS_MODULE'] = 'CTF.settings'
+reload(sys)
+sys.setdefaultencoding('utf8')
+
 
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "CTF.settings")

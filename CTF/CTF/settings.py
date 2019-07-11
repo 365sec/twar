@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mysql',
 ]
 
 MIDDLEWARE = [
@@ -76,10 +77,17 @@ WSGI_APPLICATION = 'CTF.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ctf1',
+        'HOST': '172.16.39.74',
+        'PORT': '3306',
+        'USER': 'root',
+        'PASSWORD':'Gtms@gsc123',
+        'CONN_MAX_AGE':None,
+        'default-character-set':'utf8'
     }
 }
+
 
 
 # Password validation

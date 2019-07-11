@@ -1,0 +1,153 @@
+body {
+  background-color: #eee;
+}
+#header #logo {
+  margin: 0;
+  padding: 5px 0;
+}
+#header #header-bar .navbar-nav {
+  margin-left: 20px;
+  font-size: 15px;
+}
+@media (min-width: 768px) {
+  #header #header-bar .navbar-nav > li > a {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
+@media (min-width: 992px) {
+  #header #header-bar .navbar-nav > li > a {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+#header #header-bar .navbar-nav #oldContests .dropdown-menu {
+  background-color: #222222;
+  border-top: none;
+  min-width: 92px;
+}
+#header #header-bar .navbar-nav #oldContests .dropdown-menu .old-contest {
+  color: #9d9d9d;
+  line-height: 2;
+}
+#header #header-bar .navbar-nav #oldContests .dropdown-menu .old-contest:hover {
+  color: #fff;
+  background-color: #222222;
+}
+#header #header-bar #register {
+  margin-left: 5px;
+}
+#header #header-bar > .user-info-wrapper {
+  margin-right: 37px;
+}
+#header #header-bar > .user-info-wrapper #message {
+  display: inline-block;
+  font-size: 15px;
+  position: relative;
+  margin-right: 15px;
+  color: #9d9d9d;
+  vertical-align: middle;
+}
+#header #header-bar > .user-info-wrapper #message .glyphicon {
+  font-size: 12px;
+  margin-right: 5px;
+}
+#header #header-bar > .user-info-wrapper #message .badge {
+  position: absolute;
+  left: 50px;
+  top: -5px;
+  font-size: 10px;
+  background-color: red;
+  padding: 3px 6px;
+}
+#header #header-bar > .user-info-wrapper #message:hover {
+  color: #fff;
+}
+#header #header-bar > .user-info-wrapper .user-info {
+  display: inline-block;
+}
+#header #header-bar > .user-info-wrapper .user-info .user-head {
+  margin: 10px;
+  width: 40px;
+  height: 40px;
+}
+#header #header-bar > .user-info-wrapper .user-info .user-menu {
+  position: absolute;
+  display: none;
+  padding: 0;
+  background-color: #222222;
+  border-top: 1px solid #111;
+}
+#header #header-bar > .user-info-wrapper .user-info .user-menu > li {
+  list-style: none;
+  padding: 10px 20px;
+}
+#header #header-bar > .user-info-wrapper .user-info .user-menu > li a {
+  color: #666666;
+}
+#header #header-bar > .user-info-wrapper .user-info .user-menu > li a .glyphicon {
+  margin-right: 10px;
+}
+#header #header-bar > .user-info-wrapper .user-info .user-menu > li a:hover {
+  color: #ffffff;
+}
+#header #header-bar > .user-info-wrapper .user-info:hover .user-menu {
+  display: block;
+}
+#header #header-bar #user #message {
+  font-size: large;
+}
+#header #header-bar #user > .active {
+  color: #ffffff;
+}
+#header #header-bar #user a:hover {
+  color: #ffffff;
+}
+#footer {
+  background-color: #222;
+  color: #9d9d9d;
+}
+#footer .left-part .attention {
+  padding-top: 20px;
+}
+#footer .left-part .attention > dt {
+  font-size: 16px;
+  line-height: 200%;
+}
+#footer .left-part .attention > dd {
+  line-height: 170%;
+}
+#footer .left-part .attention > .qq {
+  background: url("/static/img/index/qq-ico.png") no-repeat;
+  text-indent: 2em;
+}
+#footer .left-part .attention > .wechat {
+  background: url("/static/img/index/wechat-ico.png") no-repeat;
+  text-indent: 2em;
+}
+#footer .left-part .wechat-code {
+  margin-top: 10px;
+}
+#footer .right-part > .links {
+  list-style: none;
+  /* 小屏幕（平板，大于等于 768px） */
+}
+#footer .right-part > .links > .link {
+  padding: 0;
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #9d9d9d;
+}
+#footer .right-part > .links > .link:hover {
+  color: #36a594;
+}
+@media (min-width: 768px) {
+  #footer .right-part > .links > .link {
+    margin-bottom: 0;
+    font-size: 16px;
+    line-height: 75px;
+  }
+}
+#footer .right-part > .copyright {
+  font-size: 14px;
+}

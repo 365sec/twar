@@ -1,0 +1,72 @@
+/*************************消息列表****************************/
+
+.message-content .content-body section {
+    width: 100%;
+    background-color: RGB(25, 166, 137);
+    padding-top: 20px;
+    margin: 20px 0;
+    border-radius: 6px;
+    box-shadow: 0 0 5px #999;
+}
+
+.message-content .content-body section > div {
+    width: 100%;
+    height: auto;
+    background-color: #fff;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    padding: 10px;
+}
+
+.message-content .content-body section .section-part1 img {
+    width: 50px;
+    border: 1px solid #ccc;
+    padding: 1px;
+    float: left;
+    margin-right: 20px;
+}
+
+.message-content .content-body section .section-part1 .text {
+    width: calc(100% - 80px);
+    float: left;
+    overflow: hidden;
+}
+
+
+.message-content .content-body section .section-part1 .text .mes-from {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+
+.message-content .content-body section .section-part1 .text p:nth-child(2) {
+    position: relative;
+    overflow: hidden;
+    font-size: 14px;
+}
+
+.message-content .content-body section .section-part1 .btn1 {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    cursor: pointer;
+    color: RGB(25, 166, 137);
+}
+
+.message-content .content-body section .section-part1 .text .mes-body {
+    padding: 5px;
+    border: 1px solid RGB(230, 230, 230);
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+
+.message-content .content-body section .section-part2 {
+    clear: both;
+}
+
+.message-content .content-body section .section-part2 .addition {
+    border-top: 1px solid RGB(238, 238, 238);
+    padding-top: 10px;
+    font-size: 12px;
+}

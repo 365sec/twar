@@ -1,0 +1,462 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>杭电CTF | 实名认证</title>
+<link rel="shortcut icon" href="{% static "personal_center/pic/logo-title.png" %}">
+<link rel="stylesheet" href="{% static "personal_center/css/bootstrap.css" %}">
+<link rel="stylesheet" href="{% static "personal_center/css/font-awesome.css" %}">
+<link rel="stylesheet" href="{% static "personal_center/css/sweetalert.css" %}">
+<link rel="stylesheet" href="{% static "personal_center/css/jquery.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "personal_center/css/fileinput.css" %}" media="all">
+<link rel="stylesheet" type="text/css" href="{% static "personal_center/css/theme.css" %}" media="all">
+<link rel="stylesheet" type="text/css" href="{% static "personal_center/css/front.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "personal_center/css/index.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "personal_center/css/common.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "personal_center/css/sidebar.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "personal_center/css/_profile_common.css" %}">
+<link rel="stylesheet" href="{% static "personal_center/css/verify.css" %}">
+</head>
+<body>
+<div id="header">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+<div class="container">
+<div class="navbar-header">
+<a id="logo" class="navbar-brand" href="/index/main">
+<img src="{% static "personal_center/pic/logo.png" %}">
+</a>
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header-bar">
+<span class="sr-only">切换导航</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+</div>
+<div class="collapse navbar-collapse" id="header-bar">
+<ul class="nav navbar-nav">
+<li id="index"><a href="/index">首页</a></li>
+<li id="question"><a href="/question/theory">题库</a></li>
+<li id="rank"><a href="/rank">排行榜</a></li>
+<li id="news"><a href="/news?page=0&amp;size=10">新闻</a></li>
+<li id="contest"><a href="/contest/">大赛介绍</a></li>
+</ul>
+<div class="pull-right user-info-wrapper">
+<div id="user" class="user-info">
+<a href="/user/profile/info">
+<img class="img-circle user-head" src="{% static "personal_center/pic/default.png" %}">
+</a>
+<ul class="user-menu hidden-xs">
+<li id="userCenter"><a href="/user/profile/info"><span class="glyphicon glyphicon-user"></span>个人主页</a></li>
+<li><a href="/user/logout"><span class="glyphicon glyphicon-off"></span>安全退出</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</nav>
+</div>
+<section class="clear-nav"></section>
+<section class="main">
+<div id="telephone-sidebar-btn"><i class="fa fa-list-ul" aria-hidden="true"></i>个人中心</div>
+<div class="container main-center">
+<div id="side-nav" class="left-area">
+<div id="side-nav-head">
+<figure class="user-pic">
+<img class="user-img" src="{% static "personal_center/pic/default.png" %}">
+</figure>
+<h4 id="username" class="text-center">&lt;没有昵称&gt;</h4>
+</div>
+<div id="side-nav-content">
+<ul>
+<li title="个人资料" id="info"><a href="/user/profile/info"><i class="fa fa-user" aria-hidden="true"></i>个人信息</a></li>
+<li title="实名认证" id="verify" class="act"><a href="/user/profile/verify"><i class="fa fa-id-card" aria-hidden="true"></i>个人认证</a></li>
+<li title="消息管理" id="message"><a href="/message/system?page=0&amp;size=10"><i class="fa fa-commenting-o" aria-hidden="true"></i>消息管理 <span class="red-point hide"> 0</span></a></li>
+</ul>
+</div> </div>
+<div id="verify-area" class="right-area">
+<div class="page-header">
+<h1 class="cert_title" id="telephone-sidebar-btn">
+<span>个人中心</span><span> &gt; </span><span>实名认证</span>
+</h1>
+</div>
+<!-- step-1 基本信息认证-->
+<div id="verify-step-1" class="verify-detail">
+<div class="smpl-step">
+<ul class="flow-steps">
+<li class="on" id="first-step">输入身份信息</li>
+<li id="second-step">上传照片</li>
+<li id="third-step">等待审核</li>
+<li id="last-step">完成</li>
+</ul>
+</div>
+<div class="step-info">
+<img src="{% static "personal_center/pic/verify_state_1.png" %}" alt="">
+</div>
+<div class="verify-detail-text">
+<form class="m-t-lg" id="form-verify">
+<div class="form-group has-feedback">
+<label class="control-label">真实姓名:</label>
+<span class="form-control-feedback">*</span>
+<div class="row">
+<div class="col-xs-11">
+<input type="text" id="realname" class="form-control" placeholder="real name" name="realname" required="">
+</div>
+</div>
+</div>
+<div class="form-group has-feedback">
+<label class="control-label">性别:</label>
+<span class="form-control-feedback">*</span>
+<div class="row">
+<div class="col-xs-11">
+<select class="form-control" id="gender">
+<option disabled="disabled" selected="selected" value="">请选择</option>
+<option value="1">男</option>
+<option value="0">女</option>
+</select>
+</div>
+</div>
+</div>
+<div class="form-group has-feedback">
+<label class="control-label">身份证号码:</label>
+<span class="form-control-feedback">*</span>
+<div class="row">
+<div class="col-xs-11">
+<input type="text" id="idCard" class="form-control" placeholder="ID card No" name="id-card" required="">
+</div>
+</div>
+</div>
+<div class="form-group has-feedback">
+<label class="control-label">学历:</label>
+<span class="form-control-feedback">*</span>
+<div class="row">
+<div class="col-xs-11">
+<select class="form-control" id="education">
+<option disabled="disabled" selected="selected" value="">请选择</option>
+<option>博士</option>
+<option>硕士</option>
+<option>本科</option>
+<option>大专</option>
+<option>中专</option>
+<option>高中</option>
+<option>初中</option>
+<option>小学</option>
+</select>
+</div>
+</div>
+</div>
+<div class="form-group has-feedback">
+<label class="control-label">所在地区:</label>
+<span class="form-control-feedback">*</span>
+<div class="row">
+<div class="col-xs-11" id="address">
+<select name="province" class="address-style"><option value="" selected="selected"> - 请选择 - </option><option value="110000" data-code="110000">北京市</option><option value="120000" data-code="120000">天津市</option><option value="130000" data-code="130000">河北省</option><option value="140000" data-code="140000">山西省</option><option value="150000" data-code="150000">内蒙古自治区</option><option value="210000" data-code="210000">辽宁省</option><option value="220000" data-code="220000">吉林省</option><option value="230000" data-code="230000">黑龙江省</option><option value="310000" data-code="310000">上海市</option><option value="320000" data-code="320000">江苏省</option><option value="330000" data-code="330000">浙江省</option><option value="340000" data-code="340000">安徽省</option><option value="350000" data-code="350000">福建省</option><option value="360000" data-code="360000">江西省</option><option value="370000" data-code="370000">山东省</option><option value="410000" data-code="410000">河南省</option><option value="420000" data-code="420000">湖北省</option><option value="430000" data-code="430000">湖南省</option><option value="440000" data-code="440000">广东省</option><option value="450000" data-code="450000">广西壮族自治区</option><option value="460000" data-code="460000">海南省</option><option value="500000" data-code="500000">重庆市</option><option value="510000" data-code="510000">四川省</option><option value="520000" data-code="520000">贵州省</option><option value="530000" data-code="530000">云南省</option><option value="540000" data-code="540000">西藏自治区</option><option value="610000" data-code="610000">陕西省</option><option value="620000" data-code="620000">甘肃省</option><option value="630000" data-code="630000">青海省</option><option value="640000" data-code="640000">宁夏回族自治区</option><option value="650000" data-code="650000">新疆维吾尔自治区</option><option value="710000" data-code="710000">台湾省</option><option value="810000" data-code="810000">香港特别行政区</option><option value="820000" data-code="820000">澳门特别行政区</option></select>
+<select name="city" class="address-style" style="display: none;"></select>
+<select name="area" class="address-style" disabled="disabled"><option value="" selected="selected"> - 请选择 - </option></select>
+</div>
+</div>
+</div>
+<div class="form-group has-feedback">
+<label class="control-label">详细地址:</label>
+<span class="form-control-feedback">*</span>
+<div class="row">
+<div class="col-xs-11">
+<input type="text" id="home" class="form-control" placeholder="address" name="address" required="">
+</div>
+</div>
+</div>
+<div class="form-group" id="type">
+<label class="control-label">个人状态：</label>
+<label class="radio-inline"><input type="radio" name="status" value="0" class="verify-status"> 学生</label>
+<label class="radio-inline"><input type="radio" name="status" value="1" class="verify-status"> 在职 </label>
+<span class="must-fillin">*</span>
+</div>
+<div id="verify-student-info" class="hide">
+<div class="form-group has-feedback">
+<label class="control-label">所在学校:</label>
+<span class="form-control-feedback">*</span>
+<div class="row">
+<div class="col-xs-11">
+<select id="school-prov" class="form-control" placeholder="省份" name="school-prov" onchange="changeProvince(document.getElementById('school-prov'),document.getElementById('school'));">
+<option value="" selected="selected">请选择省份</option><option value="北京">北京</option><option value="天津">天津</option><option value="河北">河北</option><option value="山西">山西</option><option value="内蒙古">内蒙古</option><option value="辽宁">辽宁</option><option value="吉林">吉林</option><option value="黑龙江">黑龙江</option><option value="上海">上海</option><option value="浙江">浙江</option><option value="江苏">江苏</option><option value="安徽">安徽</option><option value="福建">福建</option><option value="江西">江西</option><option value="山东">山东</option><option value="河南">河南</option><option value="湖北">湖北</option><option value="湖南">湖南</option><option value="广东">广东</option><option value="广西">广西</option><option value="海南">海南</option><option value="重庆">重庆</option><option value="四川">四川</option><option value="贵州">贵州</option><option value="云南">云南</option><option value="西藏">西藏</option><option value="陕西">陕西</option><option value="甘肃">甘肃</option><option value="青海">青海</option><option value="宁夏">宁夏</option><option value="新疆">新疆</option><option value="香港">香港</option><option value="澳门">澳门</option><option value="台湾">台湾</option></select>
+</div>
+</div>
+</div>
+<div class="form-group has-feedback">
+<span class="form-control-feedback">*</span>
+<div class="row">
+<div class="col-xs-11">
+<select id="school" class="form-control" placeholder="学校" name="school">
+<option value="" selected="selected">请选择学校</option></select>
+</div>
+</div>
+</div>
+<div class="form-group has-feedback hide" id="school-hide">
+<span class="form-control-feedback">*</span>
+<div class="row">
+<div class="col-xs-11">
+<input type="text" id="school-1" class="form-control" placeholder="请输入你的学校" name="school-1">
+</div>
+</div>
+</div>
+<div class="form-group has-feedback">
+<label class="control-label">所在学院:</label>
+<span class="form-control-feedback">*</span>
+<div class="row">
+<div class="col-xs-11">
+<input type="text" id="department" class="form-control" placeholder="department" name="department">
+</div>
+</div>
+</div>
+<div class="form-group has-feedback">
+<label class="control-label">专业:</label>
+<span class="form-control-feedback">*</span>
+<div class="row">
+<div class="col-xs-11">
+<input type="text" id="major" class="form-control" placeholder="major" name="major">
+</div>
+</div>
+</div>
+</div>
+<div id="verify-staff-info" class="hide">
+<div class="form-group">
+<div class="form-group has-feedback">
+<label class="control-label">公司:</label>
+<span class="form-control-feedback">*</span>
+<div class="row">
+<div class="col-xs-11">
+<input type="text" id="company" class="form-control" placeholder="company" name="company">
+</div>
+</div>
+</div>
+</div>
+<div class="form-group">
+<div class="form-group has-feedback">
+<label class="control-label">部门:</label>
+<span class="form-control-feedback">*</span>
+<div class="row">
+<div class="col-xs-11">
+<input type="text" id="comp_department" class="form-control" placeholder="comp_department" name="comp_department">
+</div>
+</div>
+</div>
+</div>
+<div class="form-group">
+<div class="form-group has-feedback">
+<label class="control-label">职业:</label>
+<span class="form-control-feedback">*</span>
+<div class="row">
+<div class="col-xs-11">
+<input type="text" id="career" class="form-control" placeholder="career" name="career">
+</div>
+</div>
+</div>
+</div>
+</div>
+</form>
+<div class="col-xs-11">
+<button class="btn pull-right " id="btn-next-1">下一步</button>
+</div>
+</div>
+</div> <!-- step-2 身份证信息认证-->
+<div id="verify-step-2" class="verify-detail hide">
+<div class="smpl-step">
+<ul class="flow-steps">
+<li id="first-step">输入身份信息</li>
+<li class="on" id="second-step">上传照片</li>
+<li id="third-step">等待审核</li>
+<li id="last-step">完成</li>
+</ul>
+</div>
+<div class="step-info">
+<img src="{% static "personal_center/pic/verify_state_2.png" %}" alt="">
+</div>
+<div class="verify-detail-text">
+<div class="alert alert-warning">
+<a href="#" class="close" data-dismiss="alert">×</a>请在选择身份证正反面照片后点击上传按钮。
+</div>
+<div class="row kv-main">
+<h4>身份证上传(正反面)</h4>
+<hr>
+<div class="row" id="file_input">
+<div class="col-lg-6 col-xs-12 img-up">
+<form enctype="multipart/form-data" id="frm1">
+<h5>正面照片</h5>
+<hr>
+<div class="file-input file-input-ajax-new"><div class="file-preview ">
+        <div class=" file-drop-zone"><div class="file-drop-zone-title">请上传身份证正面照片 <br>拖拽照片到这里...</div>
+    <div class="file-preview-thumbnails">
+    </div>
+    <div class="clearfix"></div>    <div class="file-preview-status text-center text-success"></div>
+    <div class="kv-fileinput-error file-error-message" style="display: none;"></div>
+    </div>
+</div>
+<div class="kv-upload-progress kv-hidden" style="display: none;"><div class="progress">
+    <div class="progress-bar bg-success progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%;">
+        0%
+     </div>
+</div></div><div class="clearfix"></div>
+<div class="input-group file-caption-main">
+  <div class="file-caption form-control kv-fileinput-caption" tabindex="500">
+  <span class="file-caption-icon"></span>
+  <input class="file-caption-name" onkeydown="return false;" onpaste="return false;" placeholder="选择 个文件...">
+</div>
+<div class="input-group-btn input-group-append">
+      <button type="button" tabindex="500" title="清除选中文件" class="btn btn-default btn-secondary fileinput-remove fileinput-remove-button"><i class="glyphicon glyphicon-trash"></i>  <span class="hidden-xs">移除</span></button>
+      <button type="button" tabindex="500" title="取消进行中的上传" class="btn btn-default btn-secondary kv-hidden fileinput-cancel fileinput-cancel-button"><i class="glyphicon glyphicon-ban-circle"></i>  <span class="hidden-xs">取消</span></button>
+      <a href="/user/profile/uploadIdCard/1" tabindex="500" title="上传选中文件" class="btn btn-default btn-secondary fileinput-upload fileinput-upload-button"><i class="glyphicon glyphicon-upload"></i>  <span class="hidden-xs">上传</span></a>
+      <div tabindex="500" class="btn btn-primary btn-file"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;  <span class="hidden-xs">选择 …</span><input id="file-fr" class="" type="file" multiple="" name="file"></div>
+    </div>
+</div></div>
+</form>
+<div id="mask" class="hide"></div>
+</div>
+<div class="col-lg-6 col-xs-12 img-up">
+<form enctype="multipart/form-data" id="frm2">
+<h5>反面照片</h5>
+<hr>
+<div class="file-input file-input-ajax-new"><div class="file-preview ">
+        <div class=" file-drop-zone"><div class="file-drop-zone-title">请上传身份证反面照片 <br>拖拽照片到这里...</div>
+    <div class="file-preview-thumbnails">
+    </div>
+    <div class="clearfix"></div>    <div class="file-preview-status text-center text-success"></div>
+    <div class="kv-fileinput-error file-error-message" style="display: none;"></div>
+    </div>
+</div>
+<div class="kv-upload-progress kv-hidden" style="display: none;"><div class="progress">
+    <div class="progress-bar bg-success progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%;">
+        0%
+     </div>
+</div></div><div class="clearfix"></div>
+<div class="input-group file-caption-main">
+  <div class="file-caption form-control kv-fileinput-caption" tabindex="500">
+  <span class="file-caption-icon"></span>
+  <input class="file-caption-name" onkeydown="return false;" onpaste="return false;" placeholder="选择 个文件...">
+</div>
+<div class="input-group-btn input-group-append">
+      <button type="button" tabindex="500" title="清除选中文件" class="btn btn-default btn-secondary fileinput-remove fileinput-remove-button"><i class="glyphicon glyphicon-trash"></i>  <span class="hidden-xs">移除</span></button>
+      <button type="button" tabindex="500" title="取消进行中的上传" class="btn btn-default btn-secondary kv-hidden fileinput-cancel fileinput-cancel-button"><i class="glyphicon glyphicon-ban-circle"></i>  <span class="hidden-xs">取消</span></button>
+      <a href="/user/profile/uploadIdCard/2" tabindex="500" title="上传选中文件" class="btn btn-default btn-secondary fileinput-upload fileinput-upload-button"><i class="glyphicon glyphicon-upload"></i>  <span class="hidden-xs">上传</span></a>
+      <div tabindex="500" class="btn btn-primary btn-file"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;  <span class="hidden-xs">选择 …</span><input id="file-fr1" class="" type="file" multiple="" name="file"></div>
+    </div>
+</div></div>
+</form>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-6">
+<button class="btn pull-left" id="btn-previous-1">上一步</button>
+</div>
+<div class="col-xs-6">
+<button class="btn pull-right " id="btn-next-2">确认提交</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- step-3 认证审核中-->
+<div id="verify-step-3" class="verify-detail hide verify-step-3-4">
+<div class="smpl-step">
+<ul class="flow-steps">
+<li id="first-step">输入身份信息</li>
+<li id="second-step">上传照片</li>
+<li class="on">等待审核</li>
+<li id="last-step">完成</li>
+</ul>
+</div>
+<div class="step-info">
+<img src="{% static "personal_center/pic/verify_state_3.png" %}" alt="">
+</div>
+<div class="row verify-detail-text">
+<div class="cert_finish">
+<p>
+<i class="fa fa-clock-o fa-2x" aria-hidden="true"></i>
+<span class="">你的认证信息已提交！请耐心等待审核...</span>
+</p>
+</div>
+</div>
+</div> </div>
+</div>
+</section>
+<div id="telephone-sidebar">
+<div class="panel panel-default">
+<!--按钮-->
+<div class="panel-heading text-center">
+<figure class="user-pic">
+<img class="user-img" src="{% static "personal_center/pic/default.png" %}">
+</figure>
+<h4 id="username" class="text-center">&lt;没有昵称&gt;</h4>
+</div>
+<!--列表-->
+<div class="panel-body">
+<div class="list-group">
+<a href="/user/profile/info" class="list-group-item" id="info-tel"><i class="fa fa-user" aria-hidden="true"></i>个人信息</a>
+<a href="/user/profile/verify" class="list-group-item active" id="verify-tel"><i class="fa fa-id-card" aria-hidden="true"></i>个人认证</a>
+<a href="/message/system?page=0&amp;size=10" class="list-group-item" id="message-tel"><i class="fa fa-commenting-o" aria-hidden="true"></i>消息管理<span class="red-point hide"> 0</span></a>
+</div>
+</div>
+</div>
+</div>
+<div id="mask" class="hide"></div><footer id="footer">
+<div class="container">
+<div class="row">
+<!--左部分-->
+<div class="left-part col-sm-6 col-md-6 col-lg-6">
+<div class="row">
+<!--关注我们-->
+<dl class="attention col-md-8 col-lg-8">
+<dt>关注我们</dt>
+<dd class="qq">问鼎杯：438337104 &nbsp;&nbsp;省赛：831107689&nbsp;&nbsp;</dd>
+<dd class="wechat">微&nbsp;&nbsp;信：浙江省计算机应用与教育学会</dd>
+</dl>
+<!--二维码-->
+<div class="wechat-code col-md-3 col-lg-3 hidden-xs hidden-sm">
+<img class="center-block" src="{% static "personal_center/pic/wechat-code.png" %}">
+</div>
+</div>
+</div>
+<!--右部分-->
+<div class="right-part col-sm-6 col-md-6 col-lg-6">
+<div class="center-block links row">
+<a class="link text-center col-xs-3" href="/app/about">关于我们</a>
+<a class="link text-center col-xs-3" href="/app/suggestion">意见反馈</a>
+<a class="link text-center col-xs-3" href="/app/disclaim">免责申明</a>
+<a class="link text-center col-xs-3" href="/app/donate">我要赞助</a>
+</div>
+<p class="copyright text-center">Copyright©2014-2015&nbsp;版权归属&nbsp;杭州电子科技大学</p>
+</div>
+</div>
+</div>
+</footer>
+<script src="{% static "personal_center/js/jquery-3.js" %}"></script>
+<script src="{% static "personal_center/js/sortable.js" %}"></script>
+<script src="{% static "personal_center/js/fileinput.js" %}"></script>
+<script src="{% static "personal_center/js/zh.js" %}"></script>
+<script src="{% static "personal_center/js/theme.js" %}"></script>
+<script src="{% static "personal_center/js/theme_002.js" %}"></script>
+<script src="{% static "personal_center/js/bootstrap.js" %}"></script>
+<script src="{% static "personal_center/js/sweetalert.js" %}"></script>
+<script src="{% static "personal_center/js/jquery.js" %}"></script>
+<script src="{% static "personal_center/js/new_toast.js" %}"></script>
+<script src="{% static "personal_center/js/slidebar.js" %}"></script>
+<script src="{% static "personal_center/js/citys.js" %}"></script>
+<script src="{% static "personal_center/js/school.js" %}"></script>
+<script src="{% static "personal_center/js/verify.js" %}"></script>
+<div id="kvFileinputModal" class="file-zoom-dialog modal fade" tabindex="-1" aria-labelledby="kvFileinputModalLabel"><div class="modal-dialog modal-lg" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">详细预览</h5>
+      <span class="kv-zoom-title"></span>
+      <div class="kv-zoom-actions"><button type="button" class="btn btn-sm btn-kv btn-default btn-outline-secondary btn-toggleheader" title="缩放" data-toggle="button" aria-pressed="false" autocomplete="off"><i class="glyphicon glyphicon-resize-vertical"></i></button><button type="button" class="btn btn-sm btn-kv btn-default btn-outline-secondary btn-fullscreen" title="全屏" data-toggle="button" aria-pressed="false" autocomplete="off"><i class="glyphicon glyphicon-fullscreen"></i></button><button type="button" class="btn btn-sm btn-kv btn-default btn-outline-secondary btn-borderless" title="无边界模式" data-toggle="button" aria-pressed="false" autocomplete="off"><i class="glyphicon glyphicon-resize-full"></i></button><button type="button" class="btn btn-sm btn-kv btn-default btn-outline-secondary btn-close" title="关闭当前预览" data-dismiss="modal" aria-hidden="true"><i class="glyphicon glyphicon-remove"></i></button></div>
+    </div>
+    <div class="modal-body">
+      <div class="floating-buttons"></div>
+      <div class="kv-zoom-body file-zoom-content krajee-default"></div>
+<button type="button" class="btn btn-navigate btn-prev" title="预览上一个文件"><i class="glyphicon glyphicon-triangle-left"></i></button> <button type="button" class="btn btn-navigate btn-next" title="预览下一个文件"><i class="glyphicon glyphicon-triangle-right"></i></button>
+    </div>
+  </div>
+</div>
+</div></body></html>

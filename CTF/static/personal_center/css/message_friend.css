@@ -1,0 +1,79 @@
+/*************************消息列表****************************/
+.content-body #m-list {
+    margin-top: 20px;
+    padding: 0;
+}
+.content-body #m-list > a {
+    display: inline-block;
+    overflow: hidden;
+    width: 100%
+}
+
+.content-body #m-list > a:hover {
+    background-color: RGB(245, 245, 245);
+}
+
+.content-body #m-list li {
+    width: 100%;
+    border-bottom: 1px solid RGB(221, 221, 221);
+    list-style: none;
+    position: relative;
+    padding: 8px 0;
+}
+
+.content-body #m-list li .user-img {
+    width: 50px;
+    padding: 5px;
+    margin-right: 15px;
+    display: inline-block;
+    position: absolute;
+    top: 8px;
+
+}
+
+.content-body #m-list img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.content-body #m-list li .user-img .unread {
+    width: 18px;
+    height: 18px;
+    background-color: red;
+    color: #fff;
+    border-radius: 100%;
+    position: absolute;
+    top: 0;
+    left: 35px;
+    font-size: 13px;
+}
+
+
+.content-body #m-list li .user-info {
+    max-width: calc(100% - 100px);
+    display: inline-block;
+    margin-left: 65px;
+
+}
+.content-body #m-list li .user-info span {
+    display: block;
+}
+
+.content-body #m-list li .user-info span span {
+    display: inline;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.content-body #m-list li .user-info span.name {
+    color: RGB(25, 166, 137);
+    font-weight: 600;
+    padding-bottom: 5px;
+}
+
+.content-body #m-list li .user-info span.content {
+    color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 15px;
+}

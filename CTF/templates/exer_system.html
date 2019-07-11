@@ -13,16 +13,16 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 <meta name="format-detection" content="telephone=no"/>
 <title>杭电CTF | 题库</title>
-<link rel="shortcut icon" href="/static/index/images/index/logo-title.png">
-<link rel="stylesheet" href="/static/index/css/bootstrap.min.css">
-<link rel="stylesheet" href="/static/index/font_awesome/css/font-awesome.css">
-<link rel="stylesheet" href="/static/index/css/front.css">
-<link rel="stylesheet" href="/static/index/css/index.css">
-<link rel="stylesheet" href="/static/index/css/common.css">
-<link rel="stylesheet" href="/static/css/main/sidebar.css">
-<link rel="stylesheet" href="/static/css/plugins/sweetalert/sweetalert.css">
-<link rel="stylesheet" href="/static/css/plugins/toast/jquery.toast.min.css">
-<link rel="stylesheet" type="text/css" href="/static/css/main/question/question.css">
+<link rel="shortcut icon" href="/static/images/index/logo-title.png">
+<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static/css/font-awesome.css">
+<link rel="stylesheet" href="/static/css/front.css">
+<link rel="stylesheet" href="/static/css/index.css">
+<link rel="stylesheet" href="/static/css/common.css">
+<link rel="stylesheet" href="/static/css/sidebar.css">
+<link rel="stylesheet" href="/static/css/sweetalert.css">
+<link rel="stylesheet" href="/static/css/jquery.toast.min.css">
+<link rel="stylesheet" type="text/css" href="/static/css/question.css">
 
 </head>
 <body>
@@ -46,12 +46,12 @@ aria-controls="question-categories">试题广场
 <!--题目分类列表-->
 <div class="panel-body collapse in" id="question-categories">
 <div class="list-group">
-<a href="/exercise/system?page=1" class="list-group-item active">理论知识</a>
-<a href="/exercise/websafe?page=1" class="list-group-item ">Web安全</a>
-<a href="/exercise/passwd?page=1" class="list-group-item ">密码</a>
-<a href="/exercise/reverse?page=1" class="list-group-item ">逆向</a>
-<a href="/exercise/sundry?page=1" class="list-group-item ">杂类</a>
-<a href="/exercise/forensic?page=1" class="list-group-item ">取证</a>
+<a href="/exercise/system?qu_class=理论知识" class="list-group-item active">理论知识</a>
+<a href="/exercise/system?qu_class=Web安全" class="list-group-item ">Web安全</a>
+<a href="/exercise/system?qu_class=密码" class="list-group-item ">密码</a>
+<a href="/exercise/system?qu_class=逆向" class="list-group-item ">逆向</a>
+<a href="/exercise/system?qu_class=杂类" class="list-group-item ">杂类</a>
+<a href="/exercise/system?qu_class=取证" class="list-group-item ">取证</a>
 </div>
 </div>
 </div>
@@ -65,36 +65,34 @@ aria-controls="question-categories">试题广场
 <!--排序方式：默认 | 最热 | 最新-->
 <div class="panel-heading">
 <div class="btn-group" role="group" aria-label="orderType">
-<a class="btn order-default on" href="/question/theory?sort=default&page=0&size=20">默认</a>
-<a class="btn order-hot" href="/question/theory?sort=hottest&page=0&size=20">最热</a>
-<a class="btn order-new" href="/question/theory?sort=newest&page=0&size=20">最新</a>
+<a class="btn order-default on" href="/exercise/system?page={{ page }}&sort=default&qu_class={{ qu_class }}">默认</a>
+<a class="btn order-hot" href="/exercise/system?page={{ page }}&sort=hottest&qu_class={{ qu_class }}">最热</a>
+<a class="btn order-new" href="/exercise/system?page={{ page }}&sort=newest&qu_class={{ qu_class }}">最新</a>
 </div>
 </div>
 <!--问题填充部分-->
 <div class="panel-body">
 <ul class="list-group" id="question-list">
     {% for question in question_list %}
-        {% if  question.qu_class == 'quzheng' %}
-            <li class="clearfix list-group-item">
+        <li class="clearfix list-group-item">
         <div class="question">
         <i class="fa fa-question-circle-o" aria-hidden="true"></i>
 
         </div>
-                <a class="question-title" href="/exercise/system/detail?qu_id={{ question.qu_id }}&qu_class={{ question.qu_class }}"><p>{{ question.qu_description }}
+                <a class="question-title" href="/exercise/system/detail?qu_id={{ question.qu_id }}"><p>{{ question.qu_description }}
         </p></a>
         <div class="info">
         <div class="from pull-left">{{ question.qu_source }}</div>
         <div class="pull-right">
-        <a class="reply"><i class="fa fa-comment-o" aria-hidden="true"></i> 回答(2)</a>
+        <a class="reply"><i class="fa fa-comment-o" aria-hidden="true"></i> 回答({{ question.qu_answer_num }})</a>
         <span>&nbsp;|&nbsp;</span>
-        <a class="collected"><i class="fa fa-heart-o" aria-hidden="true"></i> 收藏(0)</a>
+        <a class="collected"><i class="fa fa-heart-o" aria-hidden="true"></i> 收藏({{ question.qu_collections }})</a>
         <span>&nbsp;|&nbsp;</span>
-        <a class="visited"><i class="fa fa-eye" aria-hidden="true"></i> 浏览量(4978)</a>
+        <a class="visited"><i class="fa fa-eye" aria-hidden="true"></i> 浏览量({{ question.qu_page_view }})</a>
         </div>
         </div>
         </li>
-        {% endif %}
-    {% endfor %}
+        {% endfor %}
 </ul>
 </div>
 <!--翻页-->
@@ -102,21 +100,24 @@ aria-controls="question-categories">试题广场
 <nav class="text-center">
 <ul class="pagination">
 {% if page > 1 %}
-    <li><a href="/exercise/system?page=1" class="page-disabled">&laquo;</a></li>
+    <li><a href="/exercise/system?page=1&sort={{ sort }}&qu_class={{ qu_class }}" class="page">&laquo;</a></li>
 {% else %}
-    <li><a>&laquo;</a></li>
+    <li><a class="page-disabled"> &laquo;</a></li>
 {% endif %}
 {% if question_list.has_previous %}
     {% if question_list.previous_page_number > 1 %}
          <li><a class="page-disabled" href="#" >...</a></li>
     {% endif %}
-         <li><a href="/exercise/system?page={{ question_list.previous_page_number }}" >{{ question_list.previous_page_number }}</a></li>
+         <li><a href="/exercise/system?page={{ question_list.previous_page_number }}&sort={{ sort }}&qu_class={{ qu_class }} " >{{ question_list.previous_page_number }}</a></li>
 {% endif %}
-<li><a href="/exercise/system?page={{ page }}" class="active">{{ page }}</a></li>
-<li><a href="/exercise/system?page=2">2</a></li>
-<li><a href="/exercise/system?page=3">3</a></li>
+<li><a href="/exercise/system?page={{ page }}&sort={{ sort }}&qu_class={{ qu_class }}" class="active">{{ page }}</a></li>
+{% if question_list.has_next %}
+<li><a href="/exercise/system?page={{ question_list.next_page_number }}&sort={{ sort }}&qu_class={{ qu_class }}">{{ question_list.next_page_number }}</a></li>
+{% endif %}
+{% if page  !=  num_pages   %}
 <li><a class="page-disabled">...</a></li>
-<li><a href="/question/theory?sort=default&page=36&size=20">&raquo;</a></li>
+{% endif %}
+<li><a href="/exercise/system?page={{ num_pages }}&sort={{ sort }}&qu_class={{ qu_class }} ">&raquo; </a></li>
 </ul>
 </nav>
 </div>
@@ -133,12 +134,12 @@ aria-controls="question-categories">试题广场
 <!--题目分类列表-->
 <div class="panel-body" id="question-categories">
 <div class="list-group">
-<a href="/exercise/system?page=1" class="list-group-item active">理论知识</a>
-<a href="/exercise/websafe?page=1" class="list-group-item ">Web安全</a>
-<a href="/exercise/passwd?page=1" class="list-group-item ">密码</a>
-<a href="/exercise/reverse?page=1" class="list-group-item ">逆向</a>
-<a href="/exercise/sundry?page=1" class="list-group-item ">杂类</a>
-<a href="/exercise/forensic?page=1" class="list-group-item ">取证</a>
+<a href="/exercise/system?qu_class=理论知识" class="list-group-item active">理论知识</a>
+<a href="/exercise/system?qu_class=Web安全" class="list-group-item ">Web安全</a>
+<a href="/exercise/system?qu_class=密码" class="list-group-item ">密码</a>
+<a href="/exercise/system?qu_class=逆向" class="list-group-item ">逆向</a>
+<a href="/exercise/system?qu_class=杂类" class="list-group-item ">杂类</a>
+<a href="/exercise/system?qu_class=取证" class="list-group-item ">取证</a>
 </div>
 </div>
 </div>
@@ -160,7 +161,7 @@ aria-controls="question-categories">试题广场
 </dl>
 <!--二维码-->
 <div class="wechat-code col-md-3 col-lg-3 hidden-xs hidden-sm">
-<img class="center-block" src="/static/index/images/index/wechat-code.png">
+<img class="center-block" src="/static/images/index/wechat-code.png">
 </div>
 </div>
 </div>
@@ -178,12 +179,12 @@ aria-controls="question-categories">试题广场
 </div>
 </footer>
 
-<script type="text/javascript" src="/static/index/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="/static/js/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="/static/js/jquery.appear.js"></script>
-<script type="text/javascript" src="/static/index/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/static/index/js/main/slidebar.js"></script>
-<script type="text/javascript" src="/static/js/main/question/question.js"></script>
+<script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/static/js/slidebar.js"></script>
+<script type="text/javascript" src="/static/js/question.js"></script>
 <script> $('#head_content').load('/static/htmls/head_content.html')</script>
 </body>
 </html>

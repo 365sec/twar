@@ -1,0 +1,163 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>杭电CTF | 系统消息</title>
+<link rel="shortcut icon" href="{% static "personal_center/pic/logo-title.png" %}">
+<link rel="stylesheet" href="{% static "personal_center/css/bootstrap.css" %}">
+<link rel="stylesheet" href="{% static "personal_center/css/font-awesome.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "personal_center/css/front.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "personal_center/css/index.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "personal_center/css/common.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "personal_center/css/sidebar.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "personal_center/css/_profile_common.css" %}">
+<link rel="stylesheet" href="{% static "personal_center/css/message.css" %}">
+<link rel="stylesheet" href="{% static "personal_center/css/message_common.css" %}">
+</head>
+<body>
+<div id="header">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+<div class="container">
+<div class="navbar-header">
+<a id="logo" class="navbar-brand" href="/index/main">
+<img src="{% static "personal_center/pic/logo.png" %}">
+</a>
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header-bar">
+<span class="sr-only">切换导航</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+</div>
+<div class="collapse navbar-collapse" id="header-bar">
+<ul class="nav navbar-nav">
+<li id="index"><a href="/index">首页</a></li>
+<li id="question"><a href="/question/theory">题库</a></li>
+<li id="rank"><a href="/rank">排行榜</a></li>
+<li id="news"><a href="/news?page=0&amp;size=10">新闻</a></li>
+<li id="contest"><a href="/contest/">大赛介绍</a></li>
+</ul>
+<div class="pull-right user-info-wrapper">
+<div id="user" class="user-info">
+<a href="/user/profile/info">
+<img class="img-circle user-head" src="{% static "personal_center/pic/default.png" %}">
+</a>
+<ul class="user-menu hidden-xs">
+<li id="userCenter"><a href="/user/profile/info"><span class="glyphicon glyphicon-user"></span>个人主页</a></li>
+<li><a href="/user/logout"><span class="glyphicon glyphicon-off"></span>安全退出</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</nav>
+</div>
+<section class="clear-nav"></section>
+<section class="main">
+<div id="telephone-sidebar-btn"><i class="fa fa-list-ul" aria-hidden="true"></i>个人中心</div>
+<div class="container main-center">
+<div id="side-nav" class="left-area">
+<div id="side-nav-head">
+<figure class="user-pic">
+<img class="user-img" src="{% static "personal_center/pic/default.png" %}">
+</figure>
+<h4 id="username" class="text-center">&lt;没有昵称&gt;</h4>
+</div>
+<div id="side-nav-content">
+<ul>
+<li title="个人资料" id="info"><a href="/user/profile/info"><i class="fa fa-user" aria-hidden="true"></i>个人信息</a></li>
+<li title="实名认证" id="verify"><a href="/user/profile/verify"><i class="fa fa-id-card" aria-hidden="true"></i>个人认证</a></li>
+<li title="消息管理" id="message" class="act"><a href="/message/system?page=0&amp;size=10"><i class="fa fa-commenting-o" aria-hidden="true"></i>消息管理 <span class="red-point hide"> 0</span></a></li>
+</ul>
+</div> </div>
+<div id="verify-area" class="right-area">
+<div class="page-header">
+<h1 class="cert_title">
+<span>个人中心</span><span> &gt; </span><span>消息管理</span>
+</h1>
+</div>
+<div class="message-content">
+<div class="content-header">
+<div class="mes-type on">
+<i class="fa fa-envelope-o" aria-hidden="true"></i>
+<a href="/message/system?page=0&amp;size=10"><span>系统消息</span></a>
+</div>
+<div class="mes-type">
+<i class="fa fa-comments-o" aria-hidden="true"></i>
+<a href="/message/friends?page=0&amp;size=10"><span>好友消息</span></a>
+</div>
+</div>
+<div class="content-body">
+<div class="blank-info text-center">
+<img src="{% static "personal_center/pic/default_message.png" %}" alt="">
+<span>您暂时还没有系统消息哦~</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div id="telephone-sidebar">
+<div class="panel panel-default">
+<!--按钮-->
+<div class="panel-heading text-center">
+<figure class="user-pic">
+<img class="user-img" src="{% static "personal_center/pic/default.png" %}">
+</figure>
+<h4 id="username" class="text-center">&lt;没有昵称&gt;</h4>
+</div>
+<!--列表-->
+<div class="panel-body">
+<div class="list-group">
+<a href="/user/profile/info" class="list-group-item" id="info-tel"><i class="fa fa-user" aria-hidden="true"></i>个人信息</a>
+<a href="/user/profile/verify" class="list-group-item" id="verify-tel"><i class="fa fa-id-card" aria-hidden="true"></i>个人认证</a>
+<a href="/message/system?page=0&amp;size=10" class="list-group-item active" id="message-tel"><i class="fa fa-commenting-o" aria-hidden="true"></i>消息管理<span class="red-point hide"> 0</span></a>
+</div>
+</div>
+</div>
+</div>
+<div id="mask" class="hide"></div><footer id="footer">
+<div class="container">
+<div class="row">
+<!--左部分-->
+<div class="left-part col-sm-6 col-md-6 col-lg-6">
+<div class="row">
+<!--关注我们-->
+<dl class="attention col-md-8 col-lg-8">
+<dt>关注我们</dt>
+<dd class="qq">问鼎杯：438337104 &nbsp;&nbsp;省赛：831107689&nbsp;&nbsp;</dd>
+<dd class="wechat">微&nbsp;&nbsp;信：浙江省计算机应用与教育学会</dd>
+</dl>
+<!--二维码-->
+<div class="wechat-code col-md-3 col-lg-3 hidden-xs hidden-sm">
+<img class="center-block" src="{% static "personal_center/pic/wechat-code.png" %}">
+</div>
+</div>
+</div>
+<!--右部分-->
+<div class="right-part col-sm-6 col-md-6 col-lg-6">
+<div class="center-block links row">
+<a class="link text-center col-xs-3" href="/app/about">关于我们</a>
+<a class="link text-center col-xs-3" href="/app/suggestion">意见反馈</a>
+<a class="link text-center col-xs-3" href="/app/disclaim">免责申明</a>
+<a class="link text-center col-xs-3" href="/app/donate">我要赞助</a>
+</div>
+<p class="copyright text-center">Copyright©2014-2015&nbsp;版权归属&nbsp;杭州电子科技大学</p>
+</div>
+</div>
+</div>
+</footer>
+<div class="hide" id="system-read">
+</div>
+<script src="{% static "personal_center/js/jquery-3.js" %}"></script>
+<script src="{% static "personal_center/js/bootstrap.js" %}"></script>
+<script src="{% static "personal_center/js/sweetalert.js" %}"></script>
+<script src="{% static "personal_center/js/jquery.js" %}"></script>
+<script src="{% static "personal_center/js/new_toast.js" %}"></script>
+<script src="{% static "personal_center/js/slidebar.js" %}"></script>
+<script src="{% static "personal_center/js/message.js" %}"></script>
+</body></html>

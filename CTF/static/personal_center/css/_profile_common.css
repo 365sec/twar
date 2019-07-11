@@ -1,0 +1,205 @@
+.main-center {
+    margin: 60px auto;
+    display: flex;
+    overflow: hidden;
+    background-color: #fff;
+    height: 100%;
+    min-height: 750px;
+}
+@media(max-width:769px) {
+    .main-center {
+        margin: 15px;
+    }
+}
+.main-center .left-area {
+    width: 17%;
+    overflow: hidden;
+}
+
+.main-center .right-area {
+    width: 83%;
+    position: relative;
+}
+@media(max-width: 769px) {
+    .main-center .left-area {
+       display: none;
+    }
+    .main-center .right-area {
+        width: 100%;
+    }
+}
+#side-nav {
+    height: auto;
+    color: #666;
+    border-right: 1px solid #ccc;
+    padding: 20px 0;
+}
+
+
+
+#side-nav #side-nav-head {
+    width: 100%;
+    height: auto;
+}
+
+
+
+#side-nav #side-nav-head .user-pic {
+    width: 90px;
+    height: 90px;
+    border-radius: 100%;
+    padding: 3px;
+    border: 1px solid RGB(218, 219, 220);
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+#side-nav #side-nav-head img {
+    border-radius: 100%;
+    width: 100%;
+    height: 100%;
+}
+
+
+#side-nav #side-nav-content {
+    width: 100%;
+    height: auto;
+    margin: 0;
+}
+
+#side-nav #side-nav-content ul {
+    padding: 10%;
+    margin: 0;
+    width: 100%;
+}
+
+#side-nav #side-nav-content ul li {
+    width: 100%;
+    height: 45px;
+    list-style: none;
+    text-decoration: none;
+    border-bottom: 1px solid #999;
+    overflow: hidden;
+
+}
+
+#side-nav #side-nav-content ul li a {
+    padding: 15px 0px;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    letter-spacing: 1px;
+    color: #666;
+}
+
+#side-nav #side-nav-content ul li:hover,
+#side-nav #side-nav-content ul .act {
+    border-bottom: 2px solid #19a689;
+}
+
+#side-nav #side-nav-content ul li:hover a,
+#side-nav #side-nav-content ul .act a {
+    color: #19a689;
+}
+
+#side-nav #side-nav-content i {
+    margin-right: 10px;
+    width: 20px;
+}
+
+#side-nav .red-point,
+#telephone-sidebar .red-point{
+    position:relative;
+    display:inline-block;
+    font-size: 10px;
+    color: #ffffff;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: red;
+    border: 1px solid red;
+    text-align: center;
+    top: -21px;
+    left: 93px;
+
+}
+
+/*****************响应式布局*********************/
+
+@media(max-width:1000px) {
+    .main-center {
+        padding: 5px;
+    }
+    
+}
+
+/************右侧区域 --- header************/
+
+.right-area{
+    padding: 0 5% 40px 5%;
+}
+
+.right-area .page-header {
+    width: 100%;
+}
+
+.right-area .cert_title {
+    display: inline-block;
+    font-size: 22px;
+    color: #666;
+
+}
+
+
+.right-area .cert_title span {
+    font-weight: 600;
+}
+
+.right-area .cert_title span:last-child {
+    font-weight: 400;
+}
+
+
+@media(max-width:1000px) {
+    .right-area .cert_title {
+        font-size: 15px;
+        margin: 0;
+    }
+}
+
+/***************右侧 主要信息填写/反馈区域***********/
+.verify-detail .verify-detail-text{
+    margin-top: 40px;
+}
+
+/***************响应式布局：手机端侧栏***************/
+#telephone-sidebar-btn {
+    margin-top: 20px;
+    margin-left: 15px;
+}
+#telephone-sidebar .panel-heading{
+    padding: 10px 0 5px;
+}
+#telephone-sidebar .panel-heading figure{
+    width: 60px;
+    height: 60px;
+    padding: 1px;
+    border-radius: 100%;
+    border: 1px solid #999;
+    margin: 0 auto;
+}
+
+#telephone-sidebar .panel-heading figure img{
+    width: 100%;
+    height:100%;
+    border-radius: 100%;
+}
+
+#telephone-sidebar .panel-heading figure h4{
+    font-weight: 13px;
+}
+
+#telephone-sidebar .panel-body .list-group .list-group-item i{
+    margin-right: 15px;
+}
