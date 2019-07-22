@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="keywords" content="杭电CTF,新版大学生网络与信息安全高峰论坛,全国大学生网络信息安全与保密技能大赛">
+<meta name="description" content="'杭电CTF'全国大学生网络信息安全与保密技能大赛是一项公益性大学生科技活动，目的在于宣传网络信息安全与保密知识，培养和提高大学生的网络信息安全与保密的意识和实践能力，增强创新和团队合作意识">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>杭电CTF| 新闻详情</title>
+<link rel="shortcut icon" href="/static/images/index/logo-title.png">
+<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static/css/font-awesome.css">
+<link rel="stylesheet" href="/static/css/sweetalert.css">
+<link rel="stylesheet" href="/static/css/jquery.toast.min.css">
+<link rel="stylesheet" href="/static/css/front.css">
+<link rel="stylesheet" href="/static/css/index.css">
+<link rel="stylesheet" href="/static/css/common.css">
+<link rel="stylesheet" type="text/css" href="/static/css/news_details.css">
+</head>
+<body>
+<div id="header"></div>
+<section class="clear-nav"></section>
+<div class="main" id="body">
+<div id="news_detail">
+<div class="container">
+<div class="row">
+<div class="main col-lg-9 col-sm-9 col-xs-12">
+<div class="panel panel-default news_detail_panel">
+<!-- 新闻标题 -->
+<div class="panel-heading" id="news-title">
+<h3>{{ data.title }}</h3>
+<div class="heading-add-info">
+<span>时间:{{ data.create_time }}</span>
+<span>来源:{{ data.source }}</span>
+<span>阅读数:{{ data.pageview }}</span>
+</div>
+</div>
+<!-- 新闻内容 -->
+<div class="panel-body" id="news-content">
+{% autoescape off %}
+  {{  data.editorValue }}
+{% endautoescape %}
+
+</div>
+
+</div>
+</div>
+<div class="col-sm-3 side-bar">
+<!-- 热门新闻 -->
+<div class="side-bar-2 panel panel-default">
+<div class="panel-heading">
+<strong>
+<span class="">
+<i class="glyphicon glyphicon-fire"></i>
+热门新闻
+</span>
+</strong>
+</div>
+<div class="panel-body">
+<ul class="list-group">
+<li class="list-group-item">
+<a class="list-title" href="/news/81283" target="_blank">
+<i class="glyphicon glyphicon-chevron-right"></i>
+<span>浙江省首届大学生网络与信息安全竞赛在线预赛注意事项</span>
+</a>
+</li>
+<li class="list-group-item">
+<a class="list-title" href="/news/96779" target="_blank">
+<i class="glyphicon glyphicon-chevron-right"></i>
+<span>2018年浙江省首届大学生网络与信息安全竞赛获奖名单公示</span>
+</a>
+</li>
+<li class="list-group-item">
+<a class="list-title" href="/news/36" target="_blank">
+<i class="glyphicon glyphicon-chevron-right"></i>
+<span>“浙江省首届大学生网络与信息安全竞赛”参赛报名流程</span>
+</a>
+</li>
+<li class="list-group-item">
+<a class="list-title" href="/news/96808" target="_blank">
+<i class="glyphicon glyphicon-chevron-right"></i>
+<span>浙江省首届大学生网络与信息安全竞赛预赛及决赛writeup</span>
+</a>
+</li>
+<li class="list-group-item">
+<a class="list-title" href="/news/96538" target="_blank">
+<i class="glyphicon glyphicon-chevron-right"></i>
+<span>ZJCTF决赛入围名单公示及决赛注意事项通知</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+<!-- 友情链接 -->
+<div class="side-bar-2 panel panel-default">
+<div class="panel-heading">
+<strong>
+<span class="">
+<i class="glyphicon glyphicon-link"></i>
+友情链接
+</span>
+</strong>
+</div>
+<div class="panel-body">
+<ul class="list-group">
+<li class="list-group-item">
+<a class="list-title" href="http://www.jlcss.com.cn/" target="_blank">
+<i class="glyphicon glyphicon-chevron-right"></i>
+<span>中软吉大</span>
+</a>
+</li>
+<li class="list-group-item">
+<a class="list-title" href="http://www.nsfocus.com.cn/" target="_blank">
+<i class="glyphicon glyphicon-chevron-right"></i>
+<span>绿盟科技</span>
+</a>
+</li>
+<li class="list-group-item">
+<a class="list-title" href="http://www.infogo.com.cn/" target="_blank">
+<i class="glyphicon glyphicon-chevron-right"></i>
+<span>盈高科技</span>
+</a>
+</li>
+<li class="list-group-item">
+<a class="list-title" href="http://www.sage-micro.com.cn/" target="_blank">
+<i class="glyphicon glyphicon-chevron-right"></i>
+<span>华澜微电子</span>
+</a>
+</li>
+<li class="list-group-item">
+<a class="list-title" href="http://caef.hdu.edu.cn/" target="_blank">
+<i class="glyphicon glyphicon-chevron-right"></i>
+<span>浙江省计算机应用与教育学会</span>
+</a>
+</li>
+<li class="list-group-item">
+<a class="list-title" href="http://seclab.hdu.edu.cn/" target="_blank">
+<i class="glyphicon glyphicon-chevron-right"></i>
+<span>网络互连与安全实验室</span>
+</a>
+</li>
+<li class="list-group-item">
+<a class="list-title" href="http://www.hdu.edu.cn" target="_blank">
+<i class="glyphicon glyphicon-chevron-right"></i>
+<span>杭州电子科技大学</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer id="footer">
+<div class="container">
+<div class="row">
+<!--左部分-->
+<div class="left-part col-sm-6 col-md-6 col-lg-6">
+<div class="row">
+<!--关注我们-->
+<dl class="attention col-md-8 col-lg-8">
+<dt>关注我们</dt>
+<dd class="qq">问鼎杯：438337104 &nbsp;&nbsp;省赛：831107689&nbsp;&nbsp;</dd>
+<dd class="wechat">微&nbsp;&nbsp;信：浙江省计算机应用与教育学会</dd>
+</dl>
+<!--二维码-->
+<div class="wechat-code col-md-3 col-lg-3 hidden-xs hidden-sm">
+<img class="center-block" src="/static/images/index/wechat-code.png">
+</div>
+</div>
+</div>
+<!--右部分-->
+<div class="right-part col-sm-6 col-md-6 col-lg-6">
+<div class="center-block links row">
+<a class="link text-center col-xs-3" href="/app/about">关于我们</a>
+<a class="link text-center col-xs-3" href="/app/suggestion">意见反馈</a>
+<a class="link text-center col-xs-3" href="/app/disclaim">免责申明</a>
+<a class="link text-center col-xs-3" href="/app/donate">我要赞助</a>
+</div>
+<p class="copyright text-center">Copyright©2014-2015&nbsp;版权归属&nbsp;杭州电子科技大学</p>
+</div>
+</div>
+</div>
+</footer>
+<script src="/static/js/jquery-3.3.1.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js//sweetalert.min.js"></script>
+<script type="text/javascript" src="/static/js/new.js"></script>
+<script> $('#header').load('/static/htmls/head_content.html')</script>
+
+
+</body></html>

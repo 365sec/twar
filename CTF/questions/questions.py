@@ -6,7 +6,7 @@ from mysql import models
 def re_question(request):
     qu_id = request.GET.get('qu_id')
     qu_class = request.GET.get('qu_class')
-    temp=models.Chices_ques.objects.get(qu_id=qu_id,qu_class=qu_class)
+    temp=models.Question.objects.get(qu_id=qu_id,qu_class=qu_class)
     if temp.qu_class == 0:
         html_template = 'choice_template.html'
     elif temp.qu_class == 1:
@@ -21,7 +21,7 @@ def re_check_result(request):
     qu_id = request.POST.get('qid')
     qu_class = request.POST.get('type')
     answer=request.POST.get('answer')
-    temp=models.Chices_ques.objects.get(qu_id=qu_id,qu_class=qu_class)
+    temp=models.Question.objects.get(qu_id=qu_id,qu_class=qu_class)
     if temp.qu_correction == answer:
         data={
             "code": 200,
@@ -41,4 +41,3 @@ def re_check_result(request):
             "code": 400,
         }
         return HttpResponse(json.dumps(data), content_type='application/json')
-    session.close()

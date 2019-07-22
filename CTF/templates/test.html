@@ -1,0 +1,35 @@
+    <html>
+
+    <body>
+
+     <select class="select" size="1" name="type" id="select" onchange = "showandhide(this.value)">
+            <option value="1">表格</option>
+            <option value="2">折线图</option>
+            <option value="3">柱状图</option>
+        </select>
+
+        <div id="0" style>表格区域</div>
+        <div id="1" style>折线图区域</div>
+        <div id="2" style>柱状图区域</div>
+
+    </body>
+
+     <script>
+         function showandhide(v){
+
+        alert(v);
+        for(i=0;i < 4;i++){
+        document.getElementById(i).style.display = 'none';
+        if(i==v){
+        document.getElementById(v).style.display = 'block';
+        }
+        }
+        }
+        </script>
+    </html>
+
+
+
+
+
+

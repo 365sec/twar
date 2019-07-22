@@ -1,0 +1,3 @@
+$(function () {
+   $("#rank").addClass('active');
+});

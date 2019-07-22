@@ -1,0 +1,59 @@
+#body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+#body .rank-box {
+  width: 270px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 0 5px 14px rgba(91, 98, 95, 0.6);
+}
+#body .rank-box > .rank-box-head {
+  border-bottom: 2px solid #36a594;
+}
+#body .rank-box > .rank-box-head h3 {
+  margin: 0;
+  line-height: 40px;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 0 7px;
+}
+#body .rank-box > .rank-box-head h3 img {
+  margin-right: 8px;
+}
+#body .rank-box > .rank-box-body > table {
+  margin-bottom: 0;
+}
+#body .rank-box > .rank-box-body > table td {
+  vertical-align: middle;
+  border-top: none;
+  border-bottom: 1px dashed #ddd;
+}
+#body .rank-box > .rank-box-body > table .col-1 {
+  width: 20%;
+}
+#body .rank-box > .rank-box-body > table .col-2 {
+  width: 55%;
+}
+#body .rank-box > .rank-box-body > table .col-3 {
+  width: 25%;
+}
+#body .rank-box > .rank-box-body > table .user-info > .user-head img {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+}
+#body .rank-box > .rank-box-body > table .user-info > .username {
+  margin-left: 5px;
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 75px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#body .rank-box > .rank-box-foot {
+  line-height: 30px;
+  border: none;
+  border-radius: 0;
+}
