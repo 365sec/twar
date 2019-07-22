@@ -113,7 +113,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">题目描述</label>
                     <div class="layui-input-inline">
-                        <label class="layui-form-label">{{ question.description }}</label>
+                        <input type="text" name="description" placeholder="{{ question.description }}" autocomplete="{{ question.description }}" class="layui-input">
                     </div>
                 </div>
 
@@ -122,8 +122,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">提示</label>
                     <div class="layui-input-inline">
-                        <label class="layui-form-label">{{ question.hint }}</label>
-
+                        <input type="text" name="hint" placeholder="{{ question.hint }}" autocomplete="{{ question.hint }}" class="layui-input">
                     </div>
                 </div>
 
@@ -131,22 +130,15 @@
 
                 <div class="layui-form-item">
                     <label class="layui-form-label">题型</label>
-                    <div class="layui-input-inline">
-                         <label class="layui-form-label">{{ question.kind }}</label>
+                    <div class="layui-input-inline" style="width: 200px">
+                         <label >{{ question.kind }}</label>
                     </div>
                 </div>
 
                  <div class="layui-form-item">
                     <label class="layui-form-label">分类</label>
-                    <div class="layui-input-inline" >
-                        <label class="layui-form-label">{{ question.type }}</label>
-                    </div>
-                </div>
-
-                 <div class="layui-form-item">
-                    <label class="layui-form-label">添加者</label>
-                    <div class="layui-input-inline" >
-                        <label class="layui-form-label">{{ question.source }}</label>
+                    <div class="layui-input-inline" style="width: 200px">
+                        <label >{{ question.type }}</label>
                     </div>
                 </div>
 
@@ -155,27 +147,27 @@
                     <div class="layui-form-item">
                             <label class="layui-form-label">A:</label>
                             <div class="layui-input-inline">
-                           <label class="layui-form-label">{{ question.option0 }}</label>
+                            <input type="text" name="option0"  class="layui-input" placeholder="{{ question.option0 }}">
                             </div>
                             </div>
 
                  <div class="layui-form-item">
                             <label class="layui-form-label">B:</label>
                             <div class="layui-input-inline">
-                           <label class="layui-form-label">{{ question.option1 }}</label>
+                            <input type="text" name="option1"  class="layui-input" placeholder="{{ question.option1 }}">
                             </div>
                             </div>
                 <div class="layui-form-item">
                             <label class="layui-form-label">C:</label>
                             <div class="layui-input-inline">
-                            <label class="layui-form-label">{{ question.option2 }}</label>
+                            <input type="text" name="option2"  class="layui-input" placeholder="{{ question.option2 }}">
                             </div>
                             </div>
 
                 <div class="layui-form-item">
                             <label class="layui-form-label">D:</label>
                             <div class="layui-input-inline">
-                            <label class="layui-form-label">{{ question.option3 }}</label>
+                            <input type="text" name="option3"  class="layui-input" placeholder="{{ question.option3 }}">
                             </div>
                             </div>
 
@@ -185,26 +177,26 @@
                     <div class="layui-form-item">
                             <label class="layui-form-label">A:</label>
                             <div class="layui-input-inline">
-                            <label class="layui-form-label">{{ question.option0 }}</label>
+                            <input type="text" name="option0"  class="layui-input" placeholder="{{ question.option0 }}">
                             </div>
                             </div>
 
                  <div class="layui-form-item">
                             <label class="layui-form-label">B:</label>
                             <div class="layui-input-inline">
-                            <label class="layui-form-label">{{ question.option1 }}</label>
+                            <input type="text" name="option1"  class="layui-input" placeholder="{{ question.option1 }}">
                             </div>
                             </div>
                 <div class="layui-form-item">
                             <label class="layui-form-label">C:</label>
                             <div class="layui-input-inline">
-                            <label class="layui-form-label">{{ question.option2 }}</label>
+                            <input type="text" name="option2"  class="layui-input" placeholder="{{ question.option2 }}">
                             </div>
                             </div>
                 <div class="layui-form-item">
                             <label class="layui-form-label">D:</label>
                             <div class="layui-input-inline">
-                            <label class="layui-form-label">{{ question.option3 }}</label>
+                            <input type="text" name="option3"  class="layui-input" placeholder="{{ question.option3 }}">
                             </div>
                             </div>
 
@@ -220,15 +212,20 @@
                      <div class="layui-form-item">
                             <label class="layui-form-label">附件地址</label>
                             <div class="layui-input-inline">
-                            <label class="layui-form-label">{{ question.file_path }}</label>
+                            <input type="text" name="file" id="file_url" placeholder="{{ question.file_path }}" autocomplete="" class="layui-input">
                             </div>
+                            <div class="layui-word-aux">
+                            <button type="button" class="layui-btn" id="file">
+                            <i class="layui-icon">&#xe67c;</i>在线上传
+                        </button>
+                        </div>
                         </div>
                 </div>
                 <div id="flag">
                      <div class="layui-form-item">
                             <label class="layui-form-label">旗子地址</label>
                             <div class="layui-input-inline">
-                            <label class="layui-form-label">{{ question.flag_url }}</label>
+                            <input type="text" name="flag"  placeholder="{{ question.flag_url }}" autocomplete="" class="layui-input">
                             </div>
                      </div>
                 </div>
@@ -236,21 +233,27 @@
                  <div class="layui-form-item">
                     <label class="layui-form-label">答案:</label>
                     <div class="layui-input-inline">
-                        <label class="layui-form-label">{{ question.correction }}</label>
+                        <input type="text" name="correction" placeholder="{{ question.correction }}" autocomplete="" class="layui-input">
                     </div>
                 </div>
 
                 <div class="layui-form-item">
                     <label class="layui-form-label">分值:</label>
                     <div class="layui-input-inline">
-                       <label class="layui-form-label">{{ question.q_score }}</label>
+                        <input type="text" name="q_score" placeholder="{{ question.q_score }}"  autocomplete=""  class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-form-item" id="uid">
+                    <label class="layui-form-label">uid:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="uid" value="{{ uid }}"   placeholder="{{ question.uid }}" autocomplete="" class="layui-input">
                     </div>
                 </div>
 
                             <div class="layui-form-item">
                             <div class="layui-input-block">
-                                <a class="layui-btn" href="/manage/megagame_question_info?uid={{ question.uid }}">返回</a>
-                                <a class="layui-btn" href="/manage/update_megagame_question?uid={{ question.uid }}">修改</a>
+                            <button class="layui-btn" id="answer" >立即提交</button>
                             </div>
                             </div>
                             </form>

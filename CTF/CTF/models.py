@@ -9,6 +9,7 @@ import six
 
 db = models
 
+
 class Users(db.Model):
     __tablename__ = "users"
     __table_args__ = (db.UniqueConstraint("id", "oauth_id"), {})
@@ -99,12 +100,10 @@ class Users(db.Model):
 
     def get_score(self, admin=False):
         score = db.func.sum(Challenges.value).label("score")
-        user = (
-            db.session.query(Solves.user_id, score)
-            .join(Users, Solves.user_id == Users.id)
-            .join(Challenges, Solves.challenge_id == Challenges.id)
-            .filter(Users.id == self.id)
-        )
+        user = (db.session.query(Solves.user_id, score).join(
+            Users, Solves.user_id == Users.id).join(
+                Challenges, Solves.challenge_id == Challenges.id).filter(
+                    Users.id == self.id))
 
         award_score = db.func.sum(Awards.value).label("award_score")
         award = db.session.query(award_score).filter_by(user_id=self.id)
@@ -132,32 +131,24 @@ class Users(db.Model):
     def get_place(self, admin=False, numeric=False):
         """
         This method is generally a clone of CTFd.scoreboard.get_standings.
-        The point being that models.py must be self-reliant and have little
+        The point being that tool.py must be self-reliant and have little
         to no imports within the CTFd application as importing from the
         application itself will result in a circular import.
         """
-        scores = (
-            db.session.query(
-                Solves.user_id.label("user_id"),
-                db.func.sum(Challenges.value).label("score"),
-                db.func.max(Solves.id).label("id"),
-                db.func.max(Solves.date).label("date"),
-            )
-            .join(Challenges)
-            .filter(Challenges.value != 0)
-            .group_by(Solves.user_id)
-        )
+        scores = (db.session.query(
+            Solves.user_id.label("user_id"),
+            db.func.sum(Challenges.value).label("score"),
+            db.func.max(Solves.id).label("id"),
+            db.func.max(Solves.date).label("date"),
+        ).join(Challenges).filter(Challenges.value != 0).group_by(
+            Solves.user_id))
 
-        awards = (
-            db.session.query(
-                Awards.user_id.label("user_id"),
-                db.func.sum(Awards.value).label("score"),
-                db.func.max(Awards.id).label("id"),
-                db.func.max(Awards.date).label("date"),
-            )
-            .filter(Awards.value != 0)
-            .group_by(Awards.user_id)
-        )
+        awards = (db.session.query(
+            Awards.user_id.label("user_id"),
+            db.func.sum(Awards.value).label("score"),
+            db.func.max(Awards.id).label("id"),
+            db.func.max(Awards.date).label("date"),
+        ).filter(Awards.value != 0).group_by(Awards.user_id))
 
         if not admin:
             freeze = Configs.query.filter_by(key="freeze").first()
@@ -169,41 +160,37 @@ class Users(db.Model):
 
         results = union_all(scores, awards).alias("results")
 
-        sumscores = (
-            db.session.query(
-                results.columns.user_id,
-                db.func.sum(results.columns.score).label("score"),
-                db.func.max(results.columns.id).label("id"),
-                db.func.max(results.columns.date).label("date"),
-            )
-            .group_by(results.columns.user_id)
-            .subquery()
-        )
+        sumscores = (db.session.query(
+            results.columns.user_id,
+            db.func.sum(results.columns.score).label("score"),
+            db.func.max(results.columns.id).label("id"),
+            db.func.max(results.columns.date).label("date"),
+        ).group_by(results.columns.user_id).subquery())
 
         if admin:
-            standings_query = (
-                db.session.query(Users.id.label("user_id"))
-                .join(sumscores, Users.id == sumscores.columns.user_id)
-                .order_by(sumscores.columns.score.desc(), sumscores.columns.id)
-            )
+            standings_query = (db.session.query(
+                Users.id.label("user_id")).join(
+                    sumscores, Users.id == sumscores.columns.user_id).order_by(
+                        sumscores.columns.score.desc(), sumscores.columns.id))
         else:
-            standings_query = (
-                db.session.query(Users.id.label("user_id"))
-                .join(sumscores, Users.id == sumscores.columns.user_id)
-                .filter(Users.banned == False, Users.hidden == False)
-                .order_by(sumscores.columns.score.desc(), sumscores.columns.id)
-            )
+            standings_query = (db.session.query(
+                Users.id.label("user_id")).join(
+                    sumscores, Users.id == sumscores.columns.user_id).filter(
+                        Users.banned == False, Users.hidden == False).order_by(
+                            sumscores.columns.score.desc(),
+                            sumscores.columns.id))
 
         standings = standings_query.all()
 
         # http://codegolf.stackexchange.com/a/4712
         try:
-            i = standings.index((self.id,)) + 1
+            i = standings.index((self.id, )) + 1
             if numeric:
                 return i
             else:
                 k = i % 10
-                return "%d%s" % (i, "tsnrhtdd"[(i / 10 % 10 != 1) * (k < 4) * k :: 4])
+                return "%d%s" % (i, "tsnrhtdd" [(i / 10 % 10 != 1) *
+                                                (k < 4) * k::4])
         except ValueError:
             return 0
 
@@ -225,7 +212,9 @@ class Teams(db.Model):
     password = db.Column(db.String(128))
     secret = db.Column(db.String(128))
 
-    members = db.relationship("Users", backref="team", foreign_keys="Users.team_id")
+    members = db.relationship("Users",
+                              backref="team",
+                              foreign_keys="Users.team_id")
 
     # Supplementary attributes
     website = db.Column(db.String(128))
@@ -236,7 +225,8 @@ class Teams(db.Model):
     banned = db.Column(db.Boolean, default=False)
 
     # Relationship for Users
-    captain_id = db.Column(db.Integer, db.ForeignKey("users.id", ondelete="SET NULL"))
+    captain_id = db.Column(db.Integer,
+                           db.ForeignKey("users.id", ondelete="SET NULL"))
     captain = db.relationship("Users", foreign_keys=[captain_id])
 
     created = db.Column(db.DateTime, default=datetime.datetime.utcnow)
@@ -272,8 +262,7 @@ class Teams(db.Model):
         member_ids = [member.id for member in self.members]
 
         solves = Solves.query.filter(Solves.user_id.in_(member_ids)).order_by(
-            Solves.date.asc()
-        )
+            Solves.date.asc())
 
         freeze = get_config("freeze")
         if freeze and admin is False:
@@ -286,8 +275,7 @@ class Teams(db.Model):
         member_ids = [member.id for member in self.members]
 
         fails = Fails.query.filter(Fails.user_id.in_(member_ids)).order_by(
-            Fails.date.asc()
-        )
+            Fails.date.asc())
 
         freeze = get_config("freeze")
         if freeze and admin is False:
@@ -300,8 +288,7 @@ class Teams(db.Model):
         member_ids = [member.id for member in self.members]
 
         awards = Awards.query.filter(Awards.user_id.in_(member_ids)).order_by(
-            Awards.date.asc()
-        )
+            Awards.date.asc())
 
         freeze = get_config("freeze")
         if freeze and admin is False:
@@ -319,32 +306,24 @@ class Teams(db.Model):
     def get_place(self, admin=False):
         """
         This method is generally a clone of CTFd.scoreboard.get_standings.
-        The point being that models.py must be self-reliant and have little
+        The point being that tool.py must be self-reliant and have little
         to no imports within the CTFd application as importing from the
         application itself will result in a circular import.
         """
-        scores = (
-            db.session.query(
-                Solves.team_id.label("team_id"),
-                db.func.sum(Challenges.value).label("score"),
-                db.func.max(Solves.id).label("id"),
-                db.func.max(Solves.date).label("date"),
-            )
-            .join(Challenges)
-            .filter(Challenges.value != 0)
-            .group_by(Solves.team_id)
-        )
+        scores = (db.session.query(
+            Solves.team_id.label("team_id"),
+            db.func.sum(Challenges.value).label("score"),
+            db.func.max(Solves.id).label("id"),
+            db.func.max(Solves.date).label("date"),
+        ).join(Challenges).filter(Challenges.value != 0).group_by(
+            Solves.team_id))
 
-        awards = (
-            db.session.query(
-                Awards.team_id.label("team_id"),
-                db.func.sum(Awards.value).label("score"),
-                db.func.max(Awards.id).label("id"),
-                db.func.max(Awards.date).label("date"),
-            )
-            .filter(Awards.value != 0)
-            .group_by(Awards.team_id)
-        )
+        awards = (db.session.query(
+            Awards.team_id.label("team_id"),
+            db.func.sum(Awards.value).label("score"),
+            db.func.max(Awards.id).label("id"),
+            db.func.max(Awards.date).label("date"),
+        ).filter(Awards.value != 0).group_by(Awards.team_id))
 
         if not admin:
             freeze = Configs.query.filter_by(key="freeze").first()
@@ -356,40 +335,37 @@ class Teams(db.Model):
 
         results = union_all(scores, awards).alias("results")
 
-        sumscores = (
-            db.session.query(
-                results.columns.team_id,
-                db.func.sum(results.columns.score).label("score"),
-                db.func.max(results.columns.id).label("id"),
-                db.func.max(results.columns.date).label("date"),
-            )
-            .group_by(results.columns.team_id)
-            .subquery()
-        )
+        sumscores = (db.session.query(
+            results.columns.team_id,
+            db.func.sum(results.columns.score).label("score"),
+            db.func.max(results.columns.id).label("id"),
+            db.func.max(results.columns.date).label("date"),
+        ).group_by(results.columns.team_id).subquery())
 
         if admin:
-            standings_query = (
-                db.session.query(Teams.id.label("team_id"))
-                .join(sumscores, Teams.id == sumscores.columns.team_id)
-                .order_by(sumscores.columns.score.desc(), sumscores.columns.id)
-            )
+            standings_query = (db.session.query(
+                Teams.id.label("team_id")).join(
+                    sumscores, Teams.id == sumscores.columns.team_id).order_by(
+                        sumscores.columns.score.desc(), sumscores.columns.id))
         else:
-            standings_query = (
-                db.session.query(Teams.id.label("team_id"))
-                .join(sumscores, Teams.id == sumscores.columns.team_id)
-                .filter(Teams.banned == False)
-                .order_by(sumscores.columns.score.desc(), sumscores.columns.id)
-            )
+            standings_query = (db.session.query(
+                Teams.id.label("team_id")).join(
+                    sumscores, Teams.id == sumscores.columns.team_id).filter(
+                        Teams.banned == False).order_by(
+                            sumscores.columns.score.desc(),
+                            sumscores.columns.id))
 
         standings = standings_query.all()
 
         # http://codegolf.stackexchange.com/a/4712
         try:
-            i = standings.index((self.id,)) + 1
+            i = standings.index((self.id, )) + 1
             k = i % 10
-            return "%d%s" % (i, "tsnrhtdd"[(i / 10 % 10 != 1) * (k < 4) * k :: 4])
+            return "%d%s" % (i, "tsnrhtdd" [(i / 10 % 10 != 1) *
+                                            (k < 4) * k::4])
         except ValueError:
             return 0
+
 
 class Challenges(db.Model):
     __tablename__ = "challenges"
@@ -408,7 +384,10 @@ class Challenges(db.Model):
     hints = db.relationship("Hints", backref="challenge")
     flags = db.relationship("Flags", backref="challenge")
 
-    __mapper_args__ = {"polymorphic_identity": "standard", "polymorphic_on": type}
+    __mapper_args__ = {
+        "polymorphic_identity": "standard",
+        "polymorphic_on": type
+    }
 
     def __init__(self, *args, **kwargs):
         super(Challenges, self).__init__(**kwargs)
@@ -416,11 +395,14 @@ class Challenges(db.Model):
     def __repr__(self):
         return "<Challenge %r>" % self.name
 
+
 class Awards(db.Model):
     __tablename__ = "awards"
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id", ondelete="CASCADE"))
-    team_id = db.Column(db.Integer, db.ForeignKey("teams.id", ondelete="CASCADE"))
+    user_id = db.Column(db.Integer,
+                        db.ForeignKey("users.id", ondelete="CASCADE"))
+    team_id = db.Column(db.Integer,
+                        db.ForeignKey("teams.id", ondelete="CASCADE"))
     type = db.Column(db.String(80), default="standard")
     name = db.Column(db.String(80))
     description = db.Column(db.Text)
@@ -430,10 +412,17 @@ class Awards(db.Model):
     icon = db.Column(db.Text)
     requirements = db.Column(db.JSON)
 
-    user = db.relationship("Users", foreign_keys="Awards.user_id", lazy="select")
-    team = db.relationship("Teams", foreign_keys="Awards.team_id", lazy="select")
+    user = db.relationship("Users",
+                           foreign_keys="Awards.user_id",
+                           lazy="select")
+    team = db.relationship("Teams",
+                           foreign_keys="Awards.team_id",
+                           lazy="select")
 
-    __mapper_args__ = {"polymorphic_identity": "standard", "polymorphic_on": type}
+    __mapper_args__ = {
+        "polymorphic_identity": "standard",
+        "polymorphic_on": type
+    }
 
     @hybrid_property
     def account_id(self):
@@ -449,25 +438,31 @@ class Awards(db.Model):
     def __repr__(self):
         return "<Award %r>" % self.name
 
+
 class Submissions(db.Model):
     __tablename__ = "submissions"
     id = db.Column(db.Integer, primary_key=True)
     challenge_id = db.Column(
-        db.Integer, db.ForeignKey("challenges.id", ondelete="CASCADE")
-    )
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id", ondelete="CASCADE"))
-    team_id = db.Column(db.Integer, db.ForeignKey("teams.id", ondelete="CASCADE"))
+        db.Integer, db.ForeignKey("challenges.id", ondelete="CASCADE"))
+    user_id = db.Column(db.Integer,
+                        db.ForeignKey("users.id", ondelete="CASCADE"))
+    team_id = db.Column(db.Integer,
+                        db.ForeignKey("teams.id", ondelete="CASCADE"))
     ip = db.Column(db.String(46))
     provided = db.Column(db.Text)
     type = db.Column(db.String(32))
     date = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     # Relationships
-    user = db.relationship("Users", foreign_keys="Submissions.user_id", lazy="select")
-    team = db.relationship("Teams", foreign_keys="Submissions.team_id", lazy="select")
-    challenge = db.relationship(
-        "Challenges", foreign_keys="Submissions.challenge_id", lazy="select"
-    )
+    user = db.relationship("Users",
+                           foreign_keys="Submissions.user_id",
+                           lazy="select")
+    team = db.relationship("Teams",
+                           foreign_keys="Submissions.team_id",
+                           lazy="select")
+    challenge = db.relationship("Challenges",
+                                foreign_keys="Submissions.challenge_id",
+                                lazy="select")
 
     __mapper_args__ = {"polymorphic_on": type}
 
@@ -496,9 +491,10 @@ class Submissions(db.Model):
         return child_classes[type]
 
     def __repr__(self):
-        return "<Submission {}, {}, {}, {}>".format(
-            self.team_id, self.challenge_id, self.ip, self.provided
-        )
+        return "<Submission {}, {}, {}, {}>".format(self.team_id,
+                                                    self.challenge_id, self.ip,
+                                                    self.provided)
+
 
 class Solves(Submissions):
     __tablename__ = "solves"
@@ -507,11 +503,12 @@ class Solves(Submissions):
         db.UniqueConstraint("challenge_id", "team_id"),
         {},
     )
-    id = db.Column(
-        None, db.ForeignKey("submissions.id", ondelete="CASCADE"), primary_key=True
-    )
+    id = db.Column(None,
+                   db.ForeignKey("submissions.id", ondelete="CASCADE"),
+                   primary_key=True)
     challenge_id = column_property(
-        db.Column(db.Integer, db.ForeignKey("challenges.id", ondelete="CASCADE")),
+        db.Column(db.Integer, db.ForeignKey("challenges.id",
+                                            ondelete="CASCADE")),
         Submissions.challenge_id,
     )
     user_id = column_property(
@@ -523,16 +520,22 @@ class Solves(Submissions):
         Submissions.team_id,
     )
 
-    user = db.relationship("Users", foreign_keys="Solves.user_id", lazy="select")
-    team = db.relationship("Teams", foreign_keys="Solves.team_id", lazy="select")
-    challenge = db.relationship(
-        "Challenges", foreign_keys="Solves.challenge_id", lazy="select"
-    )
+    user = db.relationship("Users",
+                           foreign_keys="Solves.user_id",
+                           lazy="select")
+    team = db.relationship("Teams",
+                           foreign_keys="Solves.team_id",
+                           lazy="select")
+    challenge = db.relationship("Challenges",
+                                foreign_keys="Solves.challenge_id",
+                                lazy="select")
 
     __mapper_args__ = {"polymorphic_identity": "correct"}
 
+
 class Fails(Submissions):
     __mapper_args__ = {"polymorphic_identity": "incorrect"}
+
 
 class Configs(db.Model):
     __tablename__ = "config"
@@ -542,6 +545,7 @@ class Configs(db.Model):
 
     def __init__(self, *args, **kwargs):
         super(Configs, self).__init__(**kwargs)
+
 
 @cache.memoize()
 def get_config(key):

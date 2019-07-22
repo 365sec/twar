@@ -86,15 +86,44 @@
                     <td>{{ data.source }}</td>
                     <td>{{ data.description }}</td>
                     <td>{{ data.create_time }}</td>
-                    <td><a href="/manage/update_megagame_info?uid={{ data.uid }}">修改</a> <a class="del" data-id="{{ data.uid }}"  href="/manage/del_megagame_question?qid={{ data.qid }}">删除</a> <a  href="/manage/question_detail">详情</a></td>
+                    <td><a href="/manage/update_megagame_info?uid={{ data.uid }}">修改</a> <a class="del" data-id="{{ data.uid }}"  href="/manage/del_megagame_question?qid={{ data.qid }}">删除</a> <a  href="/manage/megagame_question_detail?qid={{ data.qid }}">详情</a></td>
                 </tr>
                 {% endfor %}
                 </tbody>
             </table>
 
 
-            <div class="page"><ul class="pagination"><li class="disabled"><span>&laquo;</span></li> <li class="active"><span>1</span></li><li><a href="/manage/megagame_info?page=2">2</a></li><li><a href="/manage/megagame_info?page=3">3</a></li><li><a href="/manage/megagame_info?page=4">4</a></li><li><a href="/manage/megagame_info?page=5">5</a></li><li><a href="/manage/megagame_info?page=6">6</a></li><li><a href="/manage/megagame_info?page=7">7</a></li><li><a href="/manage/megagame_info?page=8">8</a></li><li class="disabled"><span>...</span></li><li><a href="/manage/megagame_info?page=109">109</a></li><li><a href="/manage/megagame_info?page=110">110</a></li> <li><a href="/manage/megagame_info?page=2">&raquo;</a></li></ul></div>
+ <div class="page">
+                <ul class="pagination">
+                    {% if page > 1 %}
+                        <li><a href="/manage/megagame_question_info?uid={{ uid }}&page=1" >&laquo;</a></li>
+                    {% else %}
+                        <li><a class="page-disabled"> &laquo;</a></li>
+                    {% endif %}
+                    {% if question_list.has_previous %}
+                        {% if question_list.previous_page_number > 1 %}
+                             <li><a class="page-disabled" href="/manage/megagame_question_info?uid={{ uid }}&page=1" >1</a></li>
+                            {% if question_list.previous_page_number > 2 %}
+                                 <li><a class="page-disabled" href="#" >...</a></li>
 
+                                {% endif %}
+
+                        {% endif %}
+                             <li><a href="/manage/megagame_question_info?uid={{ uid }}&page={{ question_list.previous_page_number }} " >{{ question_list.previous_page_number }}</a></li>
+                    {% endif %}
+                    <li><a href="#" class="active">{{ page }}</a></li>
+                    {% if question_list.has_next %}
+                    <li><a href="/manage/megagame_question_info?uid={{ uid }}&page={{ question_list.next_page_number }}">{{ question_list.next_page_number }}</a></li>
+                    {% endif %}
+                    {% if question_list.next_page_number  <  last_page   %}
+                       {% if question_list.next_page_number < last_second %}
+                    <li><a class="page-disabled">...</a></li>
+                        {% endif %}
+                        <li><a href="/manage/megagame_question_info?uid={{ uid }}&page={{ last_page }}" class="page-disabled">{{ last_page }}</a></li>
+                    {% endif %}
+                    <li><a href="/manage/megagame_question_info?uid={{ uid }}&page={{ last_page }} ">&raquo; </a></li>
+                    </ul>
+            </div>
 
         </div>
     </div>

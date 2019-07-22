@@ -3,7 +3,8 @@ from django.core.paginator import *
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from mysql import models
+from models import models
+
 
 def news_summary(request):
     if request.method == "GET":
@@ -25,9 +26,15 @@ def news_summary(request):
         except EmptyPage:
             # 如果请求的页数不在合法的页数范围内，返回结果的最后一页。
             question_list = paginator.page(paginator.num_pages)
-    return render(request, 'news_summary.html',{'question_list': question_list, 'page': page , 'num_pages': paginator.num_pages,})
+    return render(
+        request, 'news_summary.html', {
+            'question_list': question_list,
+            'page': page,
+            'num_pages': paginator.num_pages,
+        })
+
 
 def news_detail(request):
     id = request.GET.get('id')
-    temp=models.News.objects.get(id=id)
-    return render(request, "news_detail.html",{'data':temp})
+    temp = models.News.objects.get(id=id)
+    return render(request, "news_detail.html", {'data': temp})
