@@ -149,14 +149,35 @@ class User(models.Model):
     user_auto = models.CharField(max_length=200,null=True)
     real_name = models.CharField(max_length=20,null=True)
     user_sex = models.IntegerField(default=0,null=True)
-    user_ID = models.CharField(max_length=18,null=True)
+    user_cardnum = models.CharField(max_length=18,null=True)
     user_education = models.CharField(max_length=5,null=True)
     user_area = models.CharField(max_length=20,null=True)
     user_address = models.CharField(max_length=50,null=True)
     user_state = models.IntegerField(default=0,null=True)
     user_pic = models.CharField(max_length=100,null=True)
+    user_team = models.CharField(max_length=50,null=True)
+    num_flags = models.IntegerField(default=0,null=False)
+    theoretical_value = models.IntegerField(default=0,null=False)
+    achievement_flags = models.IntegerField(default=0,null=False)
+    card_count = models.IntegerField(default=0,null=False)
+    num_contribution = models.IntegerField(default=0,null=False)
+    num_fans = models.IntegerField(default=0,null=False)
+    
     def __str__(self):
         return self.user_name
 
     class Meta:
         db_table = 'tb_user'
+
+class Team(models.Model):
+    team_guid = models.CharField(max_length=50)
+    team_name = models.CharField(max_length=20)
+    team_desc = models.CharField(max_length=200,null=True)
+    team_captain = models.CharField(max_length=50)
+    
+    def __str__(self):
+        return self.team_name
+
+    class Meta:
+        db_table = 'tb_team'
+        
