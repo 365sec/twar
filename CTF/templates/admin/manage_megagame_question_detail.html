@@ -210,17 +210,46 @@
 
 
                     </div>
+                    {% if  question.option4  %}
                      <div class="layui-form-item">
-                            <div class="layui-input-block">
-                     <input class="layui-btn"  type="button" onclick="add();" value="添加更多选项" />
+                            <label class="layui-form-label">E:</label>
+                            <div class="layui-input-inline">
+                           <label class="layui-form-label">{{ question.option4 }}</label>
                             </div>
                      </div>
+                    {% endif %}
+                {% if  question.option5  %}
+                     <div class="layui-form-item">
+                            <label class="layui-form-label">F:</label>
+                            <div class="layui-input-inline">
+                            <label class="layui-form-label">{{ question.option5 }}</label>
+                            </div>
+                     </div>
+                    {% endif %}
+                {% if  question.option7  %}
+                     <div class="layui-form-item">
+                            <label class="layui-form-label">G:</label>
+                            <div class="layui-input-inline">
+                            <label class="layui-form-label">{{ question.option6 }}</label>
+                            </div>
+                     </div>
+                    {% endif %}
+                {% if  question.option7  %}
+                     <div class="layui-form-item">
+                            <label class="layui-form-label">H:</label>
+                            <div class="layui-input-inline">
+                            <label class="layui-form-label">{{ question.option7 }}</label>
+                            </div>
+                     </div>
+                    {% endif %}
+
+
                 </div>
                 <div id="operate">
                      <div class="layui-form-item">
                             <label class="layui-form-label">附件地址</label>
                             <div class="layui-input-inline">
-                            <label class="layui-form-label">{{ question.file_path }}</label>
+                             <a style="position: relative ;top: 10px;left: 30px" href="{{ question.file_path }}">{{ question.file_path }}</a>
                             </div>
                         </div>
                 </div>
@@ -228,7 +257,7 @@
                      <div class="layui-form-item">
                             <label class="layui-form-label">旗子地址</label>
                             <div class="layui-input-inline">
-                            <label class="layui-form-label">{{ question.flag_url }}</label>
+                                <a style="position: relative ;top: 10px;left: 30px" href="{{ question.flag_url }}">{{ question.flag_url }}</a>
                             </div>
                      </div>
                 </div>
@@ -250,7 +279,7 @@
                             <div class="layui-form-item">
                             <div class="layui-input-block">
                                 <a class="layui-btn" href="/manage/megagame_question_info?uid={{ question.uid }}">返回</a>
-                                <a class="layui-btn" href="/manage/update_megagame_question?uid={{ question.uid }}">修改</a>
+                                <a class="layui-btn" href="/manage/update_megagame_question?qid={{ question.qid }}">修改</a>
                             </div>
                             </div>
                             </form>
