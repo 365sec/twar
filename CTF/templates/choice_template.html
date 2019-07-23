@@ -38,14 +38,14 @@
 <a href="/exercise/system" title="">题库</a>
 </li>
 <li>
-<a href="/exercise/system?qu_class={{ data.qu_class }}">{{ data.qu_class }}</a>
+<a href="/exercise/system?kind={{ data.kind }}">{{ data.kind }}</a>
 </li>
 <li class="active">
 <a href="#" title="">当前</a>
 </li>
 </ul>
 </div>
-{% if data.qu_type == 0 %}
+{% if data.type == 0 %}
 <div class="row">
 <!------------------- 主区域 -------------------------->
 <div class="detail_main col-sm-8 col-xs-12">
@@ -62,9 +62,9 @@
 <div class="panel-body">
 <div class="question-content" id="from-single-sign">
 <div class="question-content-info">
-<input type="text" class="hidden" id="qid" name="qid" value={{ data.qu_id }}>
-<input type="text" class="hidden" id="question_type" value={{ data.qu_class }}>
-<p>{{ data.qu_description }}</p>
+<input type="text" class="hidden" id="qid" name="qid" value={{ data.id }}>
+<input type="text" class="hidden" id="question_type" value={{ data.kind }}>
+<p>{{ data.description }}</p>
 </div>
 <div class="question-content-option" id="single-question-option">
 <a class="" style="background-color: rgb(255, 255, 255); color: rgb(51, 51, 51);">
@@ -72,7 +72,7 @@
 <span class="radio-icon"></span>
 <input id="" type="radio" name="answer" value="A">
 <span>
-{{ data.qu_option0 }}
+{{ data.option0 }}
 </span>
 </label>
 </a>
@@ -82,7 +82,7 @@
 </span>
 <input id="" type="radio" name="answer" value="B" checked="">
 <span>
-{{ data.qu_option1 }}
+{{ data.option1 }}
 </span>
 </label>
 </a>
@@ -92,7 +92,7 @@
 </span>
 <input id="" type="radio" name="answer" value="C" checked="">
 <span>
-{{ data.qu_option2 }}
+{{ data.option2 }}
 </span>
 </label>
 </a>
@@ -102,7 +102,7 @@
 </span>
 <input id="" type="radio" name="answer" value="D" checked="">
 <span>
-{{ data.qu_option3 }}
+{{ data.option3 }}
 </span>
 </label>
 </a>
@@ -277,9 +277,9 @@ easy
 </strong>
 </div>
 <div class="panel-body">
-<p>所属类别：<em>{{ data.qu_class }}</em></p>
-<p>题目来源：<em>{{ data.qu_source }}</em></p>
-<span>回答（{{ data.qu_answer_num }}） 浏览（{{ data.qu_page_view }}） 收藏（{{ data.qu_collections }}）</span>
+<p>所属类别：<em>{{ data.kind }}</em></p>
+<p>题目来源：<em>{{ data.source }}</em></p>
+<span>回答（{{ data.answer_num }}） 浏览（{{ data.pageview }}） 收藏（{{ data.collections }}）</span>
 </div>
 </div>
 <!-- 热门试题 -->
@@ -475,7 +475,7 @@ First Blood
 </div>
 </div>
 {% endif %}
-{% if data.qu_type == 1 %}
+{% if data.type == 1 %}
 <div class="row">
 <!------------------- 主区域 -------------------------->
 <div class="detail_main col-sm-8 col-xs-12">
@@ -586,9 +586,9 @@ First Blood
 </strong>
 </div>
 <div class="panel-body">
-<p>所属类别：<em>{{ data.qu_class }}</em></p>
-<p>题目来源：<em>{{ data.qu_source }}</em></p>
-<span>回答（{{ data.qu_answer_num }}） 浏览（{{ data.qu_page_view }}） 收藏（{{ data.qu_collections }}）</span>
+<p>所属类别：<em>{{ data.kind }}</em></p>
+<p>题目来源：<em>{{ data.source }}</em></p>
+<span>回答（{{ data.answer_num }}） 浏览（{{ data.pageview }}） 收藏（{{ data.collections }}）</span>
 </div>
 </div>
 <!-- 热门试题 -->
@@ -709,9 +709,9 @@ First Blood
 
 
 <div class="panel-body">
-<p>所属类别：<em>{{ data.qu_class }}</em></p>
-<p>题目来源：<em>{{ data.qu_source }}</em></p>
-<span>回答（{{ data.qu_answer_num }}） 浏览（{{ data.qu_page_view }}） 收藏（{{ data.qu_collections }}）</span>
+<p>所属类别：<em>{{ data.kind }}</em></p>
+<p>题目来源：<em>{{ data.source }}</em></p>
+<span>回答（{{ data.answer_num }}） 浏览（{{ data.pageview }}） 收藏（{{ data.collections }}）</span>
 </div>
 </div>
 <!-- 热门试题 -->
@@ -881,7 +881,7 @@ First Blood
 </div>
 </div>
 {% endif %}
-{% if data.qu_type == 2 %}
+{% if data.type == 2 %}
 <div class="row">
 <!------------------- 主区域 -------------------------->
 <div class="detail_main col-sm-8 col-xs-12">
@@ -898,14 +898,14 @@ First Blood
 <div class="panel-body">
 <div class="question-content" id="from-single-sign">
 <div class="question-content-info">
-<input type="text" class="hidden" id="qid" name="qid" value={{ data.qu_id }}>
-<input type="text" class="hidden" id="question_type" value={{ data.qu_class }}>
+<input type="text" class="hidden" id="qid" name="qid" value={{ data.id }}>
+<input type="text" class="hidden" id="question_type" value={{ data.kind }}>
 <p>Low SQLi</p>
 </div>
 <div class="question-content-option" id="operate-question-option">
 <div>
 <span>链接：</span>
-<a href="{{ data.qu_flag_url }}" target="_blank">
+<a href="{{ data.flag_url }}" target="_blank">
 <span>点击这里查看~</span>
 </a>
 </div>
@@ -1108,9 +1108,9 @@ value="100045" name="toUserId">
 </strong>
 </div>
 <div class="panel-body">
-<p>所属类别：<em>{{ data.qu_class }}</em></p>
-<p>题目来源：<em>{{ data.qu_source }}</em></p>
-<span>回答（{{ data.qu_answer_num }}） 浏览（{{ data.qu_page_view }}） 收藏（{{ data.qu_collections }}）</span>
+<p>所属类别：<em>{{ data.kind }}</em></p>
+<p>题目来源：<em>{{ data.source }}</em></p>
+<span>回答（{{ data.answer_num }}） 浏览（{{ data.pageview }}） 收藏（{{ data.collections }}）</span>
 </div>
 </div>
 <!-- 热门试题 -->

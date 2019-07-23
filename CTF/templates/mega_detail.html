@@ -15,19 +15,151 @@
     <link rel="stylesheet" type="text/css" href="/static/css/indexinfo.css">
     <link rel="stylesheet" type="text/css" href="/static/css/contest_info.css">
 </head>
-<body>
-    <div id="head_content"></div>
-    <div id="content_main_megagame_detail"></div>
+<body class="gray-bg m-t-lg ">
+<div id="head_content"></div>
+<!--导航-->
+<section class="clear-nav"></section>
+<div class="contest-info" id="hide-main">
+<section class="main">
+<div class="main-content container">
+<!-- 比赛框-->
+<!-- 页面位置提示区域-->
+<section id="competition-header">
+
+<a href="/contest/">比赛列表</a> &gt;<span>{{ megagame_detail }}</span>
+</section>
+<section id="computer-screen">
+<div class="competition-list ">
+<div class="list-main">
+<span class="mark"></span>
+<div class="main-title">
+<span class="col-xs-4"> 竞赛名</span>
+<span class="col-xs-1">状态</span>
+<span class="col-xs-2">举办方</span>
+<span class="col-xs-2">报名截止日期</span>
+<span class="col-xs-2">赛制</span>
+<span class="col-xs-1">参赛队伍</span>
+</div>
+<div class="main-cont">
+ <p>{{  megagame_detail.state }}</p>
+<span class="col-xs-4"><p>{{ megagame_detail.title }}</p></span>
+
+    {% if megagame_detail.state == 0 %}
+    <span class="col-xs-1">还未开始</span>
+    {% elif  megagame_detail.state == 1  %}
+        <span class="col-xs-1">比赛中</span>
+        {% else %}
+        <span class="col-xs-1">已结束</span>
+    {% endif %}
+
+<span class="col-xs-2">{{ megagame_detail.organizers }}</span>
+<span class="col-xs-2">{{ megagame_detail.apply_end_time }}</span>
+<span class="col-xs-2">
+{{ megagame_detail.rules }}
+</span>
+<span class="col-xs-1" id="team-num" value="contest.id">213</span>
+</div>
+</div>
+</div>
+<div class="list-btn">
+<input id="contest-id" type="hidden" value="{{ megagame_detail.uid }}">
+    <!--<button class="aftercontest-btn" disabled="">-->
+<button id="enrollp-btn" >
+<i class="fa fa-hand-pointer-o" aria-hidden="true"></i>
+</button>
+</div>
+</section>
+<!-- 比赛详情-->
+<section id="comp_detail">
+<div class="row">
+
+<div class="comp-content" id="rule">
+<!-----------------------左侧导航栏------------------------->
+<div class="side computer-nav">
+<div class="left-nav">
+<div class="detail-left">
+<ul id="comp-nav">
+<li id="first-side" class="on"><a href="/contest/19" title="">大赛介绍</a></li>
+<li id="last-side_info" class=""><a href="/contest/19/team" title="">我的团队</a></li>
+</ul>
+</div>
+</div>
+</div>
+<!--------------------- 右侧 赛制介绍---------------------->
+<div class="">
+<div class="detail-right">
+<div class="right-content">
+<div class="header">
+<h2>{{ megagame_detail.title }}</h2>
+</div>
+<div class="content">
+    <p>{{ megagame_detail.editorValue }}</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="telephone-sidebar">
+<div class="panel panel-default">
+<div class="panel-heading text-center">
+<span class="">比赛信息</span>
+</div>
+<div class="panel-body" id="question-categories">
+<div class="list-group">
+<a href="/contest/19" class="list-group-item active">大赛简介</a>
+<a id="last-side_info" href="/contest/19/team" class="list-group-item">我的团队</a>
+</div>
+</div>
+</div>
+</div>
+<div id="mask" class="hide"></div>
+<footer id="footer">
+<div class="container">
+<div class="row">
+<!--左部分-->
+<div class="left-part col-sm-6 col-md-6 col-lg-6">
+<div class="row">
+<!--关注我们-->
+<dl class="attention col-md-8 col-lg-8">
+<dt>关注我们</dt>
+<dd class="qq">问鼎杯：438337104 &nbsp;&nbsp;省赛：831107689&nbsp;&nbsp;</dd>
+<dd class="wechat">微&nbsp;&nbsp;信：浙江省计算机应用与教育学会</dd>
+</dl>
+<!--二维码-->
+<div class="wechat-code col-md-3 col-lg-3 hidden-xs hidden-sm">
+<img class="center-block" src="/static/img/index/wechat-code.png">
+</div>
+</div>
+</div>
+<!--右部分-->
+<div class="right-part col-sm-6 col-md-6 col-lg-6">
+<div class="center-block links row">
+<a class="link text-center col-xs-3" href="/app/about">关于我们</a>
+<a class="link text-center col-xs-3" href="/app/suggestion">意见反馈</a>
+<a class="link text-center col-xs-3" href="/app/disclaim">免责申明</a>
+<a class="link text-center col-xs-3" href="/app/donate">我要赞助</a>
+</div>
+<p class="copyright text-center">Copyright©2014-2015&nbsp;版权归属&nbsp;杭州电子科技大学</p>
+</div>
+</div>
+</div>
+</footer>
 
 <script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/static/js/index.js"></script>
+<script src="/static/js/sweetalert.min.js"></script>
+<script src="/static/js/basic.js"></script>
+<script src="/static/js/login.js"></script>
+<script src="/static/js/slidebar.js"></script>
+<script src="/static/js/contest_info.js"></script>
+<script>$('#head_content').load('/static/htmls/head_content.html')</script>
 
-<script>
-    $('#head_content').load('/static/htmls/head_content.html')
-    $('#content_main_megagame_detail').load('/static/htmls/megagame_detail.html')
-</script>
-
-
-
-</body></html>
+</body>
+</html>

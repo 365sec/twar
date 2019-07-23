@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="keywords" content="杭电CTF,新版大学生网络与信息安全高峰论坛,全国大学生网络信息安全与保密技能大赛">
+<meta name="description" content="'杭电CTF'全国大学生网络信息安全与保密技能大赛是一项公益性大学生科技活动，目的在于宣传网络信息安全与保密知识，培养和提高大学生的网络信息安全与保密的意识和实践能力，增强创新和团队合作意识">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no"/>
+<title>杭电CTF | 题库</title>
+<link rel="shortcut icon" href="/static/images/index/logo-title.png">
+<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static/css/font-awesome.css">
+<link rel="stylesheet" href="/static/css/front.css">
+<link rel="stylesheet" href="/static/css/index.css">
+<link rel="stylesheet" href="/static/css/common.css">
+<link rel="stylesheet" type="text/css" href="/static/css/contest_info.css">
+<link rel="stylesheet" href="/static/css/sidebar.css">
+<link rel="stylesheet" href="/static/css/sweetalert.css">
+<link rel="stylesheet" href="/static/css/jquery.toast.min.css">
+<link rel="stylesheet" type="text/css" href="/static/css/question.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/question_detail.css">
+
+</head>
+<body>
+  <div id="head_content"></div>
+<section class="clear-nav"></section>
+<input type="hidden" id="currentCategory" value="theory">
+<input type="hidden" id="currentOrderType" value="default">
+<section class="main" id="body">
+
+<div class="container">
+<div class="row" id="hide-main">
+<!--侧边栏-->
+<div id="telephone-sidebar">
+<div class="panel panel-default">
+<div class="panel-heading text-center">
+<span class="">比赛信息</span>
+</div>
+<div class="panel-body" id="question-categories">
+<div class="list-group">
+<a href="/contest/19" class="list-group-item active">大赛简介</a>
+<a id="last-side_info" href="/contest/19/team" class="list-group-item">我的团队</a>
+</div>
+</div>
+</div>
+</div>
+<!--正文-->
+<div class="col-sm-9" id="main">
+<div class="panel panel-default">
+<!--排序方式：默认 | 最热 | 最新-->
+
+<!--问题填充部分-->
+<div class="panel-body">
+<ul class="breadcrumb">
+<li>
+<span class="glyphicon glyphicon-home"></span>
+<a href="/index/main" title="">首页</a>
+</li>
+<li>
+<a href="/megagame/introduce" title="">大赛介绍</a>
+</li>
+<li>
+<a href="/megagame/detail?megagame_id={{ uid }}">大赛详情</a>
+</li>
+<li class="active">
+<a href="#" title="">当前</a>
+</li>
+</ul>
+<ul class="list-group" id="question-list">
+
+      <li class="clearfix list-group-item">
+        <div class="question">
+        <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+
+        </div><a class="question-title" href="/megagame/choice?uid={{ uid }}"><p>第一部分 理论知识
+        </p></a>
+        <div class="info">
+        <div class="pull-right">
+        </div>
+        </div>
+        </li>
+      <li class="clearfix list-group-item">
+        <div class="question">
+        <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+
+        </div><a class="question-title" href="/megagame/questions_list?uid={{ uid }}&type=2"><p>第二部分 操作题
+        </p></a>
+        <div class="info">
+        <div class="pull-right">
+        </div>
+        </div>
+        </li>
+        <li class="clearfix list-group-item">
+        <div class="question">
+        <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+
+        </div><a class="question-title" href="/megagame/questions_list?uid={{ uid }}&type=3"><p>第三部分 夺旗
+        </p></a>
+        <div class="info">
+        <div class="pull-right">
+        </div>
+        </div>
+        </li>
+</ul>
+</div>
+<!--翻页-->
+<div class="panel-footer">
+<nav class="text-center">
+<ul class="pagination">
+{% if page > 1 %}
+    <li><a href="/megagame/operation_list?page=1" class="page">&laquo;</a></li>
+{% else %}
+    <li><a class="page-disabled"> &laquo;</a></li>
+{% endif %}
+{% if question_list.has_previous %}
+    {% if question_list.previous_page_number > 1 %}
+         <li><a class="page-disabled" href="#" >...</a></li>
+    {% endif %}
+         <li><a href="/megagame/operation_list?page={{ question_list.previous_page_number }} " >{{ question_list.previous_page_number }}</a></li>
+{% endif %}
+<li><a href="/megagame/operation_list?page={{ page }}" class="active">{{ page }}</a></li>
+{% if question_list.has_next %}
+<li><a href="/megagame/operation_list?page={{ question_list.next_page_number }}">{{ question_list.next_page_number }}</a></li>
+{% endif %}
+{% if page  !=  num_pages   %}
+<li><a class="page-disabled">...</a></li>
+{% endif %}
+<li><a href="/megagame/operation_list?page={{ num_pages }} ">&raquo; </a></li>
+</ul>
+</nav>
+</div>
+
+</div>
+</div>
+</div>
+
+<div id="mask" class="hide"></div>
+</div>
+</section>
+<footer id="footer">
+
+</footer>
+
+<script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.appear.js"></script>
+<script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/static/js/slidebar.js"></script>
+<script type="text/javascript" src="/static/js/question.js"></script>
+<script> $('#head_content').load('/static/htmls/head_content.html')
+    $('#footer').load('/static/htmls/foot_content.html')
+</script>
+</body>
+</html>

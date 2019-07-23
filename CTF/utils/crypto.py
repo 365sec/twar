@@ -1,6 +1,4 @@
-
 from passlib.hash import bcrypt_sha256
-
 
 
 def hash_password(plaintext):

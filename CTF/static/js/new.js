@@ -1,0 +1,3 @@
+$(function () {
+    $('#news').addClass('active');
+});
