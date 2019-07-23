@@ -46,12 +46,37 @@ aria-controls="question-categories">试题广场
 <!--题目分类列表-->
 <div class="panel-body collapse in" id="question-categories">
 <div class="list-group">
-<a href="/exercise/system?qu_class=理论知识" class="list-group-item active">理论知识</a>
-<a href="/exercise/system?qu_class=Web安全" class="list-group-item ">Web安全</a>
-<a href="/exercise/system?qu_class=密码" class="list-group-item ">密码</a>
-<a href="/exercise/system?qu_class=逆向" class="list-group-item ">逆向</a>
-<a href="/exercise/system?qu_class=杂类" class="list-group-item ">杂类</a>
-<a href="/exercise/system?qu_class=取证" class="list-group-item ">取证</a>
+{% if kind == '理论知识'%}
+<a href="/exercise/system?kind=理论知识" class="list-group-item active">理论知识</a>
+{% else %}
+<a href="/exercise/system?kind=理论知识" class="list-group-item ">理论知识</a>
+{% endif %}
+{% if kind == 'Web安全'%}
+<a href="/exercise/system?kind=Web安全" class="list-group-item active">Web安全</a>
+{% else %}
+<a href="/exercise/system?kind=Web安全" class="list-group-item ">Web安全</a>
+{% endif %}
+{% if kind == '密码'%}
+<a href="/exercise/system?kind=密码" class="list-group-item active">密码</a>
+{% else %}
+<a href="/exercise/system?kind=密码" class="list-group-item ">密码</a>
+{% endif %}
+{% if kind == '逆向'%}
+<a href="/exercise/system?kind=逆向" class="list-group-item active">逆向</a>
+{% else %}
+<a href="/exercise/system?kind=逆向" class="list-group-item ">逆向</a>
+{% endif %}
+{% if kind == '杂类'%}
+<a href="/exercise/system?kind=杂类" class="list-group-item active">杂类</a>
+{% else %}
+<a href="/exercise/system?kind=杂类" class="list-group-item ">杂类</a>
+{% endif %}
+{% if kind == '取证'%}
+<a href="/exercise/system?kind=取证" class="list-group-item active">取证</a>
+{% else %}
+<a href="/exercise/system?kind=取证" class="list-group-item ">取证</a>
+{% endif %}
+
 </div>
 </div>
 </div>
@@ -65,9 +90,24 @@ aria-controls="question-categories">试题广场
 <!--排序方式：默认 | 最热 | 最新-->
 <div class="panel-heading">
 <div class="btn-group" role="group" aria-label="orderType">
-<a class="btn order-default on" href="/exercise/system?page={{ page }}&sort=default&qu_class={{ qu_class }}">默认</a>
-<a class="btn order-hot" href="/exercise/system?page={{ page }}&sort=hottest&qu_class={{ qu_class }}">最热</a>
-<a class="btn order-new" href="/exercise/system?page={{ page }}&sort=newest&qu_class={{ qu_class }}">最新</a>
+{% if sort == 'default'%}
+<a class="btn order-default on" href="/exercise/system?page={{ page }}&sort=default&kind={{ kind }}">默认</a>
+{% else %}
+<a class="btn order-new" href="/exercise/system?page={{ page }}&sort=default&kind={{ kind }}">默认</a>
+{% endif %}
+{% if sort == 'hottest'%}
+<a class="btn order-default on" href="/exercise/system?page={{ page }}&sort=hottest&kind={{ kind }}">最热</a>
+{% else %}
+<a class="btn order-new" href="/exercise/system?page={{ page }}&sort=hottest&kind={{ kind }}">最热</a>
+{% endif %}
+{% if sort == 'newest'%}
+<a class="btn order-default on" href="/exercise/system?page={{ page }}&sort=newest&kind={{ kind }}">最新</a>
+{% else %}
+<a class="btn order-new" href="/exercise/system?page={{ page }}&sort=newest&kind={{ kind }}">最新</a>
+{% endif %}
+
+
+
 </div>
 </div>
 <!--问题填充部分-->
@@ -79,16 +119,16 @@ aria-controls="question-categories">试题广场
         <i class="fa fa-question-circle-o" aria-hidden="true"></i>
 
         </div>
-                <a class="question-title" href="/exercise/system/detail?qu_id={{ question.qu_id }}"><p>{{ question.qu_description }}
+                <a class="question-title" href="/exercise/system/detail?id={{ question.id }}"><p>{{ question.description }}
         </p></a>
         <div class="info">
-        <div class="from pull-left">{{ question.qu_source }}</div>
+        <div class="from pull-left">{{ question.source }}</div>
         <div class="pull-right">
-        <a class="reply"><i class="fa fa-comment-o" aria-hidden="true"></i> 回答({{ question.qu_answer_num }})</a>
+        <a class="reply"><i class="fa fa-comment-o" aria-hidden="true"></i> 回答({{ question.answer_num }})</a>
         <span>&nbsp;|&nbsp;</span>
-        <a class="collected"><i class="fa fa-heart-o" aria-hidden="true"></i> 收藏({{ question.qu_collections }})</a>
+        <a class="collected"><i class="fa fa-heart-o" aria-hidden="true"></i> 收藏({{ question.collections }})</a>
         <span>&nbsp;|&nbsp;</span>
-        <a class="visited"><i class="fa fa-eye" aria-hidden="true"></i> 浏览量({{ question.qu_page_view }})</a>
+        <a class="visited"><i class="fa fa-eye" aria-hidden="true"></i> 浏览量({{ question.pageview }})</a>
         </div>
         </div>
         </li>
@@ -100,7 +140,7 @@ aria-controls="question-categories">试题广场
 <nav class="text-center">
 <ul class="pagination">
 {% if page > 1 %}
-    <li><a href="/exercise/system?page=1&sort={{ sort }}&qu_class={{ qu_class }}" class="page">&laquo;</a></li>
+    <li><a href="/exercise/system?page=1&sort={{ sort }}&kind={{ kind }}" class="page">&laquo;</a></li>
 {% else %}
     <li><a class="page-disabled"> &laquo;</a></li>
 {% endif %}
@@ -108,16 +148,16 @@ aria-controls="question-categories">试题广场
     {% if question_list.previous_page_number > 1 %}
          <li><a class="page-disabled" href="#" >...</a></li>
     {% endif %}
-         <li><a href="/exercise/system?page={{ question_list.previous_page_number }}&sort={{ sort }}&qu_class={{ qu_class }} " >{{ question_list.previous_page_number }}</a></li>
+         <li><a href="/exercise/system?page={{ question_list.previous_page_number }}&sort={{ sort }}&kind={{ kind }} " >{{ question_list.previous_page_number }}</a></li>
 {% endif %}
-<li><a href="/exercise/system?page={{ page }}&sort={{ sort }}&qu_class={{ qu_class }}" class="active">{{ page }}</a></li>
+<li><a href="/exercise/system?page={{ page }}&sort={{ sort }}&kind={{ kind }}" class="active">{{ page }}</a></li>
 {% if question_list.has_next %}
-<li><a href="/exercise/system?page={{ question_list.next_page_number }}&sort={{ sort }}&qu_class={{ qu_class }}">{{ question_list.next_page_number }}</a></li>
+<li><a href="/exercise/system?page={{ question_list.next_page_number }}&sort={{ sort }}&kind={{ kind }}">{{ question_list.next_page_number }}</a></li>
 {% endif %}
 {% if page  !=  num_pages   %}
 <li><a class="page-disabled">...</a></li>
 {% endif %}
-<li><a href="/exercise/system?page={{ num_pages }}&sort={{ sort }}&qu_class={{ qu_class }} ">&raquo; </a></li>
+<li><a href="/exercise/system?page={{ num_pages }}&sort={{ sort }}&kind={{ kind }} ">&raquo; </a></li>
 </ul>
 </nav>
 </div>
@@ -134,12 +174,12 @@ aria-controls="question-categories">试题广场
 <!--题目分类列表-->
 <div class="panel-body" id="question-categories">
 <div class="list-group">
-<a href="/exercise/system?qu_class=理论知识" class="list-group-item active">理论知识</a>
-<a href="/exercise/system?qu_class=Web安全" class="list-group-item ">Web安全</a>
-<a href="/exercise/system?qu_class=密码" class="list-group-item ">密码</a>
-<a href="/exercise/system?qu_class=逆向" class="list-group-item ">逆向</a>
-<a href="/exercise/system?qu_class=杂类" class="list-group-item ">杂类</a>
-<a href="/exercise/system?qu_class=取证" class="list-group-item ">取证</a>
+<a href="/exercise/system?kind=理论知识" class="list-group-item active">理论知识</a>
+<a href="/exercise/system?kind=Web安全" class="list-group-item ">Web安全</a>
+<a href="/exercise/system?kind=密码" class="list-group-item ">密码</a>
+<a href="/exercise/system?kind=逆向" class="list-group-item ">逆向</a>
+<a href="/exercise/system?kind=杂类" class="list-group-item ">杂类</a>
+<a href="/exercise/system?kind=取证" class="list-group-item ">取证</a>
 </div>
 </div>
 </div>

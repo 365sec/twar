@@ -77,11 +77,14 @@ $(function () {
      * */
     $("#submit-btn").on('click', function () {
         var answer = $(".checked input").val();
+        var uid = $("#uid").val()
+
 
         //获取url
         pathObj = new Object();
         pathObj.qid = qid;
         pathObj.answer = answer;
+
         var params_str = $.param(pathObj);
         var submit_answer_path = "/exercise/answer_check?";
 
@@ -101,7 +104,7 @@ $(function () {
             async: false,
             dataType: "json",
             url: submit_answer_path,
-            data: {'qid':qid,'answer':answer},
+            data: {'qid':qid,'answer':answer,'uid':uid},
             success: function (data) {
                 if (data.code == 200) {
 
@@ -122,6 +125,9 @@ $(function () {
             }
         });
     });
+
+
+
 
 
     /**
@@ -185,48 +191,40 @@ $(function () {
      * */
     $("#operate-submit-btn").on('click', function () {
         var qid = $("#qid").val();
-
+        var uid = $("input[name='uid']").val();
         //获取操作题答案
         var operate_answer = $("input[name='operate-answer']").val();
-        var img_verifyCode = $("input[name='img-verifyCode']").val();
-
         //获取url
         pathObj = new Object();
         pathObj.qid = qid;
         pathObj.answer = operate_answer;
-        pathObj.verifyCode = img_verifyCode;
+         pathObj.uid= uid
         var params_str = $.param(pathObj);
-        var operate_path = "/question/terminal/submit/op?" + params_str;
+        var operate_path = "/megagame/operator/check?";
 
         //判空操作
         if (operate_answer == undefined || operate_answer == "" || operate_answer == null) {
             toast_error("答案不能为空！");
             return;
         }
-        else if(!checkStr(operate_answer)){
+        /*else if(!checkStr(operate_answer)){
             return;
-        }
-
-        if (img_verifyCode == undefined || img_verifyCode == "" || img_verifyCode == null) {
-            toast_error("验证码不能为空！");
-            return;
-        }
-        else if(!checkStr(img_verifyCode)){
-            return;
-        }
-
-
+        }*/
         //后台请求
         $.ajax({
             type: 'post',
             async: false,
+            data:{
+                'qid':qid,
+                'answer':operate_answer,
+                'uid':uid,
+            },
             dataType: "json",
             url: operate_path,
             success: function (data) {
                 if (data.code === 200) {
-                    var answer_result = data.data.AnswerIsRight;
-                    var correct_answer = data.data.CorrectAnswer;
-                    operate_result(correct_answer, answer_result, operate_answer);
+                    var answer_result = data.AnswerIsRight;
+                    operate_result(answer_result, operate_answer);
                 }
                 else if (data.code === -1) {
                     toast_hidden("您还没有登陆，即将跳转到登陆页面!", "/auth/goLogin");
@@ -243,6 +241,104 @@ $(function () {
     });
 
 
+     $("#flag-submit-btn").on('click', function () {
+        var qid = $("#qid").val();
+        //获取操作题答案
+        var operate_answer = $("input[name='operate-answer']").val();
+        //获取url
+        pathObj = new Object();
+        pathObj.qid = qid;
+        pathObj.answer = operate_answer;
+        var params_str = $.param(pathObj);
+        var operate_path = "/megagame/operator/check?";
+
+        //判空操作
+        if (operate_answer == undefined || operate_answer == "" || operate_answer == null) {
+            toast_error("答案不能为空！");
+            return;
+        }
+        /*else if(!checkStr(operate_answer)){
+            return;
+        }*/
+        //后台请求
+        $.ajax({
+            type: 'post',
+            async: false,
+            data:{
+                'qid':qid,
+                'answer':operate_answer
+            },
+            dataType: "json",
+            url: operate_path,
+            success: function (data) {
+                if (data.code === 200) {
+                    var answer_result = data.AnswerIsRight;
+                    operate_result(answer_result, operate_answer);
+                }
+                else if (data.code === -1) {
+                    toast_hidden("您还没有登陆，即将跳转到登陆页面!", "/auth/goLogin");
+                }
+                else {
+                    //记得考虑验证码错误的情况
+                    toast_error(data.message);
+                }
+            },
+            error: function () {
+                toast_error("系统错误！");
+            }
+        });
+    });
+
+
+
+
+      $("#flag-submit-btn").on('click', function () {
+        var qid = $("#qid").val();
+        //获取操作题答案
+        var operate_answer = $("input[name='flag-answer']").val();
+        //获取url
+        pathObj = new Object();
+        pathObj.qid = qid;
+        pathObj.answer = operate_answer;
+        var params_str = $.param(pathObj);
+        var operate_path = "/megagame/operator/check?";
+
+        //判空操作
+        if (operate_answer == undefined || operate_answer == "" || operate_answer == null) {
+            toast_error("答案不能为空！");
+            return;
+        }
+        /*else if(!checkStr(operate_answer)){
+            return;
+        }*/
+        //后台请求
+        $.ajax({
+            type: 'post',
+            async: false,
+            data:{
+                'qid':qid,
+                'answer':operate_answer
+            },
+            dataType: "json",
+            url: operate_path,
+            success: function (data) {
+                if (data.code === 200) {
+                    var answer_result = data.AnswerIsRight;
+                    operate_result(answer_result, operate_answer);
+                }
+                else if (data.code === -1) {
+                    toast_hidden("您还没有登陆，即将跳转到登陆页面!", "/auth/goLogin");
+                }
+                else {
+                    //记得考虑验证码错误的情况
+                    toast_error(data.message);
+                }
+            },
+            error: function () {
+                toast_error("系统错误！");
+            }
+        });
+    });
     /**
      * 处理保存笔记按钮
      **/
@@ -562,39 +658,14 @@ $(function () {
     }
 
     //（操作题处理函数）
-    function operate_result(correct_answer, answer_result, answer) {
+    function operate_result(answer_result, answer) {
         if (answer_result === 'true') {
-            modal_answer_result.html('<i class="glyphicon glyphicon-ok"></i><span>恭喜你，答对啦！</span>');
-            close_btn.css({'display':'none'});
-            submit_answer_modal.modal("show");
-
-            //点击确定按钮之后
-            modal_confirm_btn.on('click', function () {
-                submit_answer_modal.modal("hide");
-                $("#submit-btn").addClass('hide');
-                correct_answer_op_p.html("正确答案：" + correct_answer + "&nbsp;&nbsp;您的答案：" + answer + "<span class='correct'>(正确)</span>");
-            });
+            alert("恭喜你答对了")
         }
         else if (answer_result === 'false') {
 
-            // 验证码更新
-            $("input[name='img-verifyCode']").val("");
-            $("#operate-verify-code-img").click();
+         alert("答案错误，请再次尝试")
 
-            modal_answer_result.html('<i class="glyphicon glyphicon-exclamation-sign"></i><span>答案错误，是否查看正确答案？</span>');
-            close_btn.css({'display':'inline-block'});
-            submit_answer_modal.modal('show');
-
-            //点击关闭按钮
-            close_btn.on('click', function () {
-                // close_btn.removeClass("hide");
-                submit_answer_modal.modal('hide');
-            });
-            modal_confirm_btn.on('click', function () {
-                submit_answer_modal.modal("hide");
-                $("#submit-answer").modal('hide');
-                correct_answer_op_p.html("正确答案：" + correct_answer + "&nbsp;&nbsp;您的答案：" + answer + "<span class='wrong'>（错误）</span>");
-            });
         }
     }
 
