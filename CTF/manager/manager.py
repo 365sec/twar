@@ -103,7 +103,7 @@ def upload_file(request):
         myFile = request.FILES.get("file", None)  # 获取上传的文件，如果没有文件，则默认为None
         if not myFile:
             return HttpResponse("no files for upload!")
-        file_path = uuid.uuid1()
+        file_path = str(uuid.uuid1())
         destination = open(os.path.join(path, file_path),
                            'wb+')  # 打开特定的文件进行二进制的写操作
         for chunk in myFile.chunks():  # 分块写入文件
@@ -122,7 +122,7 @@ def upload_pic(request):
         path = "./accessory/images"
         if not os.path.exists(path):
             os.makedirs(path)
-        pic_path = uuid.uuid1()
+        pic_path = str(uuid.uuid1())
         myFile = request.FILES.get("file", None)  # 获取上传的文件，如果没有文件，则默认为None
         if not myFile:
             return HttpResponse("no files for upload!")
@@ -359,8 +359,7 @@ def re_add_megagame_questions(request):
         option7 = request.POST.get('option7')
         source = request.POST.get('source',"管理员")
         file_path = request.POST.getlist('file')[0]
-        flag_url = request.POST.get('flag_url')
-        print file_path, '------------'
+        flag_url = request.POST.get('flag')
         print flag_url, '***********'
         create_time = time.strftime("%Y-%m-%d %H:%M:%S",
                                     time.localtime(time.time()))
@@ -474,6 +473,19 @@ def re_update_megagame_question(request):
     if request.method == 'GET':
         qid = request.GET.get('qid')
         temp = models.MegagameQuestions.objects.filter(qid=qid).first()
+        print temp.type
+        if temp.type ==1:
+            if not temp.option4:
+                temp.option4 ='null'
+            if not temp.option5:
+                temp.option5 ='null'
+            if not temp.option6:
+                print temp.option6, '---'
+                temp.option6 ='null'
+                print  temp.option6,'+++++++++'
+            if not temp.option7:
+                temp.option7 ='null'
+        print temp.option6,'/////'
         return render(request, "admin/manage_megagame_question_update.html",
                       {'question': temp})
     elif request.method == 'POST':

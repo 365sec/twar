@@ -86,7 +86,7 @@
                     <td>{{ data.source }}</td>
                     <td>{{ data.description }}</td>
                     <td>{{ data.create_time }}</td>
-                    <td><a href="/manage/update_megagame_info?uid={{ data.uid }}">修改</a> <a class="del" data-id="{{ data.uid }}"  href="/manage/del_megagame_question?qid={{ data.qid }}">删除</a> <a  href="/manage/megagame_question_detail?qid={{ data.qid }}">详情</a></td>
+                    <td><a href="/manage/update_megagame_question?qid={{ data.qid }}">修改</a> <a class="del" data-id="{{ data.uid }}"  href="/manage/del_megagame_question?qid={{ data.qid }}">删除</a> <a  href="/manage/megagame_question_detail?qid={{ data.qid }}">详情</a></td>
                 </tr>
                 {% endfor %}
                 </tbody>

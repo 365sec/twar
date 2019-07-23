@@ -349,16 +349,27 @@
    window.option_num = 4;
 
     function add() {
+        if (option_num < 8) {
+            var option_name = 'option' + option_num
+            var addoption = " <div id=\"multiple_choice\">\n" +
+                "                    <div class=\"layui-form-item\">\n" +
+                "                            <label class=\"layui-form-label\">" + option + ":</label>\n" +
+                "                            <div class=\"layui-input-inline\">\n" +
+                "                            <input type=\"text\" name=\"" + option_name + "\"  class=\"layui-input\">\n" +
+                "                            </div>\n" +
+                "                            </div>"
+
+            option_num = option_num + 1
+            option = String.fromCharCode(option.charCodeAt(0) + 1)
+            $('#options').append(addoption);
+        } else {
+            alert("最多为8项")
+        }
+    }
+
+        function del() {
         if (option_num <8){
              var option_name = 'option'+ option_num
-        var addoption = " <div id=\"multiple_choice\">\n" +
-        "                    <div class=\"layui-form-item\">\n" +
-        "                            <label class=\"layui-form-label\">"+option+":</label>\n" +
-        "                            <div class=\"layui-input-inline\">\n" +
-        "                            <input type=\"text\" name=\""+option_name+"\"  class=\"layui-input\">\n" +
-        "                            </div>\n" +
-        "                            </div>"
-
         option_num=option_num+1
         option = String.fromCharCode(option.charCodeAt(0)+1)
         $('#options').append(addoption);
