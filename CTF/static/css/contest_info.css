@@ -320,8 +320,8 @@
 }
 
 .right-content .panel-default > .panel-heading {
-    background-color: #fff;
-    /*border-color: #000;*/
+    /*background-color: #fff;*/
+    border-color: #000;
     overflow: hidden;
 }
 

@@ -24,43 +24,45 @@
 <link rel="stylesheet" type="text/css" href="/static/css/question_detail.css">
 </head>
 <body>
-<div id="head_content"></div>
+{% include "head_content.html" %}
 <section class="main">
-<div style="position: relative;
-  left: 160px;
-  top: 100px;">
-<span class="question-type">
-<i class="glyphicon glyphicon-question-sign"></i>
-单选题
-</span>
-</div>
+
 <div id="question-page">
 <div class="container">
-
+<br>
+<br>
 {% for data in question_list %}
 {% if data.type == 0 %}
 <div class="panel panel-default question-panel" qid="{{ data.qid }}">
 <div class="panel-heading">
-<strong>
 
-</strong>
 </div>
 <div class="panel-body">
+    <strong>
+<span class="question-type">
+<i class="glyphicon glyphicon-question-sign"></i>
+单选题
+</span>
+</strong>
 <div class="question-content" id="from-single-sign">
-<div class="question-content-info">
+
+<div class="question-content-info" >
+
 <input type="text" class="hidden" id="qid"  name="{{ data.uid }}" value="">
 <input type = "text" class="hidden" id="question_type" value="1">
-<p>{{ data.description }}
+    <div style="word-break:break-all; word-wrap:break-word ;padding:5px 200px 0px 20px;">
+<p style="line-height:50px">&nbsp;&nbsp;&nbsp;&nbsp;{{ data.description }}
 </p>
+    </div>
 </div>
 <div class="question-content-option" id="single-question-option">
 <a class="">
 <label class="radio">
 <span class="radio-icon">
 </span>
-<input id="" name="{{ data.qid }}" type="radio" value="A">
+<input id="" name="{{ data.qid }}" type="radio" value="A" checked="">
 <span>
-{{ data.option0 }}
+A. {{ data.option0 }}
 </span>
 </label>
 </a>
@@ -68,9 +70,9 @@
 <label class="radio">
 <span class="radio-icon">
 </span>
-<input id="" name="{{ data.qid }}" type="radio" value="B" >
+<input id="" name="{{ data.qid }}" type="radio" value="B" checked="">
 <span>
-{{ data.option1 }}
+B. {{ data.option1 }}
 </span>
 </label>
 </a>
@@ -78,9 +80,9 @@
 <label class="radio">
 <span class="radio-icon">
 </span>
-<input id="" type="radio" name="{{ data.qid }}"  value="C" >
+<input id="" type="radio" name="{{ data.qid }}" value="C" checked="">
 <span>
-{{ data.option2 }}
+C. {{ data.option2 }}
 </span>
 </label>
 </a>
@@ -88,9 +90,9 @@
 <label class="radio">
 <span class="radio-icon">
 </span>
-<input id="" type="radio" name="{{ data.qid }}" value="D" >
+<input id="" type="radio" name="{{ data.qid }}" value="D" checked="" >
 <span>
-{{ data.option3 }}
+D. {{ data.option3 }}
 </span>
 </label>
 </a>
@@ -109,72 +111,113 @@
 {% if data.type == 1 %}
 <div class="panel panel-default question-panel">
 <div class="panel-heading">
+
+</div>
+<div class="panel-body">
 <strong>
 <span class="question-type">
 <i class="glyphicon glyphicon-question-sign"></i>
 多选题
 </span>
 </strong>
-</div>
-<div class="panel-body">
 <div class="question-content" id="from-single-sign">
 <div class="question-content-info">
 <input type="text" class="hidden" id="qid" name="qid" value="427">
 <input type="text" class="hidden" id="question_type" value="2">
-<p>{{ data.description }}
+    <div style="word-break:break-all; word-wrap:break-word ;padding:5px 200px 0px 20px;">
+<p style="line-height:50px">{{ data.description }}
 </p>
+    </div>
 </div>
 <div class="question-content-option" id="multi-question-option">
-<a class="" style="background-color: rgb(255, 255, 255); color: rgb(51, 51, 51);">
+<a class="">
 <label class="radio">
 <span class="radio-icon">
 </span>
-<input id="" type="checkbox" name="{{ data.qid }}" value="A">
+<input id="" type="checkbox" name="{{ data.qid }}" value="A" checked="">
 <span>
-{{ data.option0 }}
+A. {{ data.option0 }}
 </span>
 </label>
 </a>
-<a class="" style="background-color: rgb(255, 255, 255); color: rgb(51, 51, 51);">
+<a class="">
 <label class="radio">
 <span class="radio-icon">
 </span>
 <input id="" type="checkbox" name="{{ data.qid }}" value="B" checked="">
 <span>
-{{ data.option1 }}
+B. {{ data.option1 }}
 </span>
 </label>
 </a>
-<a class="selected" style="background-color: rgb(255, 255, 255); color: rgb(51, 51, 51);">
-<label class="radio checked">
+<a class="" >
+<label class="radio">
 <span class="radio-icon">
 </span>
 <input id="" type="checkbox" name="{{ data.qid }}" value="C" checked="">
 <span>
-{{ data.option2 }}
+C. {{ data.option2 }}
 </span>
 </label>
 </a>
-<a class="" style="background-color: rgb(255, 255, 255); color: rgb(51, 51, 51);">
+<a class="" >
 <label class="radio">
 <span class="radio-icon">
 </span>
 <input id="" type="checkbox" name="{{ data.qid }}" value="D" checked="">
 <span>
-{{ data.option3 }}
+D. {{ data.option3 }}
 </span>
 </label>
 </a>
-<a class="" style="background-color: rgb(255, 255, 255); color: rgb(51, 51, 51);">
+{% if data.option4   %}
+<a class="">
 <label class="radio">
 <span class="radio-icon">
 </span>
 <input id="" type="checkbox" name="{{ data.qid }}" value="E" checked="">
 <span>
-{{ data.option5 }}
+E. {{ data.option4 }}
 </span>
 </label>
 </a>
+    {% endif %}
+{% if data.option5  %}
+<a class="">
+<label class="radio">
+<span class="radio-icon">
+</span>
+<input id="" type="checkbox" name="{{ data.qid }}" value="F" checked="">
+<span>
+F. {{ data.option5 }}
+</span>
+</label>
+</a>
+    {% endif %}
+{% if data.option6 %}
+<a class="">
+<label class="radio">
+<span class="radio-icon">
+</span>
+<input id="" type="checkbox" name="{{ data.qid }}" value="G" checked="">
+<span>
+G. {{ data.option6 }}
+</span>
+</label>
+</a>
+    {% endif %}
+{% if data.option7  %}
+<a class="">
+<label class="radio">
+<span class="radio-icon">
+</span>
+<input id="" type="checkbox" name="{{ data.qid }}" value="H" checked="">
+<span>
+H. {{ data.option7 }}
+</span>
+</label>
+</a>
+    {% endif %}
 </div>
 <div class="correct" style="overflow: hidden">
 <p class="pull-left" id="correct_answer"></p>
@@ -189,8 +232,8 @@
 </div>
 {% endif %}
 {% endfor %}
-<div  style="overflow: hidden;position: relative;top: 100px;left: 1000px">
-<input  id="megagame_choice_answer" type="button" value="提交答案">
+<div  style="overflow: hidden;position: relative;top: 20px;left: 1000px">
+<input  id="megagame_choice_answer" class="btn navbar-btn btn-primary" type="button" value="提交答案">
 </div>
 </div>
 </div>
@@ -209,7 +252,7 @@
 </dl>
 <!--二维码-->
 <div class="wechat-code col-md-3 col-lg-3 hidden-xs hidden-sm">
-<img class="center-block" src="/static/img/index/wechat-code.png">
+<img class="center-block" src="/static/images/index/wechat-code.png">
 </div>
 </div>
 </div>

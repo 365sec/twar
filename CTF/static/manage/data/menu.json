@@ -23,7 +23,7 @@
     "hidden": false,
     "list": [{
         "name": "大赛信息",
-        "url": "/manage/megagame_info"
+        "url": "/manage/match_info"
     }
     ]
 },  {
@@ -33,11 +33,7 @@
     "hidden": false,
     "list": [ {
         "name": "题库管理",
-        "url": "/manage/exercise_question_index"
-    }
-        , {
-        "name": "题库添加",
-        "url": "/manage/add_exercise_question"
+        "url": "/manage/exercise_index"
     }
     ]
 },{

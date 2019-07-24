@@ -22,43 +22,7 @@
 <link rel="stylesheet" type="text/css" href="/static/css/main/question/question_detail.css">
 </head>
 <body>
-<div id="header">
-<nav class="navbar navbar-inverse navbar-fixed-top">
-<div class="container">
-<div class="navbar-header">
-<a id="logo" class="navbar-brand" href="/index">
-<img src="/static/img/index/logo.png">
-</a>
-<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header-bar">
-<span class="sr-only">切换导航</span>
-<span class="icon-bar"></span>
-<span class="icon-bar"></span>
-<span class="icon-bar"></span>
-</button>
-</div>
-<div class="collapse navbar-collapse" id="header-bar">
-<ul class="nav navbar-nav">
-<li id="index"><a href="/index">首页</a></li>
-<li id="question"><a href="/question/theory">题库</a></li>
-<li id="rank"><a href="/rank">排行榜</a></li>
-<li id="news"><a href="/news?page=0&size=10">新闻</a></li>
-<li id="contest"><a href="/contest/">大赛介绍</a></li>
-</ul>
-<div class="pull-right user-info-wrapper">
-<div id="user" class="user-info">
-<a href="/user/profile/info">
-<img class="img-circle user-head" src="/static/img/avatar/default.png">
-</a>
-<ul class="user-menu hidden-xs">
-<li id="userCenter"><a href="/user/profile/info"><span class="glyphicon glyphicon-user"></span>个人主页</a></li>
-<li><a href="/user/logout"><span class="glyphicon glyphicon-off"></span>安全退出</a></li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</nav>
-</div>
+{% include "head_content.html" %}
 <section class="clear-nav"></section>
 <section class="main">
 <div id="question-page">
@@ -382,7 +346,7 @@ First Blood
 </dl>
 <!--二维码-->
 <div class="wechat-code col-md-3 col-lg-3 hidden-xs hidden-sm">
-<img class="center-block" src="/static/img/index/wechat-code.png">
+<img class="center-block" src="/static/images/index/wechat-code.png">
 </div>
 </div>
 </div>

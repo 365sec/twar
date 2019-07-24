@@ -20,7 +20,7 @@
 <link rel="stylesheet" type="text/css" href="/static/css/contest.css">
 </head>
 <body>
-<div id="header">
+{% include "head_content.html" %}
 </div>
 <section class="clear-nav"></section>
 <!--页面主题-->
@@ -29,7 +29,7 @@
 <!-- -----------------比赛列表------------------------->
 <div class="container">
 {% for data in megagame_list   %}
-<a class="panel competitions-list contest-list" href="/megagame/detail?megagame_id={{ data.uid }}">
+<a class="panel competitions-list contest-list" href="/match/detail?megagame_id={{ data.uid }}">
 <input type="text" name="contestId-input" class="hidden" value="21661">
 <div class="panel-heading">
 <span class="label label-primary">CTF</span>

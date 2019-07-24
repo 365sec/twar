@@ -1,35 +1,63 @@
-    <html>
 
-    <body>
-
-     <select class="select" size="1" name="type" id="select" onchange = "showandhide(this.value)">
-            <option value="1">表格</option>
-            <option value="2">折线图</option>
-            <option value="3">柱状图</option>
-        </select>
-
-        <div id="0" style>表格区域</div>
-        <div id="1" style>折线图区域</div>
-        <div id="2" style>柱状图区域</div>
-
-    </body>
-
-     <script>
-         function showandhide(v){
-
-        alert(v);
-        for(i=0;i < 4;i++){
-        document.getElementById(i).style.display = 'none';
-        if(i==v){
-        document.getElementById(v).style.display = 'block';
-        }
-        }
-        }
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+    <head>
+        <meta charset="UTF-8" />
+        <title>A date range picker for Bootstrap</title>
+        <!--cdn上面的地址-->
+        <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.css" rel="stylesheet">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+        <script src="https://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/moment.js"></script>
+        <script src="https://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.js"></script>
+    </head>
+    <body style="margin: 60px 0">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-2 demo">
+                <h4>Your Date Range Picker</h4>
+                <input type="text" id="config-demo" class="form-control">
+                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+            </div>
+        </div>
+        <style type="text/css">
+            .demo {
+                position: relative;
+            }
+            
+            .demo i {
+                position: absolute;
+                bottom: 10px;
+                right: 24px;
+                top: auto;
+                cursor: pointer;
+            }
+        </style>
+ 
+        <script type="text/javascript">
+            var beginTimeTake;
+            
+            $('#config-demo').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                autoUpdateInput: false,
+                timePicker24Hour : true,
+                timePicker : true,
+                "locale": {
+                    format: 'YYYY-MM-DD HH:mm',
+                    applyLabel: "应用",
+                    cancelLabel: "取消",
+                    resetLabel: "重置",
+                }
+            }, 
+            function(start, end, label) {
+                beginTimeTake = start;
+                if(!this.startDate){
+                    this.element.val('');
+                }else{
+                    this.element.val(this.startDate.format(this.locale.format));
+                }
+            });
         </script>
-    </html>
-
-
-
-
-
-
+    </body>
+</html>

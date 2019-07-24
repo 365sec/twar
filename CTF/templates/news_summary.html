@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -22,7 +23,8 @@
 <link rel="stylesheet" type="text/css" href="/static/css/new.css">
 </head>
 <body>
-<div id="header"></div>
+{% include "head_content.html" %}
+
 <section class="clear-nav"></section>
 <div class="main" id="body">
 <div class="container">
@@ -88,7 +90,7 @@
 </dl>
 <!--二维码-->
 <div class="wechat-code col-md-3 col-lg-3 hidden-xs hidden-sm">
-<img class="center-block" src="/static/img/index/wechat-code.png">
+<img class="center-block" src="/static/images/index/wechat-code.png">
 </div>
 </div>
 </div>
@@ -108,5 +110,5 @@
 <script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/static/js/new.js"></script>
-<script> $('#header').load('/static/htmls/head_content.html')</script>
+
 </body></html>

@@ -71,7 +71,7 @@ WSGI_APPLICATION = 'ctf.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ctf1',
+        'NAME': 'ctf',
         'HOST': '172.16.39.74',
         'PORT': '3306',
         'USER': 'root',

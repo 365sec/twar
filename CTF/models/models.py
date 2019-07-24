@@ -1,10 +1,65 @@
 from django.db import models
 
+class News(models.Model):
+    title = models.CharField(max_length=200, null=False)
+    source = models.CharField(max_length=100)
+    content = models.CharField(max_length=10000)
+    create_time = models.DateTimeField()
+    pageview = models.IntegerField(default=0)
+    remark = models.CharField(max_length=200)
+    priority = models.IntegerField(default=99)
+    state = models.BooleanField()
+    pic = models.CharField(max_length=100)
+    file = models.CharField(max_length=100)
 
-class ExerciseQuestion(models.Model):
-    type = models.IntegerField(default=0)
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        db_table = 't_news'
+
+class Team(models.Model):
+    name = models.CharField(max_length=20)
+    desc = models.CharField(max_length=200, null=True)
+    create_time = models.DateTimeField()
+
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        db_table = 't_team'
+
+class User(models.Model):
+    user_name = models.CharField(max_length=20)
+    user_pwd = models.CharField(max_length=16)
+    user_nickname = models.CharField(max_length=20,null=True)
+    user_auto = models.CharField(max_length=200,null=True)
+    real_name = models.CharField(max_length=20,null=True)
+    user_sex = models.IntegerField(default=0,null=True)
+    user_cardnum = models.CharField(max_length=18,null=True)
+    user_education = models.CharField(max_length=5,null=True)
+    user_area = models.CharField(max_length=20,null=True)
+    user_address = models.CharField(max_length=50,null=True)
+    user_state = models.IntegerField(default=0,null=True)
+    user_pic = models.CharField(max_length=100,null=True)
+    num_flags = models.IntegerField(default=0,null=False)
+    theoretical_value = models.IntegerField(default=0,null=False)
+    achievement_flags = models.IntegerField(default=0,null=False)
+    card_count = models.IntegerField(default=0,null=False)
+    num_contribution = models.IntegerField(default=0,null=False)
+    num_fans = models.IntegerField(default=0,null=False)
+    user_team = models.ForeignKey("Team", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user_name
+
+    class Meta:
+        db_table = 't_user'
+
+class Exercise(models.Model):
+    type = models.CharField(max_length=50, null=False)
     kind = models.CharField(max_length=50, null=False)
-    uuid = models.CharField(max_length=50, null=False, unique=True)
     source = models.CharField(max_length=100, null=False)
     description = models.CharField(max_length=200, null=False)
     hint = models.CharField(max_length=100)
@@ -28,96 +83,86 @@ class ExerciseQuestion(models.Model):
         return self.description
 
     class Meta:
-        db_table = 't_exercise_questions'
+        db_table = 't_exercise'
 
-
-class News(models.Model):
-    title = models.CharField(max_length=200, null=False)
-    source = models.CharField(max_length=100)
-    editorValue = models.CharField(max_length=10000)
-    create_time = models.DateTimeField()
-    pageview = models.IntegerField(default=0)
-    attachment = models.CharField(max_length=100)
-    remark = models.CharField(max_length=200)
-    priority = models.IntegerField(default=99)
-    state = models.IntegerField(default=0)
-    pic = models.CharField(max_length=100)
-    file = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        db_table = 't_news'
-
-
-class MegagameInformation(models.Model):
-    uid = models.CharField(max_length=100)
-    type = models.IntegerField(default=0)
-    title = models.CharField(max_length=200, null=False)
-    source = models.CharField(max_length=100, null=True)
-    editorValue = models.CharField(max_length=10000)
-    create_time = models.DateTimeField()
-    apply_start_time = models.CharField(max_length=50, null=False)
-    apply_end_time = models.CharField(max_length=50, null=False)
-    state = models.IntegerField(default=0)
-    organizers = models.CharField(max_length=100)
-    introduce = models.CharField(max_length=1000, null=False)
-    rules = models.CharField(max_length=50, null=False)
-    members = models.IntegerField(default=0)
-    file_path = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        db_table = 't_megagame_information'
-
-
-class Answer(models.Model):
-    qid = models.CharField(max_length=50, null=False)
-    user_answer = models.CharField(max_length=50, null=False)
-    user_ID = models.CharField(max_length=50, null=False)
-    reply_time = models.DateTimeField()
-    member = models.ForeignKey("Members", on_delete=models.CASCADE)
-
-    class Meta:
-        db_table = 't_answer'
-
-
-class Members(models.Model):
-    user_ID = models.CharField(max_length=50)
-    name = models.CharField(max_length=50)
-    uid = models.CharField(max_length=50)
-    user_score = models.IntegerField(null=True, default=0)
+class ExerciseUser(models.Model):
+    answer = models.CharField(max_length=100,null=False)
+    answer_time = models.DateTimeField()
+    validity = models.BooleanField()
+    exercise = models.ForeignKey("Exercise",on_delete=models.CASCADE)
+    user = models.ForeignKey("User", on_delete=models.CASCADE)
 
     def __str__(self):
         return self.id
 
     class Meta:
-        db_table = 't_members'
+        db_table = 't_exercise_user'
 
 
-class Teams(models.Model):
-    captain_id = models.CharField(max_length=50)
-    member1_id = models.CharField(max_length=50, null=True)
-    member2_id = models.CharField(max_length=50, null=True)
-    mumbers = models.IntegerField(default=1)
-    team_name = models.CharField(max_length=50, null=False)
-    megagame_id = models.CharField(max_length=50)
+
+class MatchInfo(models.Model):
+    type = models.CharField(max_length=50, null=False)
+    theme = models.CharField(max_length=200, null=False)
+    create_time = models.DateTimeField()
+    source = models.CharField(max_length=50, null=False)
+    apply_start_time = models.CharField(max_length=50, null=False)
+    apply_end_time = models.CharField(max_length=50, null=False)
+    answer_start_time = models.DateTimeField()
+    answer_end_time = models.DateTimeField()
+    state = models.BooleanField(default=False)
+    organizers = models.CharField(max_length=100)
+    rules = models.CharField(max_length=50, null=False)
+    brief = models.CharField(max_length=1000, null=False)
+    message = models.CharField(max_length=10000)
+    file_path = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.team_name
+        return self.id
 
     class Meta:
-        db_table = 't_teams'
+        db_table = 't_match_info'
+
+class MatchNotice(models.Model):
+    title = models.CharField(max_length=200, null=False)
+    brief = models.CharField(max_length=1000, null=False)
+    message = models.CharField(max_length=10000)
+    file_path = models.CharField(max_length=100)
 
 
-class MegagameQuestions(models.Model):
-    type = models.IntegerField()
+
+    def __str__(self):
+        return self.id
+
+    class Meta:
+        db_table = 't_match_notice'
+
+class UserMatchInfo(models.Model):
+    score = models.IntegerField(null=True,default=0)
+    join_time = models.DateTimeField()
+    user = models.ForeignKey("User",on_delete=models.CASCADE)
+    match_info = models.ForeignKey("matchInfo", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.id
+
+    class Meta:
+        db_table = 't_user_match_info'
+
+class TeamMatchInfo(models.Model):
+    score = models.IntegerField(null=True,default=0)
+    join_time = models.DateTimeField()
+    team = models.ForeignKey("Team",on_delete=models.CASCADE)
+    match_info = models.ForeignKey("matchInfo", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.id
+
+    class Meta:
+        db_table = 't_team_match_info'
+
+class Challenge(models.Model):
+    type = models.CharField(max_length=50, null=False)
     kind = models.CharField(max_length=50)
-    uid = models.CharField(max_length=50, null=False)
-    qid = models.CharField(max_length=50, null=False, unique=True)
     source = models.CharField(max_length=100, null=True)
     description = models.CharField(max_length=200, null=False)
     hint = models.CharField(max_length=100)
@@ -134,9 +179,60 @@ class MegagameQuestions(models.Model):
     flag_url = models.CharField(max_length=100)
     create_time = models.DateTimeField()
     q_score = models.IntegerField()
+    match = models.ForeignKey("matchInfo",on_delete=models.CASCADE)
 
     def __str__(self):
         return self.description
 
     class Meta:
-        db_table = 't_megagame_questions'
+        db_table = 't_challenge'
+
+class UserChallenge(models.Model):
+    score = models.IntegerField(null=True,default=0)
+    answer_time =  models.DateTimeField()
+    user = models.ForeignKey("User",on_delete=models.CASCADE)
+    challenge = models.ForeignKey("Challenge", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.id
+
+    class Meta:
+        db_table = 't_user_challenge'
+
+class TeamChallenge(models.Model):
+    score = models.IntegerField(null=True,default=0)
+    answer_time = models.DateTimeField()
+    Team = models.ForeignKey("Team",on_delete=models.CASCADE)
+    challenge = models.ForeignKey("Challenge", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.id
+
+    class Meta:
+        db_table = 't_team_challenge'
+
+class FriendLink(models.Model):
+    name = models.CharField(max_length=100)
+    link = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.id
+
+    class Meta:
+        db_table = 't_friend_link'
+
+class Sponsor(models.Model):
+    name = models.CharField(max_length=100)
+    link = models.CharField(max_length=100)
+    accessory = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.id
+
+    class Meta:
+        db_table = 't_sponsor'
+
+
+
+
+

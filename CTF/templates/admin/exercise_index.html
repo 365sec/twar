@@ -5,12 +5,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>大赛管理 - QAdmin后台模板</title>
+    <title>大赛管理</title>
     <link rel="stylesheet" href="/static/manage/common/layui/css/layui.css">
     <link rel="stylesheet" href="/static/manage/admin/css/style.css">
     <script src="/static/manage/common/layui/layui.js"></script>
     <script src="/static/manage/common/jquery-3.3.1.min.js"></script>
     <script src="/static/manage/common/vue.min.js"></script>
+
 </head>
 <body>
 <div id="app">
@@ -18,7 +19,7 @@
     <header>
         <h1 v-text="webname"></h1>
         <div class="breadcrumb">
-            <i class="layui-icon">&#xe715;</i>
+            <i class="layui-icon">&#xe715;</i><h4>{{ megagame_info.title }}>>赛题信息</h4>
             <ul>
                 <li v-for="vo in address">
                     <a  v-text="vo.name" :href="vo.url" ></a> <span>/</span>
@@ -51,70 +52,83 @@
 
 
 
-            <a href="/manage/add_megagame_info" class="layui-btn"><i class="layui-icon">&#xe654;</i>新增大赛</a>
+
+            <a  href="/manage/add_exercise" class="layui-btn"><i class="layui-icon">&#xe654;</i>新增练习</a>
 
             <table class="layui-table layui-form">
                 <colgroup>
+                    <col width="50">
+                    <col width="50">
                     <col width="80">
-                    <col width="100">
-                    <col width="100">
-                    <col>
                     <col width="90">
-                    <col width="90">
-                    <col width="90">
-                    <col width="90">
-                    <col width="90">
-                    <col width="200">
+                    <col width="150">
+                    <col width="120">
                     <col width="150">
                 </colgroup>
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>类型</th>
-                    <th>标题</th>
+                    <th>题型</th>
+                    <th>类别</th>
                     <th>添加者</th>
-                    <th>举办方</th>
-                    <th>简介</th>
-                    <th>赛制</th>
-                    <th>开始时间</th>
-                    <th>结束时间</th>
+                    <th>题目</th>
                     <th>创建时间</th>
-                    <th>参加人数</th>
-                     <th>附件路径</th>
-                    <th>开启</th>
                     <th>操作</th>
 
                 </tr>
                 </thead>
                 <tbody>
                 {% for data in question_list %}
-                <tr id={{ data.uid }}>
+                <tr >
                     <td>{{ data.id }}</td>
                     <td>{{ data.type }}</td>
-                    <td>{{ data.title }}</td>
+                    <td>{{ data.kind }}</td>
                     <td>{{ data.source }}</td>
-                    <td>{{ data.organizers }}</td>
-                     <td>{{ data.introduce }}</td>
-                    <td>{{ data.rules }}</td>
-                    <td>{{ data.apply_start_time }}</td>
-                    <td>{{ data.apply_end_time }}</td>
+                    <td>{{ data.description }}</td>
                     <td>{{ data.create_time }}</td>
-                    <td>{{ data.members }}</td>
-                    <td>{{ data.file_path }}</td>
-                    <td><input data-id={{ data.uid }} name="state" lay-filter="state" type="checkbox" checked lay-text="开启|关闭" lay-skin="switch"></td>
-                    <td><a href="/manage/update_megagame_info?uid={{ data.uid }}">修改</a> <a class="del" data-id="{{ data.uid }}"  href="/manage/del_megagame_info?uid={{ data.uid }}">删除</a> <a  href="/manage/megagame_question_info?uid={{ data.uid }}">赛题</a></td>
+                    <td><a href="/manage/exercise_update?id={{ data.id }}">修改</a> <a class="del" data-id="{{ data.id }}"  href="/manage/del_exercise?id={{ data.id }}">删除</a> <a  href="/manage/exercise_detail?id={{ data.id }}">详情</a></td>
                 </tr>
                 {% endfor %}
                 </tbody>
             </table>
 
 
-            <div class="page"><ul class="pagination"><li class="disabled"><span>&laquo;</span></li> <li class="active"><span>1</span></li><li><a href="/manage/megagame_info?page=2">2</a></li><li><a href="/manage/megagame_info?page=3">3</a></li><li><a href="/manage/megagame_info?page=4">4</a></li><li><a href="/manage/megagame_info?page=5">5</a></li><li><a href="/manage/megagame_info?page=6">6</a></li><li><a href="/manage/megagame_info?page=7">7</a></li><li><a href="/manage/megagame_info?page=8">8</a></li><li class="disabled"><span>...</span></li><li><a href="/manage/megagame_info?page=109">109</a></li><li><a href="/manage/megagame_info?page=110">110</a></li> <li><a href="/manage/megagame_info?page=2">&raquo;</a></li></ul></div>
+ <div class="page">
+                <ul class="pagination">
+                    {% if page > 1 %}
+                        <li><a href="/manage/challenge_info?uid={{ uid }}&page=1" >&laquo;</a></li>
+                    {% else %}
+                        <li><a class="page-disabled"> &laquo;</a></li>
+                    {% endif %}
+                    {% if question_list.has_previous %}
+                        {% if question_list.previous_page_number > 1 %}
+                             <li><a class="page-disabled" href="/manage/challenge_info?uid={{ uid }}&page=1" >1</a></li>
+                            {% if question_list.previous_page_number > 2 %}
+                                 <li><a class="page-disabled" href="#" >...</a></li>
 
+                                {% endif %}
+
+                        {% endif %}
+                             <li><a href="/manage/challenge_info?uid={{ uid }}&page={{ question_list.previous_page_number }} " >{{ question_list.previous_page_number }}</a></li>
+                    {% endif %}
+                    <li><a href="#" class="active">{{ page }}</a></li>
+                    {% if question_list.has_next %}
+                    <li><a href="/manage/challenge_info?uid={{ uid }}&page={{ question_list.next_page_number }}">{{ question_list.next_page_number }}</a></li>
+                    {% endif %}
+                    {% if question_list.next_page_number  <  last_page   %}
+                       {% if question_list.next_page_number < last_second %}
+                    <li><a class="page-disabled">...</a></li>
+                        {% endif %}
+                        <li><a href="/manage/challenge_info?uid={{ uid }}&page={{ last_page }}" class="page-disabled">{{ last_page }}</a></li>
+                    {% endif %}
+                    <li><a href="/manage/challenge_info?uid={{ uid }}&page={{ last_page }} ">&raquo; </a></li>
+                    </ul>
+            </div>
 
         </div>
     </div>
 </div>
+<script src="/static/js/jquery-3.3.1.min.js"></script>
 <script>
     layui.use('form', function () {
         var form = layui.form, layer = layui.layer, $ = layui.jquery;
@@ -224,6 +238,7 @@
         });
     });
 </script>
+
 <script src="/static/manage/admin/js/config.js"></script>
 <script src="/static/manage/admin/js/script.js"></script>
 </body>

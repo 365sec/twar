@@ -9,7 +9,7 @@ $(function () {
     /* ***************点击我要参赛按钮触发事件*************** */
     $('#enroll-btn,#enrollp-btn').on('click', function () {
         //发送请求
-        var path = "/megagame/join";
+        var path = "/match/join";
         var user_ID = '12d1d2d1f3df554fd2s1f2ds1'
         uid =  $('#contest-id').val()
         var  name='彼岸花开'
@@ -26,7 +26,7 @@ $(function () {
             success: function (data) {
                 //成功，页面跳转
                 if (data.code === 200) {
-                    window.location.href = "/megagame/operation_list?page=1&contest_id="+$('#contest-id').val()+'&user_ID = '+user_ID;
+                    window.location.href = "/match/operation_list?page=1&contest_id="+$('#contest-id').val()+'&user_ID = '+user_ID;
                 }
                 else if (data.code === -1) {
                     window.location.href = "/auth/goLogin";

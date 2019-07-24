@@ -200,7 +200,7 @@ $(function () {
         pathObj.answer = operate_answer;
          pathObj.uid= uid
         var params_str = $.param(pathObj);
-        var operate_path = "/megagame/operator/check?";
+        var operate_path = "/match/operator/check?";
 
         //判空操作
         if (operate_answer == undefined || operate_answer == "" || operate_answer == null) {
@@ -250,7 +250,7 @@ $(function () {
         pathObj.qid = qid;
         pathObj.answer = operate_answer;
         var params_str = $.param(pathObj);
-        var operate_path = "/megagame/operator/check?";
+        var operate_path = "/match/operator/check?";
 
         //判空操作
         if (operate_answer == undefined || operate_answer == "" || operate_answer == null) {
@@ -301,7 +301,7 @@ $(function () {
         pathObj.qid = qid;
         pathObj.answer = operate_answer;
         var params_str = $.param(pathObj);
-        var operate_path = "/megagame/operator/check?";
+        var operate_path = "/match/operator/check?";
 
         //判空操作
         if (operate_answer == undefined || operate_answer == "" || operate_answer == null) {

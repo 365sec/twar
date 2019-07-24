@@ -28,7 +28,7 @@
 
 </head>
 <body>
-  <div id="head_content"></div>
+{% include "head_content.html" %}
 <section class="clear-nav"></section>
 <input type="hidden" id="currentCategory" value="theory">
 <input type="hidden" id="currentOrderType" value="default">
@@ -63,10 +63,10 @@
 <a href="/index/main" title="">首页</a>
 </li>
 <li>
-<a href="/megagame/introduce" title="">大赛介绍</a>
+<a href="/match/introduce" title="">大赛介绍</a>
 </li>
 <li>
-<a href="/megagame/detail?megagame_id={{ uid }}">大赛详情</a>
+<a href="/match/detail?megagame_id={{ uid }}">大赛详情</a>
 </li>
 <li class="active">
 <a href="#" title="">当前</a>
@@ -78,7 +78,7 @@
         <div class="question">
         <i class="fa fa-question-circle-o" aria-hidden="true"></i>
 
-        </div><a class="question-title" href="/megagame/choice?uid={{ uid }}"><p>第一部分 理论知识
+        </div><a class="question-title" href="/match/choice?uid={{ uid }}"><p>第一部分 理论知识
         </p></a>
         <div class="info">
         <div class="pull-right">
@@ -89,7 +89,7 @@
         <div class="question">
         <i class="fa fa-question-circle-o" aria-hidden="true"></i>
 
-        </div><a class="question-title" href="/megagame/questions_list?uid={{ uid }}&type=2"><p>第二部分 操作题
+        </div><a class="question-title" href="/match/questions_list?uid={{ uid }}&type=2"><p>第二部分 操作题
         </p></a>
         <div class="info">
         <div class="pull-right">
@@ -100,7 +100,7 @@
         <div class="question">
         <i class="fa fa-question-circle-o" aria-hidden="true"></i>
 
-        </div><a class="question-title" href="/megagame/questions_list?uid={{ uid }}&type=3"><p>第三部分 夺旗
+        </div><a class="question-title" href="/match/questions_list?uid={{ uid }}&type=3"><p>第三部分 夺旗
         </p></a>
         <div class="info">
         <div class="pull-right">
@@ -114,7 +114,7 @@
 <nav class="text-center">
 <ul class="pagination">
 {% if page > 1 %}
-    <li><a href="/megagame/operation_list?page=1" class="page">&laquo;</a></li>
+    <li><a href="/match/operation_list?page=1" class="page">&laquo;</a></li>
 {% else %}
     <li><a class="page-disabled"> &laquo;</a></li>
 {% endif %}
@@ -122,16 +122,16 @@
     {% if question_list.previous_page_number > 1 %}
          <li><a class="page-disabled" href="#" >...</a></li>
     {% endif %}
-         <li><a href="/megagame/operation_list?page={{ question_list.previous_page_number }} " >{{ question_list.previous_page_number }}</a></li>
+         <li><a href="/match/operation_list?page={{ question_list.previous_page_number }} " >{{ question_list.previous_page_number }}</a></li>
 {% endif %}
-<li><a href="/megagame/operation_list?page={{ page }}" class="active">{{ page }}</a></li>
+<li><a href="/match/operation_list?page={{ page }}" class="active">{{ page }}</a></li>
 {% if question_list.has_next %}
-<li><a href="/megagame/operation_list?page={{ question_list.next_page_number }}">{{ question_list.next_page_number }}</a></li>
+<li><a href="/match/operation_list?page={{ question_list.next_page_number }}">{{ question_list.next_page_number }}</a></li>
 {% endif %}
 {% if page  !=  num_pages   %}
 <li><a class="page-disabled">...</a></li>
 {% endif %}
-<li><a href="/megagame/operation_list?page={{ num_pages }} ">&raquo; </a></li>
+<li><a href="/match/operation_list?page={{ num_pages }} ">&raquo; </a></li>
 </ul>
 </nav>
 </div>
