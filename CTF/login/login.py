@@ -8,7 +8,7 @@ def re_login(request):
         password = request.POST.get('password')
         print username, password
         html_template = 'index.html'
-        return render(request, html_template)
+        return (request, html_template)
     else:
         html_template = 'login.html'
         return render(request, html_template)

@@ -7,7 +7,12 @@ from django.shortcuts import render
 import json
 from .tool import *
 from tool import models
-
+def map_tools(x):
+    x.create_time = x.create_time.strftime("%Y-%m-%d %H:%M:%S")
+    # x.apply_start_time= x.apply_start_time.strftime("%Y-%m-%d %H:%M:%S")
+    # x.apply_end_time= x.apply_end_time.strftime("%Y-%m-%d %H:%M:%S")
+    # x.answer_start_time= x.answer_start_time.strftime("%Y-%m-%d %H:%M:%S")
+    # x.answer_end_time= x.answer_end_time.strftime("%Y-%m-%d %H:%M:%S")
 
 class DateEncoder(json.JSONEncoder):
     def default(self, obj):
@@ -21,17 +26,16 @@ class DateEncoder(json.JSONEncoder):
 
 def re_megagame_intro(request):
 
-    temp = models.MegagameInformation.objects.filter().all()
-    html_template = 'megagame_intro.html'
-    return render(request, html_template, {'megagame_list': temp})
+    temp = models.MatchInfo.objects.filter().all()
+    return render(request, 'megagame_intro.html', {'megagame_list': temp})
 
 
 def re_megagame_detail(request):
     user_uid = request.GET.get('user_uid')
     if not user_uid:
         user_uid == '11fafawf'
-    megagame_id = request.GET.get('megagame_id')
-    temp = models.MegagameInformation.objects.filter(uid=megagame_id).first()
+    id = request.GET.get('id')
+    temp = models.MatchInfo.objects.filter(id=id).first()
     person1 = PersonMegagame(user_uid)
     state = 1  #person1.re_state(megagame_id)
     if state:
@@ -70,7 +74,7 @@ def re_operation(request):
         uid = request.GET.get("contest_id")
         user_ID = request.GET.get("user_ID")
         print uid
-        question_temp = models.MegagameQuestions.objects.filter(
+        question_temp = models.MatchInfo.objects.filter(
             uid=uid, type__gt=1).order_by('id')
         paginator = Paginator(question_temp, 20)
         # 获取 url 后面的 page 参数的值, 首页不显示 page 参数, 默认值是 1
@@ -101,14 +105,14 @@ def re_competition(request):
     if request.method == 'GET':
         qid = request.GET.get('qid')
         uid = request.GET.get('uid')
-        query = models.MegagameQuestions.objects.filter(qid=qid, uid=uid)
+        query = models.Challenge.objects.filter(qid=qid, uid=uid)
         render(request, 'megagame_competition.html', {'question': query})
 
 
 def re_megagame_choice(request):
     if request.method == 'GET':
         uid = request.GET.get('uid')
-        query = models.MegagameQuestions.objects.filter(uid=uid, type__lt=2)
+        query = models.Challenge.objects.filter(uid=uid, type__lt=2)
         strquery = json.dumps(list(query.values()),
                               ensure_ascii=False,
                               cls=DateEncoder)
@@ -124,7 +128,7 @@ def re_megagame_questions_detail(request):
     if request.method == 'GET':
         qid = request.GET.get('qid')
         print '------------->', qid
-        query = models.MegagameQuestions.objects.filter(qid=qid)
+        query = models.Challenge.objects.filter(qid=qid)
         if query:
             return render(request, 'megagame_questions_detail.html',
                           {'question': query[0]})
@@ -137,7 +141,7 @@ def re_megagame_questions_list(request):
         uid = request.GET.get('uid')
         type = request.GET.get('type')
         print uid, type, '-----------'
-        query = models.MegagameQuestions.objects.filter(uid=uid, type=type)
+        query = models.Challenge.objects.filter(uid=uid, type=type)
         return render(request, 'megagame_question_list.html',
                       {'questions_list': query})
     if request.method == 'POST':
@@ -151,7 +155,7 @@ def re_megagame_operator_check(request):
         user_ID = '888-8-8+88'
         uid = request.POST.get('uid')
         answer = request.POST.get('answer')
-        query = models.MegagameQuestions.objects.filter(qid=qid).first()
+        query = models.Challenge.objects.filter(qid=qid).first()
         if answer == query.correction:
             dict = {
                 'code': 200,
@@ -186,7 +190,7 @@ def re_megagame_choice_check(request):
         for question in answers:
             answer = question.get("answer")
             qid = question.get("qid")
-            query = models.MegagameQuestions.objects.filter(qid=qid).first()
+            query = models.Challenge.objects.filter(qid=qid).first()
             if answer == query.correction:
                 query1 = models.Answer.objects.filter(qid=qid, user_ID=user_ID)
                 if not query1.exists():
@@ -214,3 +218,46 @@ def re_megagame_choice_check(request):
 
 def re_megagame_ctf2018(request):
     return render(request, 'ctf2018.html')
+
+
+def m_session(request):
+    return render(request,"match/session.html")
+
+def m_login(request):
+    if request.method == "GET":
+        id=request.GET.get("id")
+        return render(request,"match/m_login.html",{'id':id})
+
+def m_match(request):
+    temp = models.MatchInfo.objects.filter().order_by("-id")
+    if temp:
+        map(map_tools, temp)
+    return render(request, "match/m_match.html", {'match_list': temp})
+
+def m_ctf(request):
+    if request.method == "GET":
+        id = request.GET.get("id")
+        temp= models.MatchInfo.objects.filter(id=id).first()
+        return render(request,"match/m_ctf.html",{"match":temp})
+
+def challenge_list(request):
+    if request.method == "GET":
+        id = request.GET.get("id")
+        temp= models.Challenge.objects.filter(match_id=id)
+        match = models.MatchInfo.objects.filter(id=id).first()
+        return render(request,"match/challenge_list.html",{"challenge":temp,"match":match})
+
+def oapi(request):
+    return
+
+
+def xctf(request):
+    return render(request, 'match/xctf.html')
+
+def auth_user(request):
+    data={"success": True, "message": {"user": {"logo": "/media/uploads/assets/img/def_icon.jpg", "username": "cy123456", "id": 49347, "short_introduce": "", "level": {"level_zh": "\u65b0\u624b", "level_en": "Novice"}, "point": 0, "coin": 0, "nickname": "cy123456"}}}
+    return HttpResponse(json.dumps(data))
+
+def auth_login(request):
+    data={}
+    return HttpResponse(json.dumps(data))

@@ -243,11 +243,12 @@ def add_match_info(request):
         answer_end_time = request.POST.get('apply_end_time')
         message =  request.POST.get('editorValue')
         brief= request.POST.get('introduce')
-        file_path = request.POST.get('file')[0]
+        try:
+            file_path = request.POST.getlist('file')[0]
+        except Exception,e:
+            file_path=""
         source = request.POST.get('source','管理员A')
         create_time = time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time()))
-
-
         match=models.MatchInfo(type=type,
                                 source=source,
                                 organizers=organizers,
@@ -264,8 +265,7 @@ def add_match_info(request):
                                file_path=file_path
                                )
         match.save()
-        dct = {'code': 1, 'url': '/manage/add_match_info', 'massage': 'none'}
-        return HttpResponse(json.dumps(dct))
+        return HttpResponseRedirect('/manage/match_info')
     return render(request, 'admin/add_match_info.html')
 
 

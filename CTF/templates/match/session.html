@@ -1,0 +1,85 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content="IE=edge,IE=9,IE=8,chrome=1" /><![endif]-->
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="明御® 攻防实验室" name="description">
+    <meta content="杭州安恒信息技术股份有限公司" name="author">
+    <title>登录 - 明御® 攻防实验室平台</title>
+    <link href="{% static "match/pic/favicon.ico" %}" type="image/x-icon" rel="icon">
+    <link href="{% static "match/pic/favicon.ico" %}" type="image/x-icon" rel="shortcut icon">
+
+    <link rel="shortcut icon" href="{% static "match/pic/favicon.ico" %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static "match/css/core.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "match/css/main.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "match/css/plugins.css" %}">
+</head>
+
+<body class="platform">
+
+<div class="row">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-6 col-left">
+        <div class="col-md-8 col-md-offset-4 col-lg-6 col-lg-offset-5">
+            <div class="platform-item">
+                <div class="panel-portfolio no-padding">
+                    <div class="portfolio-grid portfolio-hover">
+                        <img src="{% static "match/pic/icon-platform-teach.png" %}">
+                    </div>
+                    <div class="partition padding-15">
+                        <div class="clearfix">
+                            <a href="/index/main" class="col-xs-12 btn btn-lg btn-dark-green btn-squared">培训学习</a>
+                            <div class="col-xs-12 text-center no-padding space10 margin-top-20 text-white">
+                                来自国际领先的安恒信息安全团队，汇聚多年安全研究、攻防实践经验形成的强大资源库。具有丰富、全面的教学及实训课程，助你一路领先！
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-6 col-right">
+        <div class="col-md-8 col-md-offset-1 col-lg-6 col-lg-offset-1">
+            <div class="platform-item">
+                <div class="panel-portfolio no-padding">
+                    <div class="portfolio-grid portfolio-hover">
+                        <img src="{% static "match/pic/icon-platform-adc.png" %}">
+                    </div>
+                    <div class="partition padding-15">
+                        <div class="clearfix">
+                            <a href="/match/match" class="col-xs-12 btn btn-lg btn-dark-green btn-squared">攻防竞赛</a>
+                            <div class="col-xs-12 text-center no-padding space10 margin-top-20 text-white">
+                                <div class="list-group text-left text-large">
+                                    <a class="item text-white text-nowrap hovpop" data-placement="top" data-content=""
+                                       href="#" data-original-title="" title="">
+                                        <i class="fa fa-trophy tip" data-placement="left"
+                                           data-title="报名时间： &lt;br&gt;11月30日 00:00 ~ 11月30日 00:00&lt;br&gt;比赛时间： &lt;br&gt;11月28日 00:06 ~ 05月01日 23:55"
+                                           data-original-title="" title=""></i>&nbsp;夺旗练习赛
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{#<div class="copyright text-center text-white">#}
+{#    <a target="_blank" href="#" class="text-white">杭州安恒信息技术股份有限公司</a>&nbsp;©&nbsp;2009&nbsp;-&nbsp;2019 &nbsp;&nbsp;All#}
+{#    Rights Reserved.&nbsp;&nbsp;&nbsp;<a class="text-white" href="#" target="_blank"></a>#}
+{#</div>#}
+
+<script type="text/javascript" src="{% static "match/js/mod.js" %}"></script>
+<script type="text/javascript">require.resourceMap({"res": [], "pkg": []});</script>
+<script type="text/javascript" src="{% static "match/js/core.js" %}"></script>
+<script type="text/javascript" src="{% static "match/js/plugins.js" %}"></script>
+<script type="text/javascript" src="{% static "match/js/page.js" %}"></script>
+</body>
+</html>

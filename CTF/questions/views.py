@@ -7,18 +7,18 @@ from django.shortcuts import render
 from models import models
 
 
-def re_pages(request):
+def exercise_index(request):
     if request.method == "GET":
         sort = request.GET.get('sort','default')
         kind = request.GET.get('kind','理论知识')
         if sort == 'hottest':
-            question_temp = models.ExerciseQuestion.objects.filter(
+            question_temp = models.Exercise.objects.filter(
                 kind=kind).order_by('-pageview')
         elif sort == 'newest':
-            question_temp = models.ExerciseQuestion.objects.filter(
+            question_temp = models.Exercise.objects.filter(
                 kind=kind).order_by('-id')
         else:
-            question_temp = models.ExerciseQuestion.objects.filter(
+            question_temp = models.Exercise.objects.filter(
                 kind=kind).order_by('-pageview')
 
         paginator = Paginator(question_temp, 20)

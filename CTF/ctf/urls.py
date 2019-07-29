@@ -19,7 +19,7 @@ from login import login, register
 from manager import manager
 from index import index
 from match.views import *
-from questions.views import re_question, re_check_result, re_pages
+from questions.views import re_question, re_check_result, exercise_index
 from personal_center import user
 from news import news
 from django.views.static import serve
@@ -51,8 +51,7 @@ urlpatterns = [
     url(r'^manage/upload_file$', manager.upload_file),
     url(r'^login/register', register.re_register),
     url(r'^index/main', index.re_index),
-    url(r'^exercise/system$', re_pages),
-    url(r'^test/system$', re_pages),
+    url(r'^exercise/system$', exercise_index),
     url(r'^exercise/system/detail$', re_question),
     url(r'^exercise/answer_check$', re_check_result),
     url(r'^match/introduce$', re_megagame_intro),
@@ -74,7 +73,20 @@ urlpatterns = [
     url(r'^news/detail', news.news_detail),
     url('^accessory/(?P<path>.*)$', serve,
         {'document_root': settings.MEDIA_ROOT}),
-    url(r'^ueditor/', include('ueditor.urls')),
+
+    url(r'^session', m_session),
+    url(r'^match/login', m_login),
+    url(r'^match/match', m_match),
+    url(r'^match/oapi',oapi),
+    url(r'^match/CTF', m_ctf),
+    url(r'^match/challenge_list', challenge_list),
+    url(r'^match/xctf', xctf),
+    url(r'^api/auth/user', auth_user),
+    url(r'^api/auth/login', auth_login),
+
+
+
     url(r'^$', index.re_index),
     url(r'^$', index.re_index),
+
 ]

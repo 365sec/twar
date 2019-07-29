@@ -29,8 +29,8 @@
 <!-- -----------------比赛列表------------------------->
 <div class="container">
 {% for data in megagame_list   %}
-<a class="panel competitions-list contest-list" href="/match/detail?megagame_id={{ data.uid }}">
-<input type="text" name="contestId-input" class="hidden" value="21661">
+<a class="panel competitions-list contest-list" href="/match/detail?id={{ data.id }}">
+<input type="text" name="contestId-input" class="hidden" value="">
 <div class="panel-heading">
 <span class="label label-primary">CTF</span>
 <h3 class="panel-title">杭电CTF竞赛公测</h3>

@@ -128,3 +128,8 @@ MEDIA_URL = '/accessory/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'accessory/')
 
 ueditor_path = os.path.join(os.path.dirname(__file__), "UE")
+
+XCTF_URL = '/media/'
+XCTFFILES_DIRS = [
+    os.path.join(BASE_DIR, 'media'),
+]
