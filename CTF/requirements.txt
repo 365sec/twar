@@ -14,7 +14,7 @@ PyMySQL==0.9.3
 python-openid==2.2.5
 python-social-auth==0.3.6
 pytz==2019.1
-PyYAML==5.1.1
+PyYAML==5.4
 requests==2.22.0
 requests-oauthlib==1.2.0
 six==1.12.0
