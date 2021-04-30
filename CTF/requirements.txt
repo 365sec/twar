@@ -20,6 +20,6 @@ requests-oauthlib==1.2.0
 six==1.12.0
 social-auth-core==3.2.0
 SQLAlchemy==1.3.5
-urllib3==1.25.3
+urllib3==1.25.8
 userprofile==0.2.5
 Werkzeug==0.15.4
